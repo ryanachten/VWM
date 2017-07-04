@@ -1,9 +1,3 @@
-$(document).ready(function(){
-	initScene();
-	animate();
-});
-
-
 var screenWidth, screenHeight,
 	scene, camera,
 	light, ambientLight,
@@ -18,8 +12,6 @@ function initScene() {
 	initCamera();
 	initLight();
 	initMesh();
-
-
 }
 
 function initSceneRenderer(){	
@@ -57,10 +49,3 @@ function initMesh(){
 	lissajousCurve.createMesh();
 	scene.add(lissajousCurve.meshObject);
 }
-
-
-function animate() {
-	// requestAnimationFrame(animate);
-	renderer.render(scene, camera);
-	// updateHelper();
-};
