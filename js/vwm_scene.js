@@ -1,7 +1,12 @@
+// DESCRIPT: all functionality related to the 3JS scene here:
+
+
 var screenWidth, screenHeight,
 	scene, camera,
 	light, ambientLight,
 	renderer;
+
+var lissajousCurve;
 
 
 function initScene() {

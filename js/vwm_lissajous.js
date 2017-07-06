@@ -1,5 +1,28 @@
 // DESCRIPT: all functionality related to lissajous fig here:
 
+var lissajousVariants = [];
+
+var lissajVariant1 = {
+	freqA 	: 5,
+	freqB 	: 4,
+	freqC 	: 2,
+	phaseX 	: 0,
+	phaseY 	: 0,
+	phaseZ	: 0
+}
+lissajousVariants.push(lissajVariant1);
+
+var lissajVariant2 = {
+	freqA 	: 3,
+	freqB 	: 4,
+	freqC 	: 2,
+	phaseX 	: 0,
+	phaseY 	: 0,
+	phaseZ	: 0
+}
+lissajousVariants.push(lissajVariant2);
+
+
 function LissajousCurve(){
 	// based on https://github.com/licaschiou/Lissajous3js
 	this.sizeX = 80.0;
