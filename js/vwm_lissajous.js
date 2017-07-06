@@ -35,7 +35,7 @@ function LissajousCurve(){
 
 	this.phaseX = 0.0;
 	this.phaseY = 0.0;
-	this.phaseZ = 0.0;
+	this.phaseZ = 8.0;
 
 	this.step = 0.02;
 
