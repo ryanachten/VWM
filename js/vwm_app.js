@@ -4,13 +4,14 @@ $(document).ready(function(){
 	initApp();
 	initScene();
 	animate();
+	tweenLissaj(lissajousVariants[1]);
 });
 
 var clock;
 
 function initApp(){
 	clock = new THREE.Clock();
-	setupTween();
+	
 }
 
 
@@ -18,7 +19,7 @@ function animate() {
 	requestAnimationFrame(animate);
 	TWEEN.update();
 	render();
-};
+}
 
 function render(){
 
@@ -29,17 +30,17 @@ function render(){
 }
 
 
-function setupTween(){
+function tweenLissaj(newLissaj){
 
 	var update = function(){
-		lissajousCurve.fa = current.fa;
+		lissajousCurve.fa = current.freqA;
 		lissajousCurve.update();
 	};
 
-	var current = {fa: 4};
+	var current = {freqA: lissajousCurve.fa};
 
 	var tweenTo = new TWEEN.Tween(current)
-		.to({fa: 10}, 5000)
+		.to({freqA: newLissaj.freqA}, 5000)
 		.onUpdate(update);
 
 	tweenTo.start();

@@ -3,22 +3,22 @@
 var lissajousVariants = [];
 
 var lissajVariant1 = {
-	freqA 	: 5,
-	freqB 	: 4,
-	freqC 	: 2,
-	phaseX 	: 0,
-	phaseY 	: 0,
-	phaseZ	: 0
+	freqA 	: 10.0,
+	freqB 	: 1.0,
+	freqC 	: 5.0,
+	phaseX 	: 6.0,
+	phaseY 	: 1.0,
+	phaseZ	: 5.0
 }
 lissajousVariants.push(lissajVariant1);
 
 var lissajVariant2 = {
-	freqA 	: 3,
-	freqB 	: 4,
-	freqC 	: 2,
-	phaseX 	: 0,
-	phaseY 	: 0,
-	phaseZ	: 0
+	freqA 	: 8.0,
+	freqB 	: 6.0,
+	freqC 	: 4.0,
+	phaseX 	: 2.0,
+	phaseY 	: 8.0,
+	phaseZ	: 9.0
 }
 lissajousVariants.push(lissajVariant2);
 
