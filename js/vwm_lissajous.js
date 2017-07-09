@@ -46,7 +46,7 @@ function LissajousCurve(){
 	
 	this.material = 'Basic';
 	this.meshObject = new THREE.Object3D;
-	this.color = '#CFECEC';
+	this.color = '#384040';
 
 	this.setParameters = function(parameters){
 		this.material = parameters.material;

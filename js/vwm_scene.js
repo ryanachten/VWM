@@ -21,6 +21,7 @@ function initScene() {
 
 function initSceneRenderer(){	
 	scene = new THREE.Scene();
+	scene.background = new THREE.Color( 0xCFECEC );
 	if ( Detector.webgl )
 		renderer = new THREE.WebGLRenderer( {antialias:true} );
 	else
