@@ -10,8 +10,13 @@ var lissajousCurve;
 
 
 function initScene() {
+	// screenWidth = window.innerWidth;
+	// screenHeight = window.innerHeight;
 	screenWidth = window.innerWidth;
-	screenHeight = window.innerHeight;	
+	var navHeight = $('#top-nav').outerHeight();
+	var optHeight = $('#options-panel').outerHeight();
+	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
+	screenHeight = window.innerHeight - (navHeight+optHeight);	
 
 	initSceneRenderer();
 	initCamera();
@@ -28,7 +33,10 @@ function initSceneRenderer(){
 		console.log('WebGLRenderer not supported - please use another browser');
 		//TODO - add proper feedback
 	renderer.setSize(screenWidth, screenHeight);
-	document.body.appendChild(renderer.domElement);
+	// document.body.appendChild(renderer.domElement);
+	// document.getElementById('canvas-container').appendChild(renderer.domElement);
+	var optionsPanel = document.getElementById('options-panel');
+	document.body.insertBefore(renderer.domElement, optionsPanel);
 
 }
 
