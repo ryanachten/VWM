@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Visual Working Memory</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/86/three.min.js"></script>
+	<script type="text/javascript" src="js/Detector.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.7.0/Tween.min.js"></script>
+	<script src="js/THREE.MeshLine.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/vwm_styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono" rel="stylesheet">
+</head>
+	<body>
+		<nav id="top-nav">
+			<a id="vwm-logo" href="">
+				<img id="vwm-logoimg" src="img/vwm_mainlogo_white.svg" alt="vwm logo">
+			</a>
+			<a class="top-nav-link" href="">Participate</a>
+			<a class="top-nav-link" href="">Research</a>
+			<a class="top-nav-link" href="">About</a>
+			<a class="top-nav-link" href="">Contact</a>
+		</nav>
+
+		<main id="view-container">
+			<div id="target-panel">
+				<h2>Target</h2>
+				<p>Find me in the options below:</p>
+			</div>
+
+			<div id="progress-panel">
+				<h3>Progress</h3>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>
+					<svg class="progress-circles">
+						 <circle cx="9" cy="9" r="7"/></svg>	
+			</div>
+		</main>
+
+		<aside id="options-panel">
+			<h2>Options</h2>
+			<p>Find the target in the images to the left:</p>
+			<button id="option-button-1" class="option-button">
+				<img src="http://via.placeholder.com/75x75">
+			</button>
+			<button id="option-button-2" class="option-button">
+				<img src="http://via.placeholder.com/75x75">
+			</button>
+			<button id="option-button-3" class="option-button">
+				<img src="http://via.placeholder.com/75x75">
+			</button>
+		</aside>
+
+		<script type="text/javascript" src="js/vwm_lissajous.js"></script>
+		<script type="text/javascript" src="js/vwm_scene.js"></script>
+		<script type="text/javascript" src="js/vwm_tests.js"></script>
+		<script type="text/javascript" src="js/vwm_app.js"></script> 
+	</body>
+</html>
