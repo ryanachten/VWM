@@ -42,8 +42,9 @@ function initScene() {
 
 function calcCanvasSizes(){
 	screenWidth = $(window).width();
-	var navHeight = $('#top-nav').outerHeight();
-	var optHeight = $('#options-panel').outerHeight();
+	console.log('screenWidth: ' + screenWidth);
+	var navHeight = $('#top-nav').outerHeight(true);
+	var optHeight = $('#start-panel').outerHeight(true);
 	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
 	screenHeight = $(window).height() - (navHeight+optHeight);	
 }
