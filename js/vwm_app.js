@@ -8,6 +8,7 @@ $(document).ready(function(){
 });
 
 var clock;
+var testProgressIcons;
 
 function initApp(){
 	clock = new THREE.Clock();
@@ -16,6 +17,8 @@ function initApp(){
 	for(var i = 0; i < optionButtons.length; i++ ){
 		optionButtons[i].addEventListener("click", loadTest);
 	}
+	
+	testProgressIcons = document.getElementsByClassName('progress-circles');
 	
 }
 
@@ -31,11 +34,13 @@ function render(){
 	renderer.render(scene, camera);
 }
 
+var testCount = 10;
+var curTest = 0;
+
 var curLassijIndex;
 function loadTest(){
 	var newLassijIndex = Math.round(Math.random()*lissajousVariants.length);
-	console.log('curLassijIndex: ' + curLassijIndex);
-	console.log('newLassijIndex: ' + newLassijIndex);
+	console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
 	if(newLassijIndex !== curLassijIndex){
 		tweenLissaj(lissajousVariants[ newLassijIndex ]);
 		curLassijIndex = newLassijIndex;
@@ -43,4 +48,6 @@ function loadTest(){
 	else{
 		loadTest();
 	}
+
+
 }
