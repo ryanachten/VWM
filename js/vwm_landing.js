@@ -41,12 +41,13 @@ function initScene() {
 
 
 function calcCanvasSizes(){
-	screenWidth = $(window).width();
-	console.log('screenWidth: ' + screenWidth);
+	
 	var navHeight = $('#top-nav').outerHeight(true);
 	var optHeight = $('#start-panel').outerHeight(true);
 	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
 	screenHeight = $(window).height() - (navHeight+optHeight);	
+	screenWidth = $(window).width();
+	console.log('screenWidth: ' + screenWidth);
 }
 
 
@@ -96,7 +97,7 @@ function initLight(){
 function initMesh(){
 	lissajousCurve = new LissajousCurve();
 	lissajousCurve.color = "#BFE3E3";
-	lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = 200;
+	lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = 150;
 	lissajousCurve.meshObject.name = "Lissa";
 	lissajousCurve.createMesh();
 	scene.add(lissajousCurve.meshObject);
