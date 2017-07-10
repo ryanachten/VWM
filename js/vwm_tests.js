@@ -4,6 +4,8 @@ var testCount = 10;
 var curTest = 0;
 var testProgressIcons;
 
+console.log('lissajousVariants.length: ' + lissajousVariants.length);
+
 var curLassijIndex;
 function loadTest(){
 	var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);

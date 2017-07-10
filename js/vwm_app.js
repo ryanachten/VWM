@@ -8,7 +8,7 @@ $(document).ready(function(){
 });
 
 var clock;
-var testProgressIcons;
+
 
 function initApp(){
 	clock = new THREE.Clock();
@@ -34,20 +34,4 @@ function render(){
 	renderer.render(scene, camera);
 }
 
-var testCount = 10;
-var curTest = 0;
 
-var curLassijIndex;
-function loadTest(){
-	var newLassijIndex = Math.round(Math.random()*lissajousVariants.length);
-	console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
-	if(newLassijIndex !== curLassijIndex){
-		tweenLissaj(lissajousVariants[ newLassijIndex ]);
-		curLassijIndex = newLassijIndex;
-	}
-	else{
-		loadTest();
-	}
-
-
-}
