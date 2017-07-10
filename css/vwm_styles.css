@@ -83,6 +83,9 @@ p{
 	fill: #FFFFFF;
 	stroke: #979797;
 }
+#active-progress-circle{
+	fill: red;
+}
 
 /*****CANVAS CONTAINER STYLES*****/
 #view-container{
