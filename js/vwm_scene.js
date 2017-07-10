@@ -10,19 +10,35 @@ var lissajousCurve;
 
 
 function initScene() {
-	// screenWidth = window.innerWidth;
-	// screenHeight = window.innerHeight;
-	screenWidth = $(window).width();
-	var navHeight = $('#top-nav').outerHeight();
-	var optHeight = $('#options-panel').outerHeight();
-	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
-	screenHeight = window.innerHeight - (navHeight+optHeight);	
+
+	calcCanvasSizes();
 
 	initSceneRenderer();
 	initCamera();
 	initLight();
 	initMesh();
 }
+
+
+function calcCanvasSizes(){
+	screenWidth = $(window).width();
+	var navHeight = $('#top-nav').outerHeight();
+	var optHeight = $('#options-panel').outerHeight();
+	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
+	screenHeight = $(window).height() - (navHeight+optHeight);	
+}
+
+
+window.addEventListener('resize', recalcCanvas, false);
+function recalcCanvas(){
+	calcCanvasSizes();
+
+	camera.aspect = screenWidth / screenHeight;
+	camera.updateProjectionMatrix();
+
+	renderer.setSize( screenWidth, screenHeight);
+}
+
 
 function initSceneRenderer(){	
 	scene = new THREE.Scene();
@@ -33,12 +49,9 @@ function initSceneRenderer(){
 		console.log('WebGLRenderer not supported - please use another browser');
 		//TODO - add proper feedback
 	renderer.setSize(screenWidth, screenHeight);
-	// document.body.appendChild(renderer.domElement);
 	document.getElementById('view-container').appendChild(renderer.domElement);
-	// var optionsPanel = document.getElementById('options-panel');
-	// document.body.insertBefore(renderer.domElement, optionsPanel);
-
 }
+
 
 function initCamera(){
 	camera = new THREE.PerspectiveCamera(75, screenWidth / screenHeight, 0.1, 1000);
@@ -46,6 +59,7 @@ function initCamera(){
 	camera.lookAt(scene.position);
 	scene.add(camera);
 }
+
 
 function initLight(){
 	light = new THREE.PointLight(0xffffff);
@@ -57,13 +71,12 @@ function initLight(){
 	scene.add(ambientLight);
 }
 
+
 function initMesh(){
 	lissajousCurve = new LissajousCurve();
-	// var contSize = screenWidth > screenHeight ? screenHeight : screenWidth;
-	// contSize = contSize/5;
-	// lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = contSize;
 	
 	lissajousCurve.meshObject.name = "Lissa";
 	lissajousCurve.createMesh();
 	scene.add(lissajousCurve.meshObject);
 }
+
