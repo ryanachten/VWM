@@ -4,7 +4,11 @@ $(document).ready(function(){
 	initApp();
 	initScene();
 	animate();
-	tweenLissaj(lissajousVariants[1]); //move this to a button event
+
+	tweenLissaj(lissajousVariants[
+		Math.round(Math.random()*lissajousVariants.length)
+		// 1
+	]); //move this to a button event
 });
 
 var clock;

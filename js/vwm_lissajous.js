@@ -3,24 +3,124 @@
 var lissajousVariants = [];
 
 var lissajVariant1 = {
-	freqA 	: 10.0,
-	freqB 	: 1.0,
-	freqC 	: 5.0,
-	phaseX 	: 6.0,
-	phaseY 	: 1.0,
-	phaseZ	: 5.0
+	freqA 	: 3.0,
+	freqB 	: 4.0,
+	freqC 	: 2.0,
+	phaseX 	: 0.0,
+	phaseY 	: 0.0,
+	phaseZ	: 0.0
 }
 lissajousVariants.push(lissajVariant1);
 
 var lissajVariant2 = {
-	freqA 	: 8.0,
-	freqB 	: 6.0,
-	freqC 	: 4.0,
-	phaseX 	: 2.0,
+	freqA 	: 9.0,
+	freqB 	: 10.0,
+	freqC 	: 10.0,
+	phaseX 	: 10.0,
 	phaseY 	: 8.0,
-	phaseZ	: 9.0
+	phaseZ	: 3.0
 }
 lissajousVariants.push(lissajVariant2);
+
+var lissajVariant3 = {
+	freqA 	: 1.0,
+	freqB 	: 10.0,
+	freqC 	: 10.0,
+	phaseX 	: 6.0,
+	phaseY 	: 4.0,
+	phaseZ	: 3.0
+}
+lissajousVariants.push(lissajVariant3);
+
+var lissajVariant4 = {
+	freqA 	: 5.0,
+	freqB 	: 10.0,
+	freqC 	: 10.0,
+	phaseX 	: 5.0,
+	phaseY 	: 1.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant4);
+
+var lissajVariant5 = {
+	freqA 	: 5.0,
+	freqB 	: 10.0,
+	freqC 	: 6.0,
+	phaseX 	: 5.0,
+	phaseY 	: 1.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant5);
+
+var lissajVariant6 = {
+	freqA 	: 5.0,
+	freqB 	: 2.0,
+	freqC 	: 6.0,
+	phaseX 	: 5.0,
+	phaseY 	: 1.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant6);
+
+var lissajVariant7 = {
+	freqA 	: 5.0,
+	freqB 	: 4.0,
+	freqC 	: 6.0,
+	phaseX 	: 5.0,
+	phaseY 	: 1.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant7);
+
+var lissajVariant8 = {
+	freqA 	: 5.0,
+	freqB 	: 4.0,
+	freqC 	: 6.0,
+	phaseX 	: 7.0,
+	phaseY 	: 0.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant8);
+
+var lissajVariant9 = {
+	freqA 	: 5.0,
+	freqB 	: 4.0,
+	freqC 	: 6.0,
+	phaseX 	: 6.0,
+	phaseY 	: 0.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant9);
+
+var lissajVariant10 = {
+	freqA 	: 5.0,
+	freqB 	: 4.0,
+	freqC 	: 8.0,
+	phaseX 	: 0.0,
+	phaseY 	: 0.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant10);
+
+var lissajVariant11 = {
+	freqA 	: 5.0,
+	freqB 	: 4.0,
+	freqC 	: 6.0,
+	phaseX 	: 0.0,
+	phaseY 	: 0.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant11);
+
+var lissajVariant12 = {
+	freqA 	: 3.0,
+	freqB 	: 6.0,
+	freqC 	: 2.0,
+	phaseX 	: 0.0,
+	phaseY 	: 0.0,
+	phaseZ	: 0.0
+}
+lissajousVariants.push(lissajVariant12);
 
 
 function LissajousCurve(){
@@ -115,4 +215,40 @@ function LissajousCurve(){
 		this.clearMesh();
 		this.createMesh();
 	};
+}
+
+function tweenLissaj(newLissaj){
+
+	//Tween resource: http://learningthreejs.com/data/tweenjs_for_smooth_animation/tweenjs_for_smooth_animation.js
+
+	var update = function(){
+		lissajousCurve.fa = current.freqA;
+		lissajousCurve.fb = current.freqB;
+		lissajousCurve.fc = current.freqC;
+		lissajousCurve.phaseX = current.phaseX;
+		lissajousCurve.phaseY = current.phaseY;
+		lissajousCurve.phaseZ = current.phaseZ;
+		lissajousCurve.update();
+	};
+
+	var current = { freqA: lissajousCurve.fa,
+					freqB: lissajousCurve.fb,
+					freqC: lissajousCurve.fc,
+					phaseX: lissajousCurve.phaseX,
+					phaseY: lissajousCurve.phaseY,
+					phaseZ: lissajousCurve.phaseZ
+				};
+
+	var tweenTo = new TWEEN.Tween(current)
+		.to({	freqA: newLissaj.freqA,
+				freqB: newLissaj.freqB,
+				freqC: newLissaj.freqC,
+				phaseX: newLissaj.phaseX,
+				phaseY: newLissaj.phaseY,
+				phaseZ: newLissaj.phaseZ
+		}, 5000)
+		.onUpdate(update);
+
+	tweenTo.start();
+
 }
