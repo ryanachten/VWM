@@ -12,7 +12,7 @@ var lissajousCurve;
 function initScene() {
 	// screenWidth = window.innerWidth;
 	// screenHeight = window.innerHeight;
-	screenWidth = window.innerWidth;
+	screenWidth = $(window).width();
 	var navHeight = $('#top-nav').outerHeight();
 	var optHeight = $('#options-panel').outerHeight();
 	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
@@ -34,9 +34,9 @@ function initSceneRenderer(){
 		//TODO - add proper feedback
 	renderer.setSize(screenWidth, screenHeight);
 	// document.body.appendChild(renderer.domElement);
-	// document.getElementById('canvas-container').appendChild(renderer.domElement);
-	var optionsPanel = document.getElementById('options-panel');
-	document.body.insertBefore(renderer.domElement, optionsPanel);
+	document.getElementById('view-container').appendChild(renderer.domElement);
+	// var optionsPanel = document.getElementById('options-panel');
+	// document.body.insertBefore(renderer.domElement, optionsPanel);
 
 }
 
@@ -59,6 +59,10 @@ function initLight(){
 
 function initMesh(){
 	lissajousCurve = new LissajousCurve();
+	// var contSize = screenWidth > screenHeight ? screenHeight : screenWidth;
+	// contSize = contSize/5;
+	// lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = contSize;
+	
 	lissajousCurve.meshObject.name = "Lissa";
 	lissajousCurve.createMesh();
 	scene.add(lissajousCurve.meshObject);
