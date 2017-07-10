@@ -94,7 +94,7 @@ function initLight(){
 
 function initMesh(){
 	lissajousCurve = new LissajousCurve();
-	lissajousCurve.color = "#A1D5D5";
+	lissajousCurve.color = "#BFE3E3";
 	lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = 200;
 	lissajousCurve.meshObject.name = "Lissa";
 	lissajousCurve.createMesh();
