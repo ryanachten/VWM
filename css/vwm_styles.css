@@ -1,8 +1,22 @@
 /*****GLOBAL STYLES*****/
 
+body{
+	margin: 0;
+}
+
 h2{
 	font-family: OpenSans-Regular;
-	font-size: 30px;
+	font-size: 25px;
+	color: #000000;
+	letter-spacing: 3px;
+	font-weight: normal;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+h3{
+	font-family: OpenSans-Regular;
+	font-size: 18px;
 	color: #000000;
 	letter-spacing: 3px;
 	font-weight: normal;
@@ -12,7 +26,7 @@ h2{
 
 p{
 	font-family: Georgia;
-	font-size: 20px;
+	font-size: 16	px;
 	color: #000000;
 	margin: 10px;
 }
@@ -45,23 +59,51 @@ p{
 	text-transform: uppercase;
 }
 
+/*****TARGET PANEL STYLES*****/
+#target-panel{
+	position: absolute;
+	margin: 20px;
+    text-align: center;
+}
+
+/*****PROGRESS PANEL STYLES*****/
+#progress-panel{
+	position: absolute;
+	margin: 20px;
+    text-align: center;
+    bottom: 0px;
+    width: 200px;
+}
+.progress-circles{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+}
+.progress-circles circle{
+	fill: #FFFFFF;
+	stroke: #979797;
+}
 
 /*****CANVAS CONTAINER STYLES*****/
-#canvas-container{
-	background-color: red;
-	height: 500px;  /*guestimates - delete*/
+#view-container{
+    position: relative;
+}
+
+canvas{
+	z-index: -1;
+    position: relative;
 }
 
 
 
 /*****OPTION PANEL STYLES*****/
-
 #options-panel{
 	text-align: center;
 	/*height: 200px;*/
 	background: #F5F5F5;
 	box-shadow: -2px 0 10px 0 rgba(0,0,0,0.50);
 	padding: 20px;
+    margin-top: -5px;
 }
 
 .option-button{
@@ -69,5 +111,6 @@ p{
 	width: 150px;
     border-radius: 50%;
     border: none;
+	margin: 0 20px;
 }
 
