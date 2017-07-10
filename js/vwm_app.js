@@ -31,8 +31,16 @@ function render(){
 	renderer.render(scene, camera);
 }
 
+var curLassijIndex;
 function loadTest(){
-	tweenLissaj(lissajousVariants[
-		Math.round(Math.random()*lissajousVariants.length)
-	]);
+	var newLassijIndex = Math.round(Math.random()*lissajousVariants.length);
+	console.log('curLassijIndex: ' + curLassijIndex);
+	console.log('newLassijIndex: ' + newLassijIndex);
+	if(newLassijIndex !== curLassijIndex){
+		tweenLissaj(lissajousVariants[ newLassijIndex ]);
+		curLassijIndex = newLassijIndex;
+	}
+	else{
+		loadTest();
+	}
 }
