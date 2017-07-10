@@ -11,7 +11,7 @@ function loadTest(){
 
 	if(curTestIndex === null){
 		curTestIndex = 0;
-	}else if(curTestIndex+1 < totalTestCount){
+	}else if(curTestIndex+1 <= totalTestCount){
 		curTestIndex++;
 	}
 
