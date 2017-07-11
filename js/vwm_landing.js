@@ -102,3 +102,12 @@ function initMesh(){
 	lissajousCurve.createMesh();
 	scene.add(lissajousCurve.meshObject);
 }
+
+
+$('#name-inputform').submit(function(e) {
+    e.preventDefault();
+
+	//TODO: store username in DB
+	console.log('submitting');
+	window.location.href = 'test.html';
+});	
