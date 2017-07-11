@@ -1,3 +1,31 @@
+/*****TOP NAV STYLES*****/
+
+#top-nav{
+	background-color: #384040;
+ 	padding: 20px;
+ 	text-align: center;
+ 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.50);
+}
+
+#vwm-logoimg{
+	vertical-align: middle;
+	height: 60px;
+}
+
+#vwm-logo, .top-nav-link{
+	color: #FFFFFF;
+	letter-spacing: 2px;
+	text-decoration: none;
+	margin: 0 40px;
+}
+
+.top-nav-link{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+
+
 /*****HEADER PANEL STYLES*****/
 #header-panel{
 	position: absolute;
