@@ -10,6 +10,7 @@
 	font-family: 'Roboto Mono', monospace;
 	font-size: 35px;
 	letter-spacing: 6px;
+	text-transform: uppercase;
 }
 #pulloutquote{
 	display: block;
