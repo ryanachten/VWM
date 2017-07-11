@@ -1,31 +1,33 @@
 // DESCRIPT: all psych test controller functionality goes here:
 
-var totalTestCount = 10;
+// var totalTestCount = 25;
+var testPerStageCount = 25;
 var curTestIndex = null;
 
 var curLassijIndex;
-var testProgressIcons;
+
+var testProgressBar = document.getElementById('progressbar');
 
 
 function loadTest(){
 
 	if(curTestIndex === null){
 		curTestIndex = 0;
-	}else if(curTestIndex+1 <= totalTestCount){
+	}else if(curTestIndex+1 <= testPerStageCount){
 		curTestIndex++;
 	}
 
-	if(curTestIndex+1 <= totalTestCount){
+	if(curTestIndex+1 <= testPerStageCount){
 		console.log('curTestIndex: ' + curTestIndex);
 		updateLissajFigure();
-		// updateProgressIcons();
+		updateProgressBar();
 	}
-	// console.log('curTestIndex: ' + curTestIndex);
 }
 
-function updateProgressIcons(){
+function updateProgressBar(){
 		
-	testProgressIcons[curTestIndex].children[0].style.fill = '#FFA0B6';
+	var curProgressPercent = (curTestIndex+1) * (100/testPerStageCount);	
+	testProgressBar.style.width = curProgressPercent + '%';
 }
 
 function updateLissajFigure(){

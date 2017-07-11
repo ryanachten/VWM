@@ -15,7 +15,7 @@
 	display: inline-block;
 	width: calc(100% - 80px);
 	top: 50%;
-    transform: translateY(-60%);
+    transform: translateY(-50%);
 }
 #progress-header{
 	display: inline-block;
@@ -29,7 +29,7 @@
 	border: 1px solid #979797;
 }
 #progressbar{
-    width: 1%;
+    width: 0%;
     height: 20px;
     background-color: #FFA0B6;
 }
