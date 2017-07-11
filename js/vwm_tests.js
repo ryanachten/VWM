@@ -18,7 +18,7 @@ function loadTest(){
 	if(curTestIndex+1 <= totalTestCount){
 		console.log('curTestIndex: ' + curTestIndex);
 		updateLissajFigure();
-		updateProgressIcons();
+		// updateProgressIcons();
 	}
 	// console.log('curTestIndex: ' + curTestIndex);
 }

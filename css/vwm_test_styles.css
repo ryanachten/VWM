@@ -3,9 +3,41 @@
  	padding: 20px;
  	position: absolute;
     z-index: 1;
+    width: 100%;
 }
-#vwm-logoimg{
+#vwm-logo, #vwm-logoimg{
 	height: 60px;
+	display: inline-block;
+}
+
+#progress-panel{
+	text-align: center;
+	display: inline-block;
+	width: calc(100% - 80px);
+	top: 50%;
+    transform: translateY(-60%);
+}
+#progress-header{
+	display: inline-block;
+	margin-right: 10px;
+}
+#progressbar-container{
+    display: inline-block;
+    width: 50%;
+    vertical-align: middle;
+	background-color: #FFFFFF;
+	border: 1px solid #979797;
+}
+#progressbar{
+    width: 1%;
+    height: 20px;
+    background-color: #FFA0B6;
+}
+#progress-stagetext{
+	display: inline-block;
+}
+#progress-stagecount{
+	font-weight: bold;
 }
 
 
@@ -20,27 +52,6 @@
 }
 
 
-/*****PROGRESS PANEL STYLES*****/
-#progress-panel{
-	position: absolute;
-	margin: 20px;
-    text-align: center;
-    bottom: 0px;
-    width: 250px;
-}
-.progress-circles{
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-}
-.progress-circles circle{
-	fill: #FFFFFF;
-	stroke: #979797;
-}
-#active-progress-circle{
-	fill: red;
-}
-
 /*****CANVAS CONTAINER STYLES*****/
 #view-container{
     position: relative;
@@ -52,11 +63,9 @@ canvas{
 }
 
 
-
 /*****OPTION PANEL STYLES*****/
 #options-panel{
 	text-align: center;
-	/*height: 200px;*/
 	background: #F5F5F5;
 	box-shadow: -2px 0 10px 0 rgba(0,0,0,0.50);
 	padding: 20px;
