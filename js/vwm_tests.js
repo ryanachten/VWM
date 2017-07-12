@@ -6,6 +6,7 @@ var curTestIndex = null;
 var curLassijIndex;
 
 var testProgressBar = document.getElementById('progressbar');
+var trialCountText =  document.getElementById('progress-trialcount');
 
 
 function loadTest(){
@@ -20,23 +21,28 @@ function loadTest(){
 		console.log('curTestIndex: ' + curTestIndex);
 		updateLissajFigure();
 		updateProgressBar();
+		updateTrialCountText();
+	}
+
+	function updateProgressBar(){
+		var curProgressPercent = (curTestIndex+1) * (100/testPerStageCount);	
+		testProgressBar.style.width = curProgressPercent + '%';
+	}
+
+	function updateTrialCountText(){
+		trialCountText.innerText = testPerStageCount - curTestIndex + " trials";
+	}
+
+	function updateLissajFigure(){
+		var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
+		// console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
+		if(newLassijIndex !== curLassijIndex){
+			tweenLissaj(lissajousVariants[ newLassijIndex ]);
+			curLassijIndex = newLassijIndex;		
+		}
+		else{
+			updateLissajFigure();
+		}
 	}
 }
 
-function updateProgressBar(){
-		
-	var curProgressPercent = (curTestIndex+1) * (100/testPerStageCount);	
-	testProgressBar.style.width = curProgressPercent + '%';
-}
-
-function updateLissajFigure(){
-	var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
-	// console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
-	if(newLassijIndex !== curLassijIndex){
-		tweenLissaj(lissajousVariants[ newLassijIndex ]);
-		curLassijIndex = newLassijIndex;		
-	}
-	else{
-		updateLissajFigure();
-	}
-}
