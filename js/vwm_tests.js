@@ -34,11 +34,9 @@ function loadScene(){
 }
 
 
-
 function loadTestMemoriseScene(){
 
 	function initScene(){
-		// lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'none';
 		var optionButtons = document.getElementsByClassName('option-button');
@@ -61,18 +59,6 @@ function loadTestMemoriseScene(){
 		updateProgressBar();
 		updateTrialCountText();
 	}
-
-	function updateLissajFigure(){
-		var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
-		// console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
-		if(newLassijIndex !== curLassijIndex){
-			tweenLissaj(lissajousVariants[ newLassijIndex ]);
-			curLassijIndex = newLassijIndex;		
-		}
-		else{
-			updateLissajFigure();
-		}
-	}
 }
 
 function loadMemoriseOnlyScene(){
@@ -87,6 +73,7 @@ function loadMemoriseOnlyScene(){
 			};
 	}
 	initScene();
+	updateLissajFigure();
 }
 
 function loadTestOnlyScene(){
@@ -97,7 +84,7 @@ function loadTestOnlyScene(){
 	initScene();
 
 	curTestIndex++;
-	
+
 	updateProgressBar();
 	updateTrialCountText();
 }
@@ -111,3 +98,15 @@ function updateProgressBar(){
 function updateTrialCountText(){
 	trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
 }
+
+function updateLissajFigure(){
+		var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
+		// console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
+		if(newLassijIndex !== curLassijIndex){
+			tweenLissaj(lissajousVariants[ newLassijIndex ]);
+			curLassijIndex = newLassijIndex;		
+		}
+		else{
+			updateLissajFigure();
+		}
+	}
