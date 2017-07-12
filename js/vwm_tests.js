@@ -4,16 +4,15 @@ var testPerStageCount = 25;
 var curSceneIndex = 0;
 var curTestIndex = null;
 
-var nback = 2;
+var nback = 4;
 
 var curLassijIndex;
 
 var testProgressBar = document.getElementById('progressbar');
 var trialCountText = document.getElementById('progress-trialcount');
+var targetPanel = document.getElementById('target-panel');
 var targetHelperText = document.getElementById('target-helpertext');
-// var targetSceneText = document.getElementById('target-scenecount');
 var optionsHelperText = document.getElementById('options-helpertext');
-// var optionsSceneText = document.getElementById('options-scenecount');
 
 
 function loadScene(){
@@ -24,11 +23,12 @@ function loadScene(){
 		console.log('sceneMode: memoriseOnly');
 		loadMemoriseOnlyScene();
 	}
-	else if(curTestIndex+1 === testPerStageCount){	//if we're on the last test
+	else if(curTestIndex+nback >= testPerStageCount //if we're on the last mem scene (accounts for n-back range)
+			&& curTestIndex < testPerStageCount){  	// and not over test count (25)
 		console.log('sceneMode: testOnly');
 		loadTestOnlyScene();
 	} 
-	else{
+	else if (curTestIndex < testPerStageCount){
 		console.log('sceneMode: testAndMemorise');
 		loadTestMemoriseScene(); 
 	}
@@ -83,7 +83,7 @@ function loadMemoriseOnlyScene(){
 function loadTestOnlyScene(){
 
 	function initScene(){
-		lissajousCurve.color = '#CFECEC';
+		lissajousCurve.color = '#CFECEC'; //FIXME: seems kind of buggy - not best approach
 	}
 	initScene();
 
@@ -120,9 +120,11 @@ function updateHelperText(sceneMode){
 	if(sceneMode === 'mem'){
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';
 		optionsHelperText.innerHTML = 'No options to select yet, just memorise the image above';
+		targetPanel.style.width = '250px';
 	}else if(sceneMode === 'test'){
-		targetHelperText.innerHTML = 'Nothing to memorise here, just select the image from the previous scene in the options below';
+		targetHelperText.innerHTML = 'Nothing to memorise here, just select the image from <span id="target-scenecount">'+ nback +' scenes</span> ago in the options below';
 		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
+		targetPanel.style.width = '100%';
 	}else{
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';	
 		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
