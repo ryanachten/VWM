@@ -1,6 +1,5 @@
 // DESCRIPT: all psych test controller functionality goes here:
 
-// var totalTestCount = 25;
 var testPerStageCount = 25;
 var curTestIndex = null;
 
@@ -32,7 +31,7 @@ function updateProgressBar(){
 
 function updateLissajFigure(){
 	var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
-	console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
+	// console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
 	if(newLassijIndex !== curLassijIndex){
 		tweenLissaj(lissajousVariants[ newLassijIndex ]);
 		curLassijIndex = newLassijIndex;		

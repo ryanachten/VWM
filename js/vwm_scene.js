@@ -74,7 +74,7 @@ function initLight(){
 
 function initMesh(){
 	lissajousCurve = new LissajousCurve();
-	
+	lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = 90;
 	lissajousCurve.meshObject.name = "Lissa";
 	lissajousCurve.createMesh();
 	scene.add(lissajousCurve.meshObject);
