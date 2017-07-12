@@ -8,7 +8,7 @@ var curLassijIndex;
 var testProgressBar = document.getElementById('progressbar');
 var trialCountText =  document.getElementById('progress-trialcount');
 
-var sceneMode = 'testAndMemorise'; // Can be one of three modes:
+var sceneMode = 'memoriseOnly'; // Can be one of three modes:
 								// 'testOnly' 'memoriseOnly' 'testAndMemorise'
 
 function loadScene(){
@@ -21,7 +21,7 @@ function loadScene(){
 		loadTestMemoriseScene(); 
 	}
 	else if(sceneMode === 'memoriseOnly'){
-		//TODO: loadMemoriseOnlyScene();
+		loadMemoriseOnlyScene();
 	}
 	else if(sceneMode === 'testOnly'){
 		//TODO: loadTestOnlyScene();
@@ -67,3 +67,15 @@ function loadTestMemoriseScene(){
 	} //prob rename this function to something clearer
 }
 
+function loadMemoriseOnlyScene(){
+
+	function initScene(){
+		var continueButton = document.getElementById('continue-button');
+			continueButton.style.display = 'inline-block';
+		var optionButtons = document.getElementsByClassName('option-button');
+			for (var i = 0; i < optionButtons.length; i++) {
+				optionButtons[i].style.display = 'none';
+			};
+	}
+	initScene();
+}

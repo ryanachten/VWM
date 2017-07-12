@@ -83,12 +83,16 @@ canvas{
 	width: 100%;
 	margin-left: 40px;
 }
-
-.option-button{
+.option-button, #continue-button{
 	height: 150px;
 	width: 150px;
     border-radius: 50%;
     border: none;
 	margin: 0 40px;
 }
-
+#continue-button{
+	display: none;		
+}
+#continue-button > p{
+	display: inline-block;
+}

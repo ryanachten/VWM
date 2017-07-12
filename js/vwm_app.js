@@ -17,6 +17,8 @@ function initApp(){
 	for(var i = 0; i < optionButtons.length; i++ ){
 		optionButtons[i].addEventListener("click", loadScene);
 	}
+	var continueButton = document.getElementById('continue-button');
+		continueButton.addEventListener("click", loadScene);
 	
 }
 
