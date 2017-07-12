@@ -50,6 +50,9 @@
     top: 50%;
     transform: translateY(-60%);
 }
+#target-scenecount{
+	font-weight: bold;
+}
 
 
 /*****CANVAS CONTAINER STYLES*****/
@@ -76,6 +79,9 @@ canvas{
 	display: inline-block;
 	max-width: 250px;
 	margin-top: 30px;
+}
+#options-scenecount{
+	font-weight: bold;
 }
 #options-buttoncontainer{
 	text-align: center;

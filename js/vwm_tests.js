@@ -9,10 +9,12 @@ var nback = 2;
 var curLassijIndex;
 
 var testProgressBar = document.getElementById('progressbar');
-var trialCountText =  document.getElementById('progress-trialcount');
+var trialCountText = document.getElementById('progress-trialcount');
+var targetHelperText = document.getElementById('target-helpertext');
+// var targetSceneText = document.getElementById('target-scenecount');
+var optionsHelperText = document.getElementById('options-helpertext');
+// var optionsSceneText = document.getElementById('options-scenecount');
 
-var sceneMode = 'testAndMemorise'; // Can be one of three modes:
-								// 'testOnly' 'memoriseOnly' 'testAndMemorise'
 
 function loadScene(){
 
@@ -58,6 +60,7 @@ function loadTestMemoriseScene(){
 		updateLissajFigure();
 		updateProgressBar();
 		updateTrialCountText();
+		updateHelperText('testMem');
 	}
 }
 
@@ -73,6 +76,7 @@ function loadMemoriseOnlyScene(){
 			};
 	}
 	initScene();
+	updateHelperText('mem');
 	updateLissajFigure();
 }
 
@@ -87,6 +91,7 @@ function loadTestOnlyScene(){
 
 	updateProgressBar();
 	updateTrialCountText();
+	updateHelperText('test');
 }
 
 
@@ -109,4 +114,17 @@ function updateLissajFigure(){
 		else{
 			updateLissajFigure();
 		}
+}
+
+function updateHelperText(sceneMode){
+	if(sceneMode === 'mem'){
+		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';
+		optionsHelperText.innerHTML = 'No options to select yet, just memorise the image above';
+	}else if(sceneMode === 'test'){
+		targetHelperText.innerHTML = 'Nothing to memorise here, just select the image from the previous scene in the options below';
+		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
+	}else{
+		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';	
+		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
 	}
+}
