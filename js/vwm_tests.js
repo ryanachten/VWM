@@ -2,7 +2,7 @@
 
 var testPerStageCount = 25;
 var curSceneIndex = 0;
-var curTestIndex = 0;
+var curTestIndex = null;
 
 var nback = 2;
 
@@ -16,40 +16,50 @@ var sceneMode = 'testAndMemorise'; // Can be one of three modes:
 
 function loadScene(){
 
-	console.log('sceneMode: ' + sceneMode);
-	//TODO: sceneMode should be dictated by what stage the
-	//		app is at, and what the testIndex count is
+	console.log('curSceneIndex: '+ curSceneIndex);
 
-	if(sceneMode === 'testAndMemorise'){
-		loadTestMemoriseScene(); 
-	}
-	else if(sceneMode === 'memoriseOnly'){
+	if(curSceneIndex < nback){ //if the number of mem tests req hasn't been reached
+		console.log('sceneMode: memoriseOnly');
 		loadMemoriseOnlyScene();
 	}
-	else if(sceneMode === 'testOnly'){
+	else if(curTestIndex+1 === testPerStageCount){	//if we're on the last test
+		console.log('sceneMode: testOnly');
 		loadTestOnlyScene();
+	} 
+	else{
+		console.log('sceneMode: testAndMemorise');
+		loadTestMemoriseScene(); 
 	}
+	curSceneIndex++;
 }
 
 
 
 function loadTestMemoriseScene(){
 
-	if(curTestIndex+1 <= testPerStageCount){
+	function initScene(){
+		// lissajousCurve.color = '#384040';
+		var continueButton = document.getElementById('continue-button');
+			continueButton.style.display = 'none';
+		var optionButtons = document.getElementsByClassName('option-button');
+			for (var i = 0; i < optionButtons.length; i++) {
+				optionButtons[i].style.display = 'inline-block';
+			};
+	}
+	initScene();
+
+	if(curTestIndex === null){
+		curTestIndex = 0;
+	}
+	else{
 		curTestIndex++;
+	}
+
+	if(curTestIndex+1 <= testPerStageCount){
 		console.log('curTestIndex: ' + curTestIndex);
 		updateLissajFigure();
 		updateProgressBar();
 		updateTrialCountText();
-	}
-
-	function updateProgressBar(){
-		var curProgressPercent = curTestIndex * (100/testPerStageCount);	
-		testProgressBar.style.width = curProgressPercent + '%';
-	}
-
-	function updateTrialCountText(){
-		trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
 	}
 
 	function updateLissajFigure(){
@@ -68,7 +78,7 @@ function loadTestMemoriseScene(){
 function loadMemoriseOnlyScene(){
 
 	function initScene(){
-		// lissajousCurve.color = '#384040';
+		lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'inline-block';
 		var optionButtons = document.getElementsByClassName('option-button');
@@ -85,4 +95,19 @@ function loadTestOnlyScene(){
 		lissajousCurve.color = '#CFECEC';
 	}
 	initScene();
+
+	curTestIndex++;
+	
+	updateProgressBar();
+	updateTrialCountText();
+}
+
+
+function updateProgressBar(){
+	var curProgressPercent = curTestIndex * (100/testPerStageCount);	
+	testProgressBar.style.width = curProgressPercent + '%';
+}
+
+function updateTrialCountText(){
+	trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
 }
