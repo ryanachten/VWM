@@ -1,14 +1,17 @@
 // DESCRIPT: all psych test controller functionality goes here:
 
 var testPerStageCount = 25;
-var curTestIndex = null; //TODO: remame as sceneIndex? Might need a scene and test index...
+var curSceneIndex = 0;
+var curTestIndex = 0;
+
+var nback = 2;
 
 var curLassijIndex;
 
 var testProgressBar = document.getElementById('progressbar');
 var trialCountText =  document.getElementById('progress-trialcount');
 
-var sceneMode = 'memoriseOnly'; // Can be one of three modes:
+var sceneMode = 'testAndMemorise'; // Can be one of three modes:
 								// 'testOnly' 'memoriseOnly' 'testAndMemorise'
 
 function loadScene(){
@@ -24,7 +27,7 @@ function loadScene(){
 		loadMemoriseOnlyScene();
 	}
 	else if(sceneMode === 'testOnly'){
-		//TODO: loadTestOnlyScene();
+		loadTestOnlyScene();
 	}
 }
 
@@ -32,13 +35,8 @@ function loadScene(){
 
 function loadTestMemoriseScene(){
 
-	if(curTestIndex === null){
-		curTestIndex = 0;
-	}else if(curTestIndex+1 <= testPerStageCount){
-		curTestIndex++;
-	}
-
 	if(curTestIndex+1 <= testPerStageCount){
+		curTestIndex++;
 		console.log('curTestIndex: ' + curTestIndex);
 		updateLissajFigure();
 		updateProgressBar();
@@ -46,7 +44,7 @@ function loadTestMemoriseScene(){
 	}
 
 	function updateProgressBar(){
-		var curProgressPercent = (curTestIndex+1) * (100/testPerStageCount);	
+		var curProgressPercent = curTestIndex * (100/testPerStageCount);	
 		testProgressBar.style.width = curProgressPercent + '%';
 	}
 
@@ -64,18 +62,27 @@ function loadTestMemoriseScene(){
 		else{
 			updateLissajFigure();
 		}
-	} //prob rename this function to something clearer
+	}
 }
 
 function loadMemoriseOnlyScene(){
 
 	function initScene(){
+		// lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'inline-block';
 		var optionButtons = document.getElementsByClassName('option-button');
 			for (var i = 0; i < optionButtons.length; i++) {
 				optionButtons[i].style.display = 'none';
 			};
+	}
+	initScene();
+}
+
+function loadTestOnlyScene(){
+
+	function initScene(){
+		lissajousCurve.color = '#CFECEC';
 	}
 	initScene();
 }
