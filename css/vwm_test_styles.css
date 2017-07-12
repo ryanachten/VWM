@@ -1,6 +1,6 @@
 /*****TOP NAV STYLES*****/
 #top-nav{
- 	padding: 20px;
+ 	padding: 40px;
  	position: absolute;
     z-index: 1;
     width: 100%;
@@ -14,7 +14,7 @@
 	text-align: center;
 	display: inline-block;
 	width: calc(100% - 80px);
-	top: 50%;
+	top: 100px;
     transform: translateY(-50%);
 }
 #progress-header{
@@ -68,6 +68,7 @@ canvas{
 
 /*****OPTION PANEL STYLES*****/
 #options-panel{
+	height: 150px;
 	background: #F5F5F5;
 	box-shadow: -2px 0 10px 0 rgba(0,0,0,0.50);
 	padding: 20px;
@@ -88,15 +89,31 @@ canvas{
 	display: inline-block;
 	width: calc(100% - 270px);
 }
-.option-button, #continue-button{
+.option-button{
 	height: 150px;
 	width: 150px;
     border-radius: 50%;
+    /*border: 1px black solid;*/
     border: none;
+    box-shadow: -2px 0 10px 0 rgba(0,0,0,0.50);
 	margin: 0 20px;
+	background-color: white;
+}
+.option-button:hover {
+    background-color: #FFA0B6;
 }
 #continue-button{
-	display: none;		
+	display: none;
+	position: absolute;
+    right: 100px;
+	bottom: 50px;
+    transform: translateY(-60%);
+    border-radius: 10px;
+    /*border: 1px #2c2828 solid;*/
+    border: none;
+    box-shadow: -2px 0 10px 0 rgba(0,0,0,0.50);
+    margin: 0 20px;
+    background-color: rgba(255,255,255, 0.7);
 }
 #continue-button > p{
 	display: inline-block;
