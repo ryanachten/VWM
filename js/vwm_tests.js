@@ -1,15 +1,36 @@
 // DESCRIPT: all psych test controller functionality goes here:
 
 var testPerStageCount = 25;
-var curTestIndex = null;
+var curTestIndex = null; //TODO: remame as sceneIndex? Might need a scene and test index...
 
 var curLassijIndex;
 
 var testProgressBar = document.getElementById('progressbar');
 var trialCountText =  document.getElementById('progress-trialcount');
 
+var sceneMode = 'testAndMemorise'; // Can be one of three modes:
+								// 'testOnly' 'memoriseOnly' 'testAndMemorise'
 
-function loadTest(){
+function loadScene(){
+
+	console.log('sceneMode: ' + sceneMode);
+	//TODO: sceneMode should be dictated by what stage the
+	//		app is at, and what the testIndex count is
+
+	if(sceneMode === 'testAndMemorise'){
+		loadTestMemoriseScene(); 
+	}
+	else if(sceneMode === 'memoriseOnly'){
+		//TODO: loadMemoriseOnlyScene();
+	}
+	else if(sceneMode === 'testOnly'){
+		//TODO: loadTestOnlyScene();
+	}
+}
+
+
+
+function loadTestMemoriseScene(){
 
 	if(curTestIndex === null){
 		curTestIndex = 0;
@@ -30,7 +51,7 @@ function loadTest(){
 	}
 
 	function updateTrialCountText(){
-		trialCountText.innerText = testPerStageCount - curTestIndex + " trials";
+		trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
 	}
 
 	function updateLissajFigure(){
@@ -43,6 +64,6 @@ function loadTest(){
 		else{
 			updateLissajFigure();
 		}
-	}
+	} //prob rename this function to something clearer
 }
 

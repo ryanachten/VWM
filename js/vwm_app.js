@@ -4,7 +4,7 @@ $(document).ready(function(){
 	initApp();
 	initScene();
 	animate();
-	loadTest();
+	loadScene();
 });
 
 var clock;
@@ -15,10 +15,8 @@ function initApp(){
 
 	var optionButtons = document.getElementsByClassName('option-button');
 	for(var i = 0; i < optionButtons.length; i++ ){
-		optionButtons[i].addEventListener("click", loadTest);
+		optionButtons[i].addEventListener("click", loadScene);
 	}
-	
-	testProgressIcons = document.getElementsByClassName('progress-circles');
 	
 }
 
