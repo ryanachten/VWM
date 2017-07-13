@@ -15,10 +15,14 @@ function initApp(){
 
 	var optionButtons = document.getElementsByClassName('option-button');
 	for(var i = 0; i < optionButtons.length; i++ ){
-		optionButtons[i].addEventListener("click", loadScene);
+		optionButtons[i].addEventListener("click", function(){
+			loadScene(this.id);
+		});
 	}
 	var continueButton = document.getElementById('continue-button');
-		continueButton.addEventListener("click", loadScene);
+		continueButton.addEventListener("click", function(){
+			loadScene('continue-button');
+		});
 	
 }
 
