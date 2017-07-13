@@ -14,31 +14,32 @@ var targetPanel = document.getElementById('target-panel');
 var targetHelperText = document.getElementById('target-helpertext');
 var optionsHelperText = document.getElementById('options-helpertext');
 
+var transitionPanel = document.getElementById('transition-panel');
 
 function loadScene(optionButtonID){
 	console.log(' ');
 	console.log('curSceneIndex: '+ curSceneIndex);
 
-	if(curSceneIndex < nback){ //if the number of mem tests req hasn't been reached
-		console.log('sceneMode: memoriseOnly');
-		loadMemoriseOnlyScene();
-		curSceneIndex++;
-	}
-	else if(curTestIndex+nback >= testPerStageCount //if we're on the last mem scene (accounts for n-back range)
-			&& curTestIndex < testPerStageCount){  	// and not over test count (25)
-		console.log('sceneMode: testOnly');
-		loadTestOnlyScene(optionButtonID);
-		curSceneIndex++;
-	} 
-	else if (curTestIndex < testPerStageCount){
-		console.log('sceneMode: testAndMemorise');
-		loadTestMemoriseScene(optionButtonID);
-		curSceneIndex++; 
-	}
-	else if(curSceneIndex+nback > testPerStageCount){
-		console.log('sceneMode: transition to next stage');
+	// if(curSceneIndex < nback){ //if the number of mem tests req hasn't been reached
+	// 	console.log('sceneMode: memoriseOnly');
+	// 	loadMemoriseOnlyScene();
+	// 	curSceneIndex++;
+	// }
+	// else if(curTestIndex+nback >= testPerStageCount //if we're on the last mem scene (accounts for n-back range)
+	// 		&& curTestIndex < testPerStageCount){  	// and not over test count (25)
+	// 	console.log('sceneMode: testOnly');
+	// 	loadTestOnlyScene(optionButtonID);
+	// 	curSceneIndex++;
+	// } 
+	// else if (curTestIndex < testPerStageCount){
+	// 	console.log('sceneMode: testAndMemorise');
+	// 	loadTestMemoriseScene(optionButtonID);
+	// 	curSceneIndex++; 
+	// }
+	// else if(curSceneIndex+nback > testPerStageCount){
+	// 	console.log('sceneMode: transition to next stage');
 		loadStageTransitionScene(optionButtonID);
-	}
+	// }
 }
 
 
@@ -117,6 +118,7 @@ function loadStageTransitionScene(optionButtonID){
 			for (var i = 0; i < optionButtons.length; i++) {
 				optionButtons[i].style.display = 'none';
 			}
+		transitionPanel.style.display = 'block';
 	}
 	initScene();
 

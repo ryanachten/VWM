@@ -41,6 +41,25 @@
 }
 
 
+/*****TRANSITION PANEL STYLES*****/
+#transition-panel{
+	display: none;
+	position: absolute;
+	top: 50%;
+    transform: translateY(-60%);
+    width: 100%;
+}
+
+.nback-diagram{
+	display: inherit;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    max-width: 1000px;
+}
+
+
+
 /*****TARGET PANEL STYLES*****/
 #target-panel{
 	position: absolute;
