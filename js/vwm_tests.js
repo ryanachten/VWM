@@ -4,7 +4,7 @@ var testPerStageCount = 25;
 var curSceneIndex = 0;
 var curTestIndex = null;
 
-var nback = 3; //needs to be set to null at start for production
+var nback = 0; //needs to be set to null at start for production
 
 var curLassijIndex;
 
@@ -23,32 +23,33 @@ function loadScene(optionButtonID){
 	console.log(' ');
 	console.log('curSceneIndex: '+ curSceneIndex);
 
-	// if(curSceneIndex < nback){ //if the number of mem tests req hasn't been reached
-	// 	console.log('sceneMode: memoriseOnly');
-	// 	loadMemoriseOnlyScene();
-	// 	curSceneIndex++;
-	// }
-	// else if(curTestIndex+nback >= testPerStageCount //if we're on the last mem scene (accounts for n-back range)
-	// 		&& curTestIndex < testPerStageCount){  	// and not over test count (25)
-	// 	console.log('sceneMode: testOnly');
-	// 	loadTestOnlyScene(optionButtonID);
-	// 	curSceneIndex++;
-	// } 
-	// else if (curTestIndex < testPerStageCount){
-	// 	console.log('sceneMode: testAndMemorise');
-	// 	loadTestMemoriseScene(optionButtonID);
-	// 	curSceneIndex++; 
-	// }
-	// else if(curSceneIndex+nback > testPerStageCount){
-	// 	console.log('sceneMode: transition to next stage');
+	if(curSceneIndex < nback){ //if the number of mem tests req hasn't been reached
+		console.log('sceneMode: memoriseOnly');
+		loadMemoriseOnlyScene();
+		curSceneIndex++;
+	}
+	else if(curTestIndex+nback >= testPerStageCount //if we're on the last mem scene (accounts for n-back range)
+			&& curTestIndex < testPerStageCount){  	// and not over test count (25)
+		console.log('sceneMode: testOnly');
+		loadTestOnlyScene(optionButtonID);
+		curSceneIndex++;
+	} 
+	else if (curTestIndex < testPerStageCount){
+		console.log('sceneMode: testAndMemorise');
+		loadTestMemoriseScene(optionButtonID);
+		curSceneIndex++; 
+	}
+	else if(curSceneIndex+nback > testPerStageCount){
+		console.log('sceneMode: transition to next stage');
 		loadStageTransitionScene(optionButtonID);
-	// }
+	}
 }
 
 
 function loadTestMemoriseScene(optionButtonID){
 
 	function initScene(){
+		transitionPanel.style.display = 'none';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'none';
 		var optionButtons = document.getElementsByClassName('option-button');
@@ -81,6 +82,7 @@ function loadTestMemoriseScene(optionButtonID){
 function loadMemoriseOnlyScene(){
 
 	function initScene(){
+		transitionPanel.style.display = 'none';
 		lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'inline-block';
@@ -192,6 +194,8 @@ function updateLissajFigure(){
 
 function updateHelperText(sceneMode){
 	if(sceneMode === 'mem'){
+		targetHelperText.style.display = 'block';
+		optionsHelperText.style.display = 'block';
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';
 		optionsHelperText.innerHTML = 'No options to select yet, just memorise the image above';
 		targetPanel.style.width = '250px';
@@ -214,6 +218,8 @@ function updateHelperText(sceneMode){
 			transitionHelperText.innerHTML = "Find the <strong>Memorise</strong> ('M') image from <strong>"+ nback +" scenes ago</strong> amongst the <strong>Options</strong> ('O') images";
 		}
 	}else{
+		targetHelperText.style.display = 'block';
+		optionsHelperText.style.display = 'block';
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';	
 		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
 	}
