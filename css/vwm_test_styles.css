@@ -56,12 +56,12 @@ h1{
 #transition-panel{
 	display: none;
 	position: absolute;
-	top: 45%;
+	top: 50%;
     transform: translateY(-60%);
     width: 100%;
     text-align: center;
 }
-.nback-diagram{
+#nback-diagram{
 	display: inherit;
 	position: relative;
 	width: 60%;
@@ -69,7 +69,7 @@ h1{
 	/* margin-left: auto; */
 	/* margin-right: auto; */
 	left: 300px;
-	margin: 50px;
+	margin: 20px 50px;
 }
 
 

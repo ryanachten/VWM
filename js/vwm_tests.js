@@ -4,7 +4,7 @@ var testPerStageCount = 25;
 var curSceneIndex = 0;
 var curTestIndex = null;
 
-var nback = 2; //needs to be set to 0 at start for production
+var nback = 3; //needs to be set to null at start for production
 
 var curLassijIndex;
 
@@ -15,6 +15,9 @@ var targetHelperText = document.getElementById('target-helpertext');
 var optionsHelperText = document.getElementById('options-helpertext');
 
 var transitionPanel = document.getElementById('transition-panel');
+var transitionHelperText = document.getElementById('transition-helpertext');
+var transitionStageNum = document.getElementById('trans-header-stagenum');
+var transitionDiagram = document.getElementById('nback-diagram');
 
 function loadScene(optionButtonID){
 	console.log(' ');
@@ -109,16 +112,49 @@ function loadTestOnlyScene(optionButtonID){
 }
 
 function loadStageTransitionScene(optionButtonID){
+
+	if(nback === null){
+		nback = 0;	
+	}else{
+		nback++;
+	}
+	console.log(' ');
+	console.log('Move to N-back: ' + nback);
+
 	function initScene(){
 		lissajousCurve.color = '#CFECEC';
 		updateLissajFigure();
+
 		var continueButton = document.getElementById('continue-button');
 				continueButton.style.display = 'inline-block';
 		var optionButtons = document.getElementsByClassName('option-button');
 			for (var i = 0; i < optionButtons.length; i++) {
 				optionButtons[i].style.display = 'none';
 			}
+
 		transitionPanel.style.display = 'block';
+		transitionStageNum.innerText = 'N-Back ' + nback;
+
+		var diagramPath = 'img/VWM_NbackDiagrams/VWM_Diagram_';
+		switch(nback){
+			case 0:
+				transitionDiagram.src = diagramPath + '0Back.svg';
+				break;
+			case 1:
+				transitionDiagram.src = diagramPath + '1Back.svg';
+				break;
+			case 2:
+				transitionDiagram.src = diagramPath + '2Back.svg';
+				break;
+			case 3:
+				transitionDiagram.src = diagramPath + '3Back.svg';
+				break;
+			case 4:
+				transitionDiagram.src = diagramPath + '4Back.svg';
+				break;
+			default:
+				transitionDiagram.src = 'img/VWM_NbackDiagrams/VWM_Diagram_0Back.svg';
+		}
 	}
 	initScene();
 	updateHelperText('trans');
@@ -130,9 +166,6 @@ function loadStageTransitionScene(optionButtonID){
 
 	curSceneIndex = 0;
 	curTestIndex = null;
-	nback++;
-	console.log(' ');
-	console.log('Move to N-back: ' + nback);
 }
 
 
@@ -162,14 +195,24 @@ function updateHelperText(sceneMode){
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';
 		optionsHelperText.innerHTML = 'No options to select yet, just memorise the image above';
 		targetPanel.style.width = '250px';
+
 	}else if(sceneMode === 'test'){
 		targetHelperText.innerHTML = 'Nothing to memorise here, just select the image from <span id="target-scenecount">'+ nback +' scenes</span> ago in the options below';
 		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
 		targetPanel.style.width = '100%';
+
 	}else if(sceneMode === 'trans'){
 		targetHelperText.style.display = 'none';
 		optionsHelperText.style.display = 'none';
 		targetPanel.style.width = '250px';
+
+		if(nback === 0){
+			transitionHelperText.innerHTML = "Find the <strong>Memorise</strong> ('M') image amongst the <strong>Options</strong> ('O') images in the <em>same scene<em>";
+		}else if(nback === 1){
+			transitionHelperText.innerHTML = "Find the <strong>Memorise</strong> ('M') image from <strong>"+ nback +" scene ago</strong> amongst the <strong>Options</strong> ('O') images";
+		}else{
+			transitionHelperText.innerHTML = "Find the <strong>Memorise</strong> ('M') image from <strong>"+ nback +" scenes ago</strong> amongst the <strong>Options</strong> ('O') images";
+		}
 	}else{
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';	
 		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
