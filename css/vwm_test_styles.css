@@ -42,20 +42,34 @@
 
 
 /*****TRANSITION PANEL STYLES*****/
+h1{
+	font-family: 'Roboto Mono', monospace;
+	font-size: 35px;
+	letter-spacing: 6px;
+	text-transform: uppercase;
+	font-weight: normal;
+	margin-top: 0px;
+}
+#trans-header-stagenum{
+	font-weight: bold;
+}
 #transition-panel{
 	display: none;
 	position: absolute;
-	top: 50%;
+	top: 45%;
     transform: translateY(-60%);
     width: 100%;
+    text-align: center;
 }
-
 .nback-diagram{
 	display: inherit;
-    margin-left: auto;
-    margin-right: auto;
-    width: 75%;
-    max-width: 1000px;
+	position: relative;
+	width: 60%;
+	max-width: 1000px;
+	/* margin-left: auto; */
+	/* margin-right: auto; */
+	left: 300px;
+	margin: 50px;
 }
 
 
@@ -98,6 +112,7 @@ canvas{
 	/*position: absolute;*/
 	display: inline-block;
 	max-width: 250px;
+	width: 250px;
 	margin-top: 30px;
 }
 #options-scenecount{

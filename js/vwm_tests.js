@@ -4,7 +4,7 @@ var testPerStageCount = 25;
 var curSceneIndex = 0;
 var curTestIndex = null;
 
-var nback = 0;
+var nback = 2; //needs to be set to 0 at start for production
 
 var curLassijIndex;
 
@@ -121,6 +121,7 @@ function loadStageTransitionScene(optionButtonID){
 		transitionPanel.style.display = 'block';
 	}
 	initScene();
+	updateHelperText('trans');
 
 	console.log('curTestIndex: ' + curTestIndex);
 	if(optionButtonID !== 'continue-button'){
@@ -165,6 +166,10 @@ function updateHelperText(sceneMode){
 		targetHelperText.innerHTML = 'Nothing to memorise here, just select the image from <span id="target-scenecount">'+ nback +' scenes</span> ago in the options below';
 		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
 		targetPanel.style.width = '100%';
+	}else if(sceneMode === 'trans'){
+		targetHelperText.style.display = 'none';
+		optionsHelperText.style.display = 'none';
+		targetPanel.style.width = '250px';
 	}else{
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';	
 		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
