@@ -8,6 +8,7 @@ $(document).ready(function(){
 	animate();
 	loadScene();
 
+	console.log('FOUC');
 	$('html').show(); //FOUC hack
 });
 
