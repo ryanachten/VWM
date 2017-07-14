@@ -74,14 +74,9 @@ function loadTestMemoriseScene(optionButtonID){
 		}
 		curTestIndex++;
 	}
-
-	// if(curTestIndex+1 <= testPerStageCount){ //needed - already tested for in loadScene?
-		
-		updateLissajFigure();
-		updateProgressBar();
-		updateTrialCountText();
-		updateHelperText('testMem');
-	// }
+	updateLissajFigure();
+	updateProgressBar();
+	updateHelperText('testMem');
 }
 
 function loadMemoriseOnlyScene(){
@@ -114,7 +109,6 @@ function loadTestOnlyScene(optionButtonID){
 	curTestIndex++;
 
 	updateProgressBar();
-	updateTrialCountText();
 	updateHelperText('test');
 }
 
@@ -173,15 +167,13 @@ function loadStageTransitionScene(optionButtonID){
 
 	curSceneIndex = 0;
 	curTestIndex = null;
+	updateProgressBar();
 }
 
 
 function updateProgressBar(){
 	var curProgressPercent = curTestIndex * (100/testPerStageCount);	
 	testProgressBar.style.width = curProgressPercent + '%';
-}
-
-function updateTrialCountText(){
 	trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
 }
 
