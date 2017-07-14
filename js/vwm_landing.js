@@ -7,11 +7,14 @@ var screenWidth, screenHeight,
 
 var lissajousCurve;
 
+$('html').hide(); //FOUC hack
 $(document).ready(function(){
 	initScene();
 	animate();
 	var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
 	tweenLissaj(lissajousVariants[ newLassijIndex ]);
+
+	$('html').show(); //FOUC hack
 });
 
 var clock;

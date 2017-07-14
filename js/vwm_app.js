@@ -1,10 +1,14 @@
 // DESCRIPT: all functionality related to the app base here:
 
+$('html').hide(); //FOUC hack
 $(document).ready(function(){
+	
 	initApp();
 	initScene();
 	animate();
 	loadScene();
+
+	$('html').show(); //FOUC hack
 });
 
 var clock;
