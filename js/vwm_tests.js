@@ -20,12 +20,15 @@ var transitionStageNum = document.getElementById('trans-header-stagenum');
 var transitionDiagram = document.getElementById('nback-diagram');
 
 function loadScene(optionButtonID){
+	if(optionButtonID !== 'continue-button'){
+		console.log('Button pressed: ' + optionButtonID);
+	}
 	console.log(' ');
-	console.log('curSceneIndex: '+ curSceneIndex);
+	// console.log('curSceneIndex: '+ curSceneIndex);
 
 	if(nback === null){
 		console.log('sceneMode: transition to first stage');
-		loadStageTransitionScene(optionButtonID);
+		loadStageTransitionScene();
 	}
 	else if(curSceneIndex < nback){ //if the number of mem tests req hasn't been reached
 		console.log('sceneMode: memoriseOnly');
@@ -35,22 +38,22 @@ function loadScene(optionButtonID){
 	else if(curTestIndex+nback >= testPerStageCount //if we're on the last mem scene (accounts for n-back range)
 			&& curTestIndex < testPerStageCount){  	// and not over test count (25)
 		console.log('sceneMode: testOnly');
-		loadTestOnlyScene(optionButtonID);
+		loadTestOnlyScene();
 		curSceneIndex++;
 	} 
 	else if (curTestIndex < testPerStageCount){
 		console.log('sceneMode: testAndMemorise');
-		loadTestMemoriseScene(optionButtonID);
+		loadTestMemoriseScene();
 		curSceneIndex++; 
 	}
 	else if(curSceneIndex+nback > testPerStageCount){
 		console.log('sceneMode: transition to next stage');
-		loadStageTransitionScene(optionButtonID);
+		loadStageTransitionScene();
 	}
 }
 
 
-function loadTestMemoriseScene(optionButtonID){
+function loadTestMemoriseScene(){
 
 	function initScene(){
 		transitionPanel.style.display = 'none';
@@ -69,12 +72,10 @@ function loadTestMemoriseScene(optionButtonID){
 	}
 	else{
 		console.log('curTestIndex: ' + curTestIndex);
-		if(optionButtonID !== 'continue-button'){
-			console.log('optionButtonID: ' + optionButtonID);
-		}
+		
 		curTestIndex++;
 	}
-	updateLissajFigure();
+	updateMemoriseFigure();
 	updateProgressBar();
 	updateHelperText('testMem');
 }
@@ -93,26 +94,25 @@ function loadMemoriseOnlyScene(){
 	}
 	initScene();
 	updateHelperText('mem');
-	updateLissajFigure();
+	updateMemoriseFigure();
 }
 
-function loadTestOnlyScene(optionButtonID){
+function loadTestOnlyScene(){
 
 	function initScene(){
 		lissajousCurve.color = '#CFECEC'; //FIXME: seems kind of buggy - not best approach
-		updateLissajFigure();
+		lissajousCurve.update();
 	}
 	initScene();
 
 	console.log('curTestIndex: ' + curTestIndex);
-	console.log('optionButtonID: ' + optionButtonID);
 	curTestIndex++;
 
 	updateProgressBar();
 	updateHelperText('test');
 }
 
-function loadStageTransitionScene(optionButtonID){
+function loadStageTransitionScene(){
 
 	if(nback === null){
 		nback = 0;	
@@ -124,7 +124,7 @@ function loadStageTransitionScene(optionButtonID){
 
 	function initScene(){
 		lissajousCurve.color = '#CFECEC';
-		updateLissajFigure();
+		lissajousCurve.update();
 
 		var continueButton = document.getElementById('continue-button');
 				continueButton.style.display = 'inline-block';
@@ -161,9 +161,6 @@ function loadStageTransitionScene(optionButtonID){
 	updateHelperText('trans');
 
 	console.log('curTestIndex: ' + curTestIndex);
-	if(optionButtonID !== 'continue-button'){
-		console.log('optionButtonID: ' + optionButtonID);
-	}
 
 	curSceneIndex = 0;
 	curTestIndex = null;
@@ -177,15 +174,15 @@ function updateProgressBar(){
 	trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
 }
 
-function updateLissajFigure(){
+function updateMemoriseFigure(){
 		var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
-		// console.log('curLassij: ' + curLassijIndex + ' newLassij: ' + newLassijIndex);
 		if(newLassijIndex !== curLassijIndex){
 			tweenLissaj(lissajousVariants[ newLassijIndex ]);
 			curLassijIndex = newLassijIndex;		
+			console.log('Current Figure: ' + curLassijIndex);
 		}
 		else{
-			updateLissajFigure();
+			updateMemoriseFigure();
 		}
 }
 
