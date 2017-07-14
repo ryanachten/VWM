@@ -33,20 +33,20 @@ var lissajousVariants = [];
 
 	var lissajVariant4 = {
 		freqA 	: 5.0,
-		freqB 	: 10.0,
-		freqC 	: 10.0,
+		freqB 	: 2.0,
+		freqC 	: 4.0,
 		phaseX 	: 5.0,
-		phaseY 	: 1.0,
+		phaseY 	: 3.0,
 		phaseZ	: 0.0
 	}
 	lissajousVariants.push(lissajVariant4);
 
 	var lissajVariant5 = {
 		freqA 	: 5.0,
-		freqB 	: 10.0,
-		freqC 	: 6.0,
+		freqB 	: 6.0,
+		freqC 	: 2.0,
 		phaseX 	: 5.0,
-		phaseY 	: 1.0,
+		phaseY 	: 3.0,
 		phaseZ	: 0.0
 	}
 	lissajousVariants.push(lissajVariant5);
@@ -83,10 +83,10 @@ var lissajousVariants = [];
 
 	var lissajVariant9 = {
 		freqA 	: 5.0,
-		freqB 	: 4.0,
-		freqC 	: 6.0,
-		phaseX 	: 6.0,
-		phaseY 	: 0.0,
+		freqB 	: 2.0,
+		freqC 	: 2.0,
+		phaseX 	: 5.0,
+		phaseY 	: 3.0,
 		phaseZ	: 0.0
 	}
 	lissajousVariants.push(lissajVariant9);
