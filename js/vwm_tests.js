@@ -1,10 +1,10 @@
 // DESCRIPT: all psych test controller functionality goes here:
 
 var testPerStageCount = 25;
-var curSceneIndex = 0;
+var curSceneIndex = null;
 var curTestIndex = null;
 
-var nback = 0; //needs to be set to null at start for production
+var nback = null; //needs to be set to null at start for production
 
 var curLassijIndex;
 
@@ -23,7 +23,11 @@ function loadScene(optionButtonID){
 	console.log(' ');
 	console.log('curSceneIndex: '+ curSceneIndex);
 
-	if(curSceneIndex < nback){ //if the number of mem tests req hasn't been reached
+	if(nback === null){
+		console.log('sceneMode: transition to first stage');
+		loadStageTransitionScene(optionButtonID);
+	}
+	else if(curSceneIndex < nback){ //if the number of mem tests req hasn't been reached
 		console.log('sceneMode: memoriseOnly');
 		loadMemoriseOnlyScene();
 		curSceneIndex++;
@@ -50,6 +54,7 @@ function loadTestMemoriseScene(optionButtonID){
 
 	function initScene(){
 		transitionPanel.style.display = 'none';
+		lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'none';
 		var optionButtons = document.getElementsByClassName('option-button');
