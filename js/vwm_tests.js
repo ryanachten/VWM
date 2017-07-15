@@ -27,8 +27,8 @@ function loadScene(optionButtonID, optionImgIndex){
 		//TODO: here is where the validation and data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
 		console.log('Figure pressed: ' + optionImgIndex);
-		if(optionImgIndex == curLassijIndex) console.log('PASS');
-		else console.log('FAIL');
+		if(optionImgIndex == lissagIndexArr[0]) console.log('Test Result: PASS');
+		else console.log('Test Result: FAIL');
 	}
 	console.log(' ');
 	// console.log('curSceneIndex: '+ curSceneIndex);
@@ -128,7 +128,7 @@ function loadStageTransitionScene(){
 		nback++;
 	}
 	console.log(' ');
-	console.log('Move to N-back: ' + nback);
+	console.log('N-Back Stage: ' + nback);
 
 	function initScene(){
 		lissajousCurve.color = '#CFECEC';
@@ -180,16 +180,19 @@ function loadStageTransitionScene(){
 function updateMemoriseFigure(){
 		var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
 		
-		if(lissagIndexArr.indexOf(newLassijIndex) === -1){ //TODO: update this to check against lissagIndexArr contents
+		if(lissagIndexArr.indexOf(newLassijIndex) === -1 && newLassijIndex !== curLassijIndex){
 			tweenLissaj(lissajousVariants[ newLassijIndex ]);
+			if(lissagIndexArr.length > nback) //+1 required for previous lissag comparison above
+				lissagIndexArr.shift();	
 			lissagIndexArr.push(newLassijIndex);
 
 			curLassijIndex = newLassijIndex;		
-			console.log('Current Figure: ' + curLassijIndex);
+			// console.log('Current Figure: ' + curLassijIndex);
+			console.log('Current N-Back Figure: ' + lissagIndexArr[0]);
 			updateOptionImages();
 		}
 		else{
-			console.log('Lissaj Fig Index Exists: ' + newLassijIndex);
+			// console.log('Lissaj Fig Index Exists: ' + newLassijIndex);
 			updateMemoriseFigure();
 		}
 }
@@ -200,10 +203,11 @@ function updateOptionImages(){
 	
 	var curOptionWithTargetImage; //stores index of option button with target image
 		curOptionWithTargetImage = Math.floor(Math.random()*optionButtons.length);
-		// console.log('curOptionWithTargetImage: ' + curOptionWithTargetImage);
-		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[curLassijIndex];
-		optionButtons[curOptionWithTargetImage].setAttribute('data-lissaj-index',curLassijIndex);
-		curOptionImages.push(curLassijIndex);
+			// console.log('curOptionWithTargetImage: ' + curOptionWithTargetImage);
+		var curNbackLissagIndex = lissagIndexArr[0]; //curLassijIndex;
+		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[curNbackLissagIndex]; 
+		optionButtons[curOptionWithTargetImage].setAttribute('data-lissaj-index',curNbackLissagIndex);
+		curOptionImages.push(curNbackLissagIndex);
 
 	for (var i = 0; i < optionButtons.length; i++) {
 		if(i !== curOptionWithTargetImage){
