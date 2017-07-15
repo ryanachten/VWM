@@ -23,8 +23,8 @@ var transitionDiagram = document.getElementById('nback-diagram');
 var optionButtons = document.getElementsByClassName('option-button');
 
 function loadScene(optionButtonID, optionImgIndex){
-	if(optionButtonID !== 'continue-button'){ //TODO: here is where the validation and
-											// data logging function will be executed from
+	if(nback !== null && optionButtonID !== 'continue-button'){ 
+		//TODO: here is where the validation and data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
 		console.log('Figure pressed: ' + optionImgIndex);
 		if(optionImgIndex == curLassijIndex) console.log('PASS');
@@ -169,22 +169,27 @@ function loadStageTransitionScene(){
 	updateHelperText('trans');
 
 	console.log('curTestIndex: ' + curTestIndex);
-
-	curSceneIndex = 0;
 	curTestIndex = null;
+	curSceneIndex = 0;
+	lissagIndexArr = [];
+
 	updateProgressBar();
 }
 
 
 function updateMemoriseFigure(){
 		var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
-		if(newLassijIndex !== curLassijIndex){
+		
+		if(lissagIndexArr.indexOf(newLassijIndex) === -1){ //TODO: update this to check against lissagIndexArr contents
 			tweenLissaj(lissajousVariants[ newLassijIndex ]);
+			lissagIndexArr.push(newLassijIndex);
+
 			curLassijIndex = newLassijIndex;		
 			console.log('Current Figure: ' + curLassijIndex);
 			updateOptionImages();
 		}
 		else{
+			console.log('Lissaj Fig Index Exists: ' + newLassijIndex);
 			updateMemoriseFigure();
 		}
 }
