@@ -121,6 +121,23 @@ var lissajousVariants = [];
 	}
 	lissajousVariants.push(lissajVariant12);
 
+var lissajousSvgsDirectory = 'img/VWM_LissagSvgs/';
+var lissajousSvgs = [
+	lissajousSvgsDirectory + 'vwm_lissajVariant1.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant2.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant3.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant4.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant5.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant6.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant7.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant8.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant9.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant10.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant11.svg',
+	lissajousSvgsDirectory + 'vwm_lissajVariant12.svg'
+];
+
+
 
 function LissajousCurve(){
 	// based on https://github.com/licaschiou/Lissajous3js
