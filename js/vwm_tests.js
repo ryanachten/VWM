@@ -116,7 +116,7 @@ function loadTestOnlyScene(){
 	curTestIndex++;
 
 	updateProgressBar();
-	updateOptionImages();
+	updateMemoriseFigure();
 	updateHelperText('test');
 }
 
