@@ -19,6 +19,8 @@ var transitionHelperText = document.getElementById('transition-helpertext');
 var transitionStageNum = document.getElementById('trans-header-stagenum');
 var transitionDiagram = document.getElementById('nback-diagram');
 
+var optionButtons = document.getElementsByClassName('option-button');
+
 function loadScene(optionButtonID){
 	if(optionButtonID !== 'continue-button'){
 		console.log('Button pressed: ' + optionButtonID);
@@ -60,7 +62,7 @@ function loadTestMemoriseScene(){
 		lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'none';
-		var optionButtons = document.getElementsByClassName('option-button');
+		// var optionButtons = document.getElementsByClassName('option-button');
 			for (var i = 0; i < optionButtons.length; i++) {
 				optionButtons[i].style.display = 'inline-block';
 			};
@@ -87,7 +89,7 @@ function loadMemoriseOnlyScene(){
 		lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'inline-block';
-		var optionButtons = document.getElementsByClassName('option-button');
+		// var optionButtons = document.getElementsByClassName('option-button');
 			for (var i = 0; i < optionButtons.length; i++) {
 				optionButtons[i].style.display = 'none';
 			};
@@ -128,7 +130,7 @@ function loadStageTransitionScene(){
 
 		var continueButton = document.getElementById('continue-button');
 				continueButton.style.display = 'inline-block';
-		var optionButtons = document.getElementsByClassName('option-button');
+		// var optionButtons = document.getElementsByClassName('option-button');
 			for (var i = 0; i < optionButtons.length; i++) {
 				optionButtons[i].style.display = 'none';
 			}
@@ -168,22 +170,53 @@ function loadStageTransitionScene(){
 }
 
 
-function updateProgressBar(){
-	var curProgressPercent = curTestIndex * (100/testPerStageCount);	
-	testProgressBar.style.width = curProgressPercent + '%';
-	trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
-}
-
 function updateMemoriseFigure(){
 		var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
 		if(newLassijIndex !== curLassijIndex){
 			tweenLissaj(lissajousVariants[ newLassijIndex ]);
 			curLassijIndex = newLassijIndex;		
 			console.log('Current Figure: ' + curLassijIndex);
+			updateOptionImages();
 		}
 		else{
 			updateMemoriseFigure();
 		}
+}
+
+function updateOptionImages(){
+	
+	var curOptionImages = []; //store cur option images in here to prevent duplicates
+	
+	var curOptionWithTargetImage; //stores index of option button with target image
+		curOptionWithTargetImage = Math.floor(Math.random()*optionButtons.length);
+		console.log('curOptionWithTargetImage: ' + curOptionWithTargetImage);
+		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[curLassijIndex];
+		curOptionImages.push(curLassijIndex);
+
+	for (var i = 0; i < optionButtons.length; i++) {
+		if(i !== curOptionWithTargetImage){
+			var randImgIndex = randOptionImgIndex();
+			curOptionImages.push(randImgIndex);
+			optionButtons[i].children[0].src = lissajousSvgs[randImgIndex];
+			console.log('randImgIndex: ' + randImgIndex);
+
+		}
+	};
+	
+	function randOptionImgIndex(){
+		var tempRandIndex = Math.floor(Math.random()*lissajousSvgs.length);
+		while(curOptionImages.includes(tempRandIndex)){ //while temp index already in the cur set
+			console.log('Existing index: ' + tempRandIndex);
+			tempRandIndex = Math.floor(Math.random()*lissajousSvgs.length);
+		}
+		return tempRandIndex;
+	}
+}
+
+function updateProgressBar(){
+	var curProgressPercent = curTestIndex * (100/testPerStageCount);	
+	testProgressBar.style.width = curProgressPercent + '%';
+	trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
 }
 
 function updateHelperText(sceneMode){
