@@ -21,7 +21,7 @@ function initApp(){
 	var optionButtons = document.getElementsByClassName('option-button');
 	for(var i = 0; i < optionButtons.length; i++ ){
 		optionButtons[i].addEventListener("click", function(){
-			loadScene(this.id);
+			loadScene(this.id, this.getAttribute('data-lissaj-index'));
 		});
 	}
 	var continueButton = document.getElementById('continue-button');

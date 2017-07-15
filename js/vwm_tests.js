@@ -21,9 +21,11 @@ var transitionDiagram = document.getElementById('nback-diagram');
 
 var optionButtons = document.getElementsByClassName('option-button');
 
-function loadScene(optionButtonID){
+function loadScene(optionButtonID, optionImgIndex){
 	if(optionButtonID !== 'continue-button'){
-		console.log('Button pressed: ' + optionButtonID);
+		// console.log('Button pressed: ' + optionButtonID);
+		console.log('Figure pressed: ' + optionImgIndex);
+		//optionButtons[i].getAttribute('data-lissaj-index')
 	}
 	console.log(' ');
 	// console.log('curSceneIndex: '+ curSceneIndex);
@@ -73,7 +75,7 @@ function loadTestMemoriseScene(){
 		curTestIndex = 0;
 	}
 	else{
-		console.log('curTestIndex: ' + curTestIndex);
+		console.log('Test Number: ' + curTestIndex);
 		
 		curTestIndex++;
 	}
@@ -189,8 +191,9 @@ function updateOptionImages(){
 	
 	var curOptionWithTargetImage; //stores index of option button with target image
 		curOptionWithTargetImage = Math.floor(Math.random()*optionButtons.length);
-		console.log('curOptionWithTargetImage: ' + curOptionWithTargetImage);
+		// console.log('curOptionWithTargetImage: ' + curOptionWithTargetImage);
 		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[curLassijIndex];
+		optionButtons[curOptionWithTargetImage].setAttribute('data-lissaj-index',curLassijIndex);
 		curOptionImages.push(curLassijIndex);
 
 	for (var i = 0; i < optionButtons.length; i++) {
@@ -198,15 +201,16 @@ function updateOptionImages(){
 			var randImgIndex = randOptionImgIndex();
 			curOptionImages.push(randImgIndex);
 			optionButtons[i].children[0].src = lissajousSvgs[randImgIndex];
-			console.log('randImgIndex: ' + randImgIndex);
-
+			optionButtons[i].setAttribute('data-lissaj-index',randImgIndex);
+			// console.log('randImgIndex: ' + randImgIndex);
+			// console.log('Data index: ' + optionButtons[i].getAttribute('data-lissaj-index'));
 		}
 	};
 	
 	function randOptionImgIndex(){
 		var tempRandIndex = Math.floor(Math.random()*lissajousSvgs.length);
-		while(curOptionImages.includes(tempRandIndex)){ //while temp index already in the cur set
-			console.log('Existing index: ' + tempRandIndex);
+		while(curOptionImages.indexOf(tempRandIndex) !== -1){ //while temp index already in the cur set
+			// console.log('Existing index: ' + tempRandIndex);
 			tempRandIndex = Math.floor(Math.random()*lissajousSvgs.length);
 		}
 		return tempRandIndex;
