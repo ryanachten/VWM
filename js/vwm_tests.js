@@ -7,6 +7,7 @@ var curTestIndex = null;
 var nback = null; //needs to be set to null at start for production
 
 var curLassijIndex;
+var lissagIndexArr; //array of lissaj indices used for option recollection and validation
 
 var testProgressBar = document.getElementById('progressbar');
 var trialCountText = document.getElementById('progress-trialcount');
@@ -22,10 +23,12 @@ var transitionDiagram = document.getElementById('nback-diagram');
 var optionButtons = document.getElementsByClassName('option-button');
 
 function loadScene(optionButtonID, optionImgIndex){
-	if(optionButtonID !== 'continue-button'){
+	if(optionButtonID !== 'continue-button'){ //TODO: here is where the validation and
+											// data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
 		console.log('Figure pressed: ' + optionImgIndex);
-		//optionButtons[i].getAttribute('data-lissaj-index')
+		if(optionImgIndex == curLassijIndex) console.log('PASS');
+		else console.log('FAIL');
 	}
 	console.log(' ');
 	// console.log('curSceneIndex: '+ curSceneIndex);
@@ -113,6 +116,7 @@ function loadTestOnlyScene(){
 	curTestIndex++;
 
 	updateProgressBar();
+	updateOptionImages();
 	updateHelperText('test');
 }
 
