@@ -242,7 +242,7 @@ function updateHelperText(sceneMode){
 		optionsHelperText.style.display = 'block';
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';
 		optionsHelperText.innerHTML = 'No options to select yet, just memorise the image above';
-		targetPanel.style.width = '250px';
+		// targetPanel.style.width = '250px';
 
 	}else if(sceneMode === 'test'){
 		targetHelperText.innerHTML = 'Nothing to memorise here, just select the image from <span id="target-scenecount">'+ nback +' scenes</span> ago in the options below';
@@ -252,7 +252,7 @@ function updateHelperText(sceneMode){
 	}else if(sceneMode === 'trans'){
 		targetHelperText.style.display = 'none';
 		optionsHelperText.style.display = 'none';
-		targetPanel.style.width = '250px';
+		// targetPanel.style.width = '250px';
 
 		if(nback === 0){
 			transitionHelperText.innerHTML = "Find the <strong>Memorise</strong> ('M') image amongst the <strong>Options</strong> ('O') images in the <em>same scene<em>";

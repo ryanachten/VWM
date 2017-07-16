@@ -22,16 +22,19 @@ function initScene() {
 
 function calcCanvasSizes(){
 	screenWidth = $(window).width();
-	// var navHeight = $('#top-nav').outerHeight();
+	var navHeight = $('#top-nav').height();
 	var optHeight = $('#options-panel').outerHeight();
+	console.log('navHeight: ' + navHeight);
 	console.log('optHeight: ' + optHeight);
-	screenHeight = $(window).height() - optHeight;	
+	screenHeight = $(window).height() - (optHeight+navHeight);	
 }
 
 
 window.addEventListener('resize', recalcCanvas, false);
 function recalcCanvas(){
 	calcCanvasSizes();
+
+	// lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = screenHeight/7;
 
 	camera.aspect = screenWidth / screenHeight;
 	camera.updateProjectionMatrix();
@@ -74,7 +77,7 @@ function initLight(){
 
 function initMesh(){
 	lissajousCurve = new LissajousCurve();
-	lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = 90;
+	// lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = 90;
 	lissajousCurve.meshObject.name = "Lissa";
 	lissajousCurve.createMesh();
 	scene.add(lissajousCurve.meshObject);
