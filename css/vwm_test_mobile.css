@@ -1,0 +1,36 @@
+@media screen and (max-width: 800px){
+
+	h1{
+		margin-bottom: 5px;
+	}
+
+	#progress-panel{
+		bottom: 10%;
+	}
+	#progress-header{
+    	display: none;
+	}
+	#progressbar-container{
+		width: 100%;
+	}
+
+	#target-panel{
+		top: 15%;
+		/*width: 100%;*/
+	}
+
+	#options-panel{
+		text-align: center;
+	}
+	#options-textcontainer{
+		max-width: 100%;
+	}
+	#options-buttoncontainer{
+	    width: 100%;
+	}
+	.option-button{
+		height: 15vw;
+		width: 15vw;
+		padding: 10px;
+	}
+}

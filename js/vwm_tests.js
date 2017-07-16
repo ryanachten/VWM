@@ -12,7 +12,9 @@ var lissagIndexArr; //array of lissaj indices used for option recollection and v
 var testProgressBar = document.getElementById('progressbar');
 var trialCountText = document.getElementById('progress-trialcount');
 var targetPanel = document.getElementById('target-panel');
+var targetHeader = document.getElementById('target-header');
 var targetHelperText = document.getElementById('target-helpertext');
+var optionsHeader = document.getElementById('options-header');
 var optionsHelperText = document.getElementById('options-helpertext');
 
 var transitionPanel = document.getElementById('transition-panel');
@@ -64,6 +66,8 @@ function loadTestMemoriseScene(){
 
 	function initScene(){
 		transitionPanel.style.display = 'none';
+		targetHeader.style.display = 'block';
+		optionsHeader.style.display = 'block';
 		lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
 			continueButton.style.display = 'none';
@@ -91,9 +95,11 @@ function loadMemoriseOnlyScene(){
 
 	function initScene(){
 		transitionPanel.style.display = 'none';
+		targetHeader.style.display = 'block';
+		optionsHeader.style.display = 'block';
 		lissajousCurve.color = '#384040';
 		var continueButton = document.getElementById('continue-button');
-			continueButton.style.display = 'inline-block';
+			continueButton.style.display = 'block';
 		// var optionButtons = document.getElementsByClassName('option-button');
 			for (var i = 0; i < optionButtons.length; i++) {
 				optionButtons[i].style.display = 'none';
@@ -135,11 +141,14 @@ function loadStageTransitionScene(){
 		lissajousCurve.update();
 
 		var continueButton = document.getElementById('continue-button');
-				continueButton.style.display = 'inline-block';
+				continueButton.style.display = 'block';
 		// var optionButtons = document.getElementsByClassName('option-button');
 			for (var i = 0; i < optionButtons.length; i++) {
 				optionButtons[i].style.display = 'none';
 			}
+
+		targetHeader.style.display = 'none';
+		optionsHeader.style.display = 'none';
 
 		transitionPanel.style.display = 'block';
 		transitionStageNum.innerText = 'N-Back ' + nback;
@@ -242,7 +251,7 @@ function updateHelperText(sceneMode){
 		optionsHelperText.style.display = 'block';
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';
 		optionsHelperText.innerHTML = 'No options to select yet, just memorise the image above';
-		// targetPanel.style.width = '250px';
+		targetPanel.style.width = '250px';
 
 	}else if(sceneMode === 'test'){
 		targetHelperText.innerHTML = 'Nothing to memorise here, just select the image from <span id="target-scenecount">'+ nback +' scenes</span> ago in the options below';
@@ -252,7 +261,7 @@ function updateHelperText(sceneMode){
 	}else if(sceneMode === 'trans'){
 		targetHelperText.style.display = 'none';
 		optionsHelperText.style.display = 'none';
-		// targetPanel.style.width = '250px';
+		targetPanel.style.width = '250px';
 
 		if(nback === 0){
 			transitionHelperText.innerHTML = "Find the <strong>Memorise</strong> ('M') image amongst the <strong>Options</strong> ('O') images in the <em>same scene<em>";

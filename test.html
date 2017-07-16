@@ -10,6 +10,7 @@
 	<script src="js/THREE.MeshLine.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/vwm_main_styles.css">
 	<link rel="stylesheet" type="text/css" href="css/vwm_test_styles.css">
+	<link rel="stylesheet" type="text/css" href="css/vwm_test_mobile.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono" rel="stylesheet">
 </head>
 	<body>
@@ -34,14 +35,14 @@
 
 		<main id="view-container">
 			<div id="target-panel">
-				<h2>Memorise</h2>
+				<h2 id="target-header">Memorise</h2>
 				<p id="target-helpertext">Find this image in <span id="target-scenecount">2 scenes</span> from now</p>
 			</div>
 		</main>
 
 		<aside id="options-panel">
 			<div id="options-textcontainer">
-				<h2>Options</h2>
+				<h2 id="options-header">Options</h2>
 				<p id="options-helpertext">Find the image from <span id="options-scenecount">2 scenes</span> ago in the images to the left</p>
 			</div>
 			<div id="options-buttoncontainer">
@@ -57,6 +58,7 @@
 				<button id="option-button-4" class="option-button" data-lissaj-index="4">
 					<img class="option-image" src="img/VWM_LissagSvgs/vwm_lissajVariant3.svg">
 				</button>
+				
 				<button id="continue-button">
 					<p>Click to continue</p>
 				</button>
