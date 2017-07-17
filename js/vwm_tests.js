@@ -6,7 +6,8 @@ var curTestIndex = null;
 
 var nback = null; //needs to be set to null at start for production
 
-var curLassijIndex;
+// var curLassijIndex; //Not sure if needed for grouped sets
+var curLassijGroupIndex;
 var lissagIndexArr; //array of lissaj indices used for option recollection and validation
 
 var testProgressBar = document.getElementById('progressbar');
@@ -29,7 +30,7 @@ function loadScene(optionButtonID, optionImgIndex){
 		//TODO: here is where the validation and data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
 		console.log('Figure pressed: ' + optionImgIndex);
-		if(optionImgIndex == lissagIndexArr[0]) console.log('Test Result: PASS');
+		if(optionImgIndex == lissagIndexArr[0].lassigIndex) console.log('Test Result: PASS');
 		else console.log('Test Result: FAIL');
 	}
 	console.log(' ');
@@ -187,21 +188,33 @@ function loadStageTransitionScene(){
 
 
 function updateMemoriseFigure(){
-		var newLassijIndex = Math.floor(Math.random()*lissajousVariants.length);
-		
-		if(lissagIndexArr.indexOf(newLassijIndex) === -1 && newLassijIndex !== curLassijIndex){
-			tweenLissaj(lissajousVariants[ newLassijIndex ]);
-			if(lissagIndexArr.length > nback) //+1 required for previous lissag comparison above
-				lissagIndexArr.shift();	
-			lissagIndexArr.push(newLassijIndex);
+		var newLassigGroupIndex = Math.floor(Math.random()*lissajousGroups.length);
+		var groupExistsInNback = false;
 
-			curLassijIndex = newLassijIndex;		
-			// console.log('Current Figure: ' + curLassijIndex);
-			console.log('Current N-Back Figure: ' + lissagIndexArr[0]);
+		for (var i = 0; i < lissagIndexArr.length; i++) {
+			if( lissagIndexArr[i].groupIndex === newLassigGroupIndex){
+				groupExistsInNback = true;
+				// console.log('groupExistsInNback');
+			}
+		};
+		
+		if(newLassigGroupIndex !== curLassijGroupIndex && !groupExistsInNback){ // && 
+			var newLassijIndex = Math.floor(Math.random()*lissajousGroups[newLassigGroupIndex].length);
+			tweenLissaj(lissajousGroups[newLassigGroupIndex][newLassijIndex]);
+
+			if(lissagIndexArr.length > nback)
+				lissagIndexArr.shift();	
+			lissagIndexArr.push({
+				groupIndex: newLassigGroupIndex,
+				lassigIndex: newLassijIndex 	
+			});
+
+			curLassijGroupIndex = newLassigGroupIndex;
+			console.log('Current Target: Group: ' + lissagIndexArr[0].groupIndex + ' Figure: ' + lissagIndexArr[0].lassigIndex);
 			updateOptionImages();
 		}
 		else{
-			// console.log('Lissaj Fig Index Exists: ' + newLassijIndex);
+			// console.log('Lissaj Group Index Exists: ' + newLassigGroupIndex);
 			updateMemoriseFigure();
 		}
 }
@@ -213,16 +226,16 @@ function updateOptionImages(){
 	var curOptionWithTargetImage; //stores index of option button with target image
 		curOptionWithTargetImage = Math.floor(Math.random()*optionButtons.length);
 			// console.log('curOptionWithTargetImage: ' + curOptionWithTargetImage);
-		var curNbackLissagIndex = lissagIndexArr[0]; //curLassijIndex;
-		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[curNbackLissagIndex]; 
-		optionButtons[curOptionWithTargetImage].setAttribute('data-lissaj-index',curNbackLissagIndex);
-		curOptionImages.push(curNbackLissagIndex);
+		// var curNbackLissagIndex = lissagIndexArr[0]; //curLassijIndex;
+		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[lissagIndexArr[0].groupIndex][lissagIndexArr[0].lassigIndex]; 
+		optionButtons[curOptionWithTargetImage].setAttribute('data-lissaj-index',lissagIndexArr[0].lassigIndex);
+		curOptionImages.push(lissagIndexArr[0].lassigIndex);
 
 	for (var i = 0; i < optionButtons.length; i++) {
 		if(i !== curOptionWithTargetImage){
 			var randImgIndex = randOptionImgIndex();
 			curOptionImages.push(randImgIndex);
-			optionButtons[i].children[0].src = lissajousSvgs[randImgIndex];
+			optionButtons[i].children[0].src = lissajousSvgs[lissagIndexArr[0].groupIndex][randImgIndex];
 			optionButtons[i].setAttribute('data-lissaj-index',randImgIndex);
 			// console.log('randImgIndex: ' + randImgIndex);
 			// console.log('Data index: ' + optionButtons[i].getAttribute('data-lissaj-index'));
@@ -230,10 +243,10 @@ function updateOptionImages(){
 	};
 	
 	function randOptionImgIndex(){
-		var tempRandIndex = Math.floor(Math.random()*lissajousSvgs.length);
+		var tempRandIndex = Math.floor(Math.random()*lissajousSvgs[lissagIndexArr[0].groupIndex].length);
 		while(curOptionImages.indexOf(tempRandIndex) !== -1){ //while temp index already in the cur set
 			// console.log('Existing index: ' + tempRandIndex);
-			tempRandIndex = Math.floor(Math.random()*lissajousSvgs.length);
+			tempRandIndex = Math.floor(Math.random()*lissajousSvgs[lissagIndexArr[0].groupIndex].length);
 		}
 		return tempRandIndex;
 	}

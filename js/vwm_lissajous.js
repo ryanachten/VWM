@@ -1,140 +1,215 @@
 // DESCRIPT: all functionality related to lissajous fig here:
 
-var lissajousVariants = [];
-	var lissajGroupAvariant1 = {
-		freqA 	: 1.0,
-		freqB 	: 4.0,
-		freqC 	: 2.0,
-		phaseX 	: 0.0,
-		phaseY 	: 0.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupAvariant1);
+var lissajousGroups = [];
+	var lissajGroupA = [];
+		var lissajGroupAvariant1 = {
+			freqA 	: 1.0,
+			freqB 	: 4.0,
+			freqC 	: 2.0,
+			phaseX 	: 0.0,
+			phaseY 	: 0.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupA.push(lissajGroupAvariant1);
 
-	var lissajGroupAvariant2 = {
-		freqA 	: 1.0,
-		freqB 	: 4.0,
-		freqC 	: 2.0,
-		phaseX 	: 1.0,
-		phaseY 	: 0.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupAvariant2);
+		var lissajGroupAvariant2 = {
+			freqA 	: 1.0,
+			freqB 	: 4.0,
+			freqC 	: 2.0,
+			phaseX 	: 1.0,
+			phaseY 	: 0.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupA.push(lissajGroupAvariant2);
 
-	var lissajGroupAvariant3 = {
-		freqA 	: 1.0,
-		freqB 	: 4.0,
-		freqC 	: 2.0,
-		phaseX 	: 0.0,
-		phaseY 	: 0.0,
-		phaseZ	: 1.0
-	}
-	lissajousVariants.push(lissajGroupAvariant3);
+		var lissajGroupAvariant3 = {
+			freqA 	: 1.0,
+			freqB 	: 4.0,
+			freqC 	: 2.0,
+			phaseX 	: 0.0,
+			phaseY 	: 0.0,
+			phaseZ	: 1.0
+		}
+		lissajGroupA.push(lissajGroupAvariant3);
+	lissajousGroups.push(lissajGroupA);
 
-	var lissajGroupBvariant1 = {
-		freqA 	: 3.0,
-		freqB 	: 2.0,
-		freqC 	: 4.0,
-		phaseX 	: 0.0,
-		phaseY 	: 0.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupBvariant1);
+	var lissajGroupB = [];
+		var lissajGroupBvariant1 = {
+			freqA 	: 3.0,
+			freqB 	: 2.0,
+			freqC 	: 4.0,
+			phaseX 	: 0.0,
+			phaseY 	: 0.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupB.push(lissajGroupBvariant1);
+		var lissajGroupBvariant2 = {
+			freqA 	: 3.0,
+			freqB 	: 2.0,
+			freqC 	: 4.0,
+			phaseX 	: 1.0,
+			phaseY 	: 0.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupB.push(lissajGroupBvariant2);
+		var lissajGroupBvariant3 = {
+			freqA 	: 3.0,
+			freqB 	: 2.0,
+			freqC 	: 4.0,
+			phaseX 	: 0.0,
+			phaseY 	: 0.0,
+			phaseZ	: 1.0
+		}
+		lissajGroupB.push(lissajGroupBvariant3);
+	lissajousGroups.push(lissajGroupB);
 
-	var lissajGroupBvariant2 = {
-		freqA 	: 3.0,
-		freqB 	: 2.0,
-		freqC 	: 4.0,
-		phaseX 	: 1.0,
-		phaseY 	: 0.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupBvariant2);
+	var lissajGroupC = [];
+		var lissajGroupCvariant1 = {
+			freqA 	: 5.0,
+			freqB 	: 4.0,
+			freqC 	: 2.0,
+			phaseX 	: 0.0,
+			phaseY 	: 1.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupC.push(lissajGroupCvariant1);
+		var lissajGroupCvariant2 = {
+			freqA 	: 5.0,
+			freqB 	: 4.0,
+			freqC 	: 2.0,
+			phaseX 	: 1.0,
+			phaseY 	: 1.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupC.push(lissajGroupCvariant2);
+		var lissajGroupCvariant3 = {
+			freqA 	: 5.0,
+			freqB 	: 4.0,
+			freqC 	: 2.0,
+			phaseX 	: 0.0,
+			phaseY 	: 1.0,
+			phaseZ	: 1.0
+		}
+		lissajGroupC.push(lissajGroupCvariant3);
+	lissajousGroups.push(lissajGroupC);
 
-	var lissajGroupBvariant3 = {
-		freqA 	: 3.0,
-		freqB 	: 2.0,
-		freqC 	: 4.0,
-		phaseX 	: 0.0,
-		phaseY 	: 0.0,
-		phaseZ	: 1.0
-	}
-	lissajousVariants.push(lissajGroupBvariant3);
+	var lissajGroupD = [];
+		var lissajGroupDvariant1 = {
+			freqA 	: 3.0,
+			freqB 	: 8.0,
+			freqC 	: 2.0,
+			phaseX 	: 2.0,
+			phaseY 	: 7.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupD.push(lissajGroupDvariant1);
+		var lissajGroupDvariant2 = {
+			freqA 	: 3.0,
+			freqB 	: 8.0,
+			freqC 	: 2.0,
+			phaseX 	: 3.0,
+			phaseY 	: 7.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupD.push(lissajGroupDvariant2);
+		var lissajGroupDvariant3 = {
+			freqA 	: 3.0,
+			freqB 	: 8.0,
+			freqC 	: 2.0,
+			phaseX 	: 3.0,
+			phaseY 	: 8.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupD.push(lissajGroupDvariant3);
+	lissajousGroups.push(lissajGroupD);
 
-	var lissajGroupCvariant1 = {
-		freqA 	: 5.0,
-		freqB 	: 4.0,
-		freqC 	: 2.0,
-		phaseX 	: 0.0,
-		phaseY 	: 1.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupCvariant1);
+	// var lissajGroupE = [];
+	// 	var lissajGroupEvariant1 = {
+	// 		freqA 	: 3.0,
+	// 		freqB 	: 8.0,
+	// 		freqC 	: 2.0,
+	// 		phaseX 	: 2.0,
+	// 		phaseY 	: 7.0,
+	// 		phaseZ	: 0.0
+	// 	}
+	// 	lissajGroupE.push(lissajGroupEvariant1);
+	// 	var lissajGroupEvariant2 = {
+	// 		freqA 	: 3.0,
+	// 		freqB 	: 8.0,
+	// 		freqC 	: 2.0,
+	// 		phaseX 	: 3.0,
+	// 		phaseY 	: 7.0,
+	// 		phaseZ	: 0.0
+	// 	}
+	// 	lissajGroupE.push(lissajGroupEvariant2);
+	// 	var lissajGroupEvariant3 = {
+	// 		freqA 	: 3.0,
+	// 		freqB 	: 8.0,
+	// 		freqC 	: 2.0,
+	// 		phaseX 	: 3.0,
+	// 		phaseY 	: 8.0,
+	// 		phaseZ	: 0.0
+	// 	}
+	// 	lissajGroupE.push(lissajGroupEvariant3);
+	// lissajousGroups.push(lissajGroupE);
 
-	var lissajGroupCvariant2 = {
-		freqA 	: 5.0,
-		freqB 	: 4.0,
-		freqC 	: 2.0,
-		phaseX 	: 1.0,
-		phaseY 	: 1.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupCvariant2);
-
-	var lissajGroupCvariant3 = {
-		freqA 	: 5.0,
-		freqB 	: 4.0,
-		freqC 	: 2.0,
-		phaseX 	: 0.0,
-		phaseY 	: 1.0,
-		phaseZ	: 1.0
-	}
-	lissajousVariants.push(lissajGroupCvariant3);
-
-	var lissajGroupDvariant1 = {
-		freqA 	: 3.0,
-		freqB 	: 8.0,
-		freqC 	: 2.0,
-		phaseX 	: 2.0,
-		phaseY 	: 7.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupDvariant1);
-
-	var lissajGroupDvariant2 = {
-		freqA 	: 3.0,
-		freqB 	: 8.0,
-		freqC 	: 2.0,
-		phaseX 	: 3.0,
-		phaseY 	: 7.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupDvariant2);
-
-	var lissajGroupDvariant3 = {
-		freqA 	: 3.0,
-		freqB 	: 8.0,
-		freqC 	: 2.0,
-		phaseX 	: 3.0,
-		phaseY 	: 8.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajGroupDvariant3);
+	// var lissajGroupF = [];
+	// 	var lissajGroupFvariant1 = {
+	// 		freqA 	: 3.0,
+	// 		freqB 	: 8.0,
+	// 		freqC 	: 2.0,
+	// 		phaseX 	: 2.0,
+	// 		phaseY 	: 7.0,
+	// 		phaseZ	: 0.0
+	// 	}
+	// 	lissajGroupF.push(lissajGroupFvariant1);
+	// 	var lissajGroupFvariant2 = {
+	// 		freqA 	: 3.0,
+	// 		freqB 	: 8.0,
+	// 		freqC 	: 2.0,
+	// 		phaseX 	: 3.0,
+	// 		phaseY 	: 7.0,
+	// 		phaseZ	: 0.0
+	// 	}
+	// 	lissajGroupF.push(lissajGroupFvariant2);
+	// 	var lissajGroupFvariant3 = {
+	// 		freqA 	: 3.0,
+	// 		freqB 	: 8.0,
+	// 		freqC 	: 2.0,
+	// 		phaseX 	: 3.0,
+	// 		phaseY 	: 8.0,
+	// 		phaseZ	: 0.0
+	// 	}
+	// 	lissajGroupF.push(lissajGroupFvariant3);
+	// lissajousGroups.push(lissajGroupF);
 
 var lissajousSvgsDirectory = 'img/VWM_LissagSvgs/';
 var lissajousSvgs = [
-	lissajousSvgsDirectory + 'vwm_lissajGroupAvariant1.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupAvariant2.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupAvariant3.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupBvariant1.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupBvariant2.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupBvariant3.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupCvariant1.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupCvariant2.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupCvariant3.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant1.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant2.svg',
-	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant3.svg'
+	[
+		lissajousSvgsDirectory + 'vwm_lissajGroupAvariant1.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupAvariant2.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupAvariant3.svg',
+	],[
+		lissajousSvgsDirectory + 'vwm_lissajGroupBvariant1.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupBvariant2.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupBvariant3.svg',
+	],[
+		lissajousSvgsDirectory + 'vwm_lissajGroupCvariant1.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupCvariant2.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupCvariant3.svg',
+	],[
+		lissajousSvgsDirectory + 'vwm_lissajGroupDvariant1.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupDvariant2.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupDvariant3.svg'
+	]//,[
+	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant1.svg',
+	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant2.svg',
+	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant3.svg'
+	// ],[
+	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant1.svg',
+	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant2.svg',
+	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant3.svg'
+	// ]
 ];
 
 
