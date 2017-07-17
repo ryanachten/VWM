@@ -1,140 +1,140 @@
 // DESCRIPT: all functionality related to lissajous fig here:
 
 var lissajousVariants = [];
-	var lissajVariant1 = {
-		freqA 	: 3.0,
+	var lissajGroupAvariant1 = {
+		freqA 	: 1.0,
 		freqB 	: 4.0,
 		freqC 	: 2.0,
 		phaseX 	: 0.0,
 		phaseY 	: 0.0,
 		phaseZ	: 0.0
 	}
-	lissajousVariants.push(lissajVariant1);
+	lissajousVariants.push(lissajGroupAvariant1);
 
-	var lissajVariant2 = {
-		freqA 	: 9.0,
-		freqB 	: 10.0,
-		freqC 	: 10.0,
-		phaseX 	: 10.0,
-		phaseY 	: 8.0,
-		phaseZ	: 3.0
-	}
-	lissajousVariants.push(lissajVariant2);
-
-	var lissajVariant3 = {
+	var lissajGroupAvariant2 = {
 		freqA 	: 1.0,
-		freqB 	: 10.0,
-		freqC 	: 10.0,
-		phaseX 	: 6.0,
-		phaseY 	: 4.0,
-		phaseZ	: 3.0
+		freqB 	: 4.0,
+		freqC 	: 2.0,
+		phaseX 	: 1.0,
+		phaseY 	: 0.0,
+		phaseZ	: 0.0
 	}
-	lissajousVariants.push(lissajVariant3);
+	lissajousVariants.push(lissajGroupAvariant2);
 
-	var lissajVariant4 = {
-		freqA 	: 5.0,
+	var lissajGroupAvariant3 = {
+		freqA 	: 1.0,
+		freqB 	: 4.0,
+		freqC 	: 2.0,
+		phaseX 	: 0.0,
+		phaseY 	: 0.0,
+		phaseZ	: 1.0
+	}
+	lissajousVariants.push(lissajGroupAvariant3);
+
+	var lissajGroupBvariant1 = {
+		freqA 	: 3.0,
 		freqB 	: 2.0,
 		freqC 	: 4.0,
-		phaseX 	: 5.0,
-		phaseY 	: 3.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajVariant4);
-
-	var lissajVariant5 = {
-		freqA 	: 5.0,
-		freqB 	: 6.0,
-		freqC 	: 2.0,
-		phaseX 	: 5.0,
-		phaseY 	: 3.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajVariant5);
-
-	var lissajVariant6 = {
-		freqA 	: 5.0,
-		freqB 	: 2.0,
-		freqC 	: 6.0,
-		phaseX 	: 5.0,
-		phaseY 	: 1.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajVariant6);
-
-	var lissajVariant7 = {
-		freqA 	: 5.0,
-		freqB 	: 4.0,
-		freqC 	: 6.0,
-		phaseX 	: 5.0,
-		phaseY 	: 1.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajVariant7);
-
-	var lissajVariant8 = {
-		freqA 	: 5.0,
-		freqB 	: 4.0,
-		freqC 	: 6.0,
-		phaseX 	: 7.0,
-		phaseY 	: 0.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajVariant8);
-
-	var lissajVariant9 = {
-		freqA 	: 5.0,
-		freqB 	: 2.0,
-		freqC 	: 2.0,
-		phaseX 	: 5.0,
-		phaseY 	: 3.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajVariant9);
-
-	var lissajVariant10 = {
-		freqA 	: 5.0,
-		freqB 	: 4.0,
-		freqC 	: 8.0,
 		phaseX 	: 0.0,
 		phaseY 	: 0.0,
 		phaseZ	: 0.0
 	}
-	lissajousVariants.push(lissajVariant10);
+	lissajousVariants.push(lissajGroupBvariant1);
 
-	var lissajVariant11 = {
-		freqA 	: 5.0,
-		freqB 	: 4.0,
-		freqC 	: 6.0,
-		phaseX 	: 0.0,
-		phaseY 	: 0.0,
-		phaseZ	: 0.0
-	}
-	lissajousVariants.push(lissajVariant11);
-
-	var lissajVariant12 = {
+	var lissajGroupBvariant2 = {
 		freqA 	: 3.0,
-		freqB 	: 6.0,
-		freqC 	: 2.0,
-		phaseX 	: 0.0,
+		freqB 	: 2.0,
+		freqC 	: 4.0,
+		phaseX 	: 1.0,
 		phaseY 	: 0.0,
 		phaseZ	: 0.0
 	}
-	lissajousVariants.push(lissajVariant12);
+	lissajousVariants.push(lissajGroupBvariant2);
+
+	var lissajGroupBvariant3 = {
+		freqA 	: 3.0,
+		freqB 	: 2.0,
+		freqC 	: 4.0,
+		phaseX 	: 0.0,
+		phaseY 	: 0.0,
+		phaseZ	: 1.0
+	}
+	lissajousVariants.push(lissajGroupBvariant3);
+
+	var lissajGroupCvariant1 = {
+		freqA 	: 5.0,
+		freqB 	: 4.0,
+		freqC 	: 2.0,
+		phaseX 	: 0.0,
+		phaseY 	: 1.0,
+		phaseZ	: 0.0
+	}
+	lissajousVariants.push(lissajGroupCvariant1);
+
+	var lissajGroupCvariant2 = {
+		freqA 	: 5.0,
+		freqB 	: 4.0,
+		freqC 	: 2.0,
+		phaseX 	: 1.0,
+		phaseY 	: 1.0,
+		phaseZ	: 0.0
+	}
+	lissajousVariants.push(lissajGroupCvariant2);
+
+	var lissajGroupCvariant3 = {
+		freqA 	: 5.0,
+		freqB 	: 4.0,
+		freqC 	: 2.0,
+		phaseX 	: 0.0,
+		phaseY 	: 1.0,
+		phaseZ	: 1.0
+	}
+	lissajousVariants.push(lissajGroupCvariant3);
+
+	var lissajGroupDvariant1 = {
+		freqA 	: 3.0,
+		freqB 	: 8.0,
+		freqC 	: 2.0,
+		phaseX 	: 2.0,
+		phaseY 	: 7.0,
+		phaseZ	: 0.0
+	}
+	lissajousVariants.push(lissajGroupDvariant1);
+
+	var lissajGroupDvariant2 = {
+		freqA 	: 3.0,
+		freqB 	: 8.0,
+		freqC 	: 2.0,
+		phaseX 	: 3.0,
+		phaseY 	: 7.0,
+		phaseZ	: 0.0
+	}
+	lissajousVariants.push(lissajGroupDvariant2);
+
+	var lissajGroupDvariant3 = {
+		freqA 	: 3.0,
+		freqB 	: 8.0,
+		freqC 	: 2.0,
+		phaseX 	: 3.0,
+		phaseY 	: 8.0,
+		phaseZ	: 0.0
+	}
+	lissajousVariants.push(lissajGroupDvariant3);
 
 var lissajousSvgsDirectory = 'img/VWM_LissagSvgs/';
 var lissajousSvgs = [
-	lissajousSvgsDirectory + 'vwm_lissajVariant1.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant2.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant3.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant4.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant5.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant6.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant7.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant8.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant9.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant10.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant11.svg',
-	lissajousSvgsDirectory + 'vwm_lissajVariant12.svg'
+	lissajousSvgsDirectory + 'vwm_lissajGroupAvariant1.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupAvariant2.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupAvariant3.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupBvariant1.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupBvariant2.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupBvariant3.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupCvariant1.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupCvariant2.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupCvariant3.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant1.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant2.svg',
+	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant3.svg'
 ];
 
 
