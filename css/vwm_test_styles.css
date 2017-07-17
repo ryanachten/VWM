@@ -141,6 +141,8 @@ canvas{
 .option-button{
 	height: 10vw;
 	width: 10vw;
+	max-height: 120px;
+	max-width: 120px;
     border-radius: 50%;
     /*border: 1px black solid;*/
     border: none;

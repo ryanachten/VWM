@@ -31,6 +31,8 @@
 	.option-button{
 		height: 15vw;
 		width: 15vw;
+		max-width: 80px;
+		max-height: 80px;
 		padding: 10px;
 	}
 }
