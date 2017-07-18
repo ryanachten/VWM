@@ -3,11 +3,15 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Visual Working Memory</title>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/86/three.min.js"></script>
 	<script type="text/javascript" src="js/Detector.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.7.0/Tween.min.js"></script>
 	<script src="js/THREE.MeshLine.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/vwm_main_styles.css">
 	<link rel="stylesheet" type="text/css" href="css/vwm_home_styles.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono" rel="stylesheet">
@@ -35,14 +39,18 @@
 		<aside id="start-panel">
 			<h2>Get Started:</h2>
 			<p>Read to participate? Enter you name to get started:</p>
-			<form id="name-inputform">
-				<input type="text" id="name-inputfield" placeholder="Enter your name*">
+			<form id="name-inputform" class="auth-inputform">
+				<input type="text" id="name-inputfield" class="auth-inputfield" placeholder="Enter your name*">
+			</form>
+			<form id="email-inputform" class="auth-inputform">
+				<input type="text" id="email-inputfield" class="auth-inputfield" type="email" placeholder="your@email.com*" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
 			</form>
 			<p id="disclaimer-text">*All participant information is kept private</p>
 			<button class="more-button">Find out how</button>
 		</aside>
  <!--  -->
 		<script type="text/javascript" src="js/vwm_lissajous.js"></script>
+		<script type="text/javascript" src="js/vwm_data.js"></script>
 		<script type="text/javascript" src="js/vwm_landing.js"></script>
 	</body>
 </html>
