@@ -110,11 +110,13 @@ $('#email-inputform').submit(function(e) {
 
 function nameEmailFormValidationRedirect(){
 
-	if(document.getElementById('name-inputfield').value.length === 0){
+	var namefield = document.getElementById('name-inputfield');
+	var emailfield = document.getElementById('email-inputfield');
+
+	if(namefield.value.length === 0){
 		alert('Please enter your name before continuing');
 	}else{
-		//TODO: store username in DB
-		console.log('submitting');
-		window.location.href = 'test.html';	
+		submitUser(namefield.value, emailfield.value);
+		// window.location.href = 'test.html';	
 	}	
 }

@@ -16,23 +16,57 @@ function initData(){
 	
 	database = firebase.database();
 	ref = database.ref('vwm_participants');
-
-	// submitUsername();
 }
 
-function submitUsername(){
-	var username = { //test -rm
-		username: 'Ryan'
-	}
-	var id = ref.push(username);
+function submitUser(name, email){
+
+	var test = {
+		target_figure: '',
+		figure_clicked: '',
+		test_result: '',
+		time_taken: ''
+	};
+
+	var nback = {
+		test01: test,
+		test02: test,
+		test03: test,
+		test04: test,
+		test05: test,
+		test06: test,
+		test07: test,
+		test08: test,
+		test09: test,
+		test10: test,
+		test11: test,
+		test12: test,
+		test13: test,
+		test14: test,
+		test15: test,
+		test16: test,
+		test17: test,
+		test18: test,
+		test19: test,
+		test20: test,
+		test21: test,
+		test22: test,
+		test23: test,
+		test24: test,
+		test25: test
+	};
+
+	var userData = { //test -rm
+		name: name,
+		email: email,
+		nback_0: nback,
+		nback_1: nback,
+		nback_2: nback,
+		nback_3: nback
+	};
+
+	console.log('userData: ' + userData.name + ' ' + userData.email);
+	var id = ref.push(userData);
 
 	console.log(id.key);
-
-	var test1 = {
-		test1: 'fail'
-	}
-
-	var idDirect = database.ref('vwm_participants/'+id.key);
-	idDirect.push(test1);
 }
 
