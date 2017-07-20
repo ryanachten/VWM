@@ -67,6 +67,25 @@ function submitUser(name, email){
 	console.log('userData: ' + userData.name + ' ' + userData.email);
 	var id = ref.push(userData);
 
-	console.log(id.key);
+	// console.log('id: ' + id.key);
+	sessionStorage.setItem('vwmUserId', id.key);
 }
 
+function submitTestResult(nback, testIndex, currentTarget, figurePressed, testResult){
+
+	var userId = sessionStorage.getItem('vwmUserId');
+	console.log('userId: ' + userId);
+
+	var nbackDirect = 'nback_' + nback; 
+	var testDirect;
+		if(testIndex < 10) testDirect = 'test0' + (testIndex+1); //+1 added to avoid index 0 start
+		else testDirect = 'test' + testIndex;
+	var curDirectoryRef = 'vwm_participants/' + userId + '/' + nbackDirect + '/' + testDirect;
+	console.log('curDirectoryRef: ' + curDirectoryRef);
+	
+	database.ref(curDirectoryRef+'/figure_clicked').set(figurePressed);
+	database.ref(curDirectoryRef+'/target_figure').set(currentTarget);
+	database.ref(curDirectoryRef+'/test_result').set(testResult);
+	
+	
+}
