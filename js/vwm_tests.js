@@ -29,9 +29,16 @@ function loadScene(optionButtonID, optionImgIndex){
 	if(nback !== null && optionButtonID !== 'continue-button'){ 
 		//TODO: here is where the validation and data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
+		var testResult;
+		console.log('curTestIndex: ' + curTestIndex);
+		console.log('Current Target: Group: ' + lissagIndexArr[0].groupIndex + ' Figure: ' + lissagIndexArr[0].lassigIndex);
 		console.log('Figure pressed: ' + optionImgIndex);
-		if(optionImgIndex == lissagIndexArr[0].lassigIndex) console.log('Test Result: PASS');
-		else console.log('Test Result: FAIL');
+		
+		if(optionImgIndex == lissagIndexArr[0].lassigIndex) testResult = 'Pass'; //console.log('Test Result: PASS');
+		else testResult = 'Fail'; //console.log('Test Result: FAIL');
+		console.log('Test Result: ' + testResult);
+
+		submitTestResult(nback, curTestIndex, lissagIndexArr[0], optionImgIndex, testResult);
 	}
 	console.log(' ');
 	// console.log('curSceneIndex: '+ curSceneIndex);
@@ -119,7 +126,7 @@ function loadTestOnlyScene(){
 	}
 	initScene();
 
-	console.log('curTestIndex: ' + curTestIndex);
+	// console.log('curTestIndex: ' + curTestIndex);
 	curTestIndex++;
 
 	updateProgressBar();
@@ -210,7 +217,7 @@ function updateMemoriseFigure(){
 			});
 
 			curLassijGroupIndex = newLassigGroupIndex;
-			console.log('Current Target: Group: ' + lissagIndexArr[0].groupIndex + ' Figure: ' + lissagIndexArr[0].lassigIndex);
+			// console.log('Current Target: Group: ' + lissagIndexArr[0].groupIndex + ' Figure: ' + lissagIndexArr[0].lassigIndex);
 			updateOptionImages();
 		}
 		else{
