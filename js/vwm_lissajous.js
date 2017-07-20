@@ -123,65 +123,36 @@ var lissajousGroups = [];
 		lissajGroupD.push(lissajGroupDvariant3);
 	lissajousGroups.push(lissajGroupD);
 
-	// var lissajGroupE = [];
-	// 	var lissajGroupEvariant1 = {
-	// 		freqA 	: 3.0,
-	// 		freqB 	: 8.0,
-	// 		freqC 	: 2.0,
-	// 		phaseX 	: 2.0,
-	// 		phaseY 	: 7.0,
-	// 		phaseZ	: 0.0
-	// 	}
-	// 	lissajGroupE.push(lissajGroupEvariant1);
-	// 	var lissajGroupEvariant2 = {
-	// 		freqA 	: 3.0,
-	// 		freqB 	: 8.0,
-	// 		freqC 	: 2.0,
-	// 		phaseX 	: 3.0,
-	// 		phaseY 	: 7.0,
-	// 		phaseZ	: 0.0
-	// 	}
-	// 	lissajGroupE.push(lissajGroupEvariant2);
-	// 	var lissajGroupEvariant3 = {
-	// 		freqA 	: 3.0,
-	// 		freqB 	: 8.0,
-	// 		freqC 	: 2.0,
-	// 		phaseX 	: 3.0,
-	// 		phaseY 	: 8.0,
-	// 		phaseZ	: 0.0
-	// 	}
-	// 	lissajGroupE.push(lissajGroupEvariant3);
-	// lissajousGroups.push(lissajGroupE);
-
-	// var lissajGroupF = [];
-	// 	var lissajGroupFvariant1 = {
-	// 		freqA 	: 3.0,
-	// 		freqB 	: 8.0,
-	// 		freqC 	: 2.0,
-	// 		phaseX 	: 2.0,
-	// 		phaseY 	: 7.0,
-	// 		phaseZ	: 0.0
-	// 	}
-	// 	lissajGroupF.push(lissajGroupFvariant1);
-	// 	var lissajGroupFvariant2 = {
-	// 		freqA 	: 3.0,
-	// 		freqB 	: 8.0,
-	// 		freqC 	: 2.0,
-	// 		phaseX 	: 3.0,
-	// 		phaseY 	: 7.0,
-	// 		phaseZ	: 0.0
-	// 	}
-	// 	lissajGroupF.push(lissajGroupFvariant2);
-	// 	var lissajGroupFvariant3 = {
-	// 		freqA 	: 3.0,
-	// 		freqB 	: 8.0,
-	// 		freqC 	: 2.0,
-	// 		phaseX 	: 3.0,
-	// 		phaseY 	: 8.0,
-	// 		phaseZ	: 0.0
-	// 	}
-	// 	lissajGroupF.push(lissajGroupFvariant3);
-	// lissajousGroups.push(lissajGroupF);
+	var lissajGroupE = [];
+		var lissajGroupEvariant1 = {
+			freqA 	: 5.0,
+			freqB 	: 4.0,
+			freqC 	: 6.0,
+			phaseX 	: 0.0,
+			phaseY 	: 0.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupE.push(lissajGroupEvariant1);
+		var lissajGroupEvariant2 = {
+			freqA 	: 5.0,
+			freqB 	: 4.0,
+			freqC 	: 6.0,
+			phaseX 	: 0.0,
+			phaseY 	: 1.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupE.push(lissajGroupEvariant2);
+		var lissajGroupEvariant3 = {
+			freqA 	: 5.0,
+			freqB 	: 4.0,
+			freqC 	: 6.0,
+			phaseX 	: 0.0,
+			phaseY 	: 2.0,
+			phaseZ	: 0.0
+		}
+		lissajGroupE.push(lissajGroupEvariant3);
+	lissajousGroups.push(lissajGroupE);
+	
 
 var lissajousSvgsDirectory = 'img/VWM_LissagSvgs/';
 var lissajousSvgs = [
@@ -201,15 +172,11 @@ var lissajousSvgs = [
 		lissajousSvgsDirectory + 'vwm_lissajGroupDvariant1.svg',
 		lissajousSvgsDirectory + 'vwm_lissajGroupDvariant2.svg',
 		lissajousSvgsDirectory + 'vwm_lissajGroupDvariant3.svg'
-	]//,[
-	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant1.svg',
-	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant2.svg',
-	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant3.svg'
-	// ],[
-	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant1.svg',
-	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant2.svg',
-	// 	lissajousSvgsDirectory + 'vwm_lissajGroupDvariant3.svg'
-	// ]
+	],[
+		lissajousSvgsDirectory + 'vwm_lissajGroupEvariant1.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupEvariant2.svg',
+		lissajousSvgsDirectory + 'vwm_lissajGroupEvariant3.svg'
+	]
 ];
 
 
