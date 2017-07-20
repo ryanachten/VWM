@@ -117,6 +117,6 @@ function nameEmailFormValidationRedirect(){
 		alert('Please enter your name before continuing');
 	}else{
 		submitUser(namefield.value, emailfield.value);
-		// window.location.href = 'test.html';	
+		window.location.href = 'test.html';	
 	}	
 }
