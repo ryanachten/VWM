@@ -71,10 +71,15 @@ function submitUser(name, email){
 	sessionStorage.setItem('vwmUserId', id.key);
 }
 
-function submitTestResult(nback, testIndex, currentTarget, figurePressed, testResult){
+function submitTestResult(nback, testIndex, currentTarget, figurePressed, testTimeTaken, testResult){
 
 	var userId = sessionStorage.getItem('vwmUserId');
-	console.log('userId: ' + userId);
+	if(userId == null){
+		console.log('userId null');
+		return;
+	}else{
+		console.log('userId: ' + userId);
+	}
 
 	var nbackDirect = 'nback_' + nback; 
 	var testDirect;
@@ -85,6 +90,7 @@ function submitTestResult(nback, testIndex, currentTarget, figurePressed, testRe
 	
 	database.ref(curDirectoryRef+'/figure_clicked').set(figurePressed);
 	database.ref(curDirectoryRef+'/target_figure').set(currentTarget);
+	database.ref(curDirectoryRef+'/time_taken').set(testTimeTaken);
 	database.ref(curDirectoryRef+'/test_result').set(testResult);
 	
 	
