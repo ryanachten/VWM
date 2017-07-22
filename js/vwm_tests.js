@@ -32,45 +32,24 @@ function loadScene(optionButtonID, optionImgIndex){
 	if(nback !== null && optionButtonID !== 'continue-button'){ 
 		//TODO: here is where the validation and data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
-		testEndTime = new Date();
-		console.log('testEndTime: ' + testEndTime);
-		console.log('testStartTime: ' + testStartTime);
-
-		var startHours = testStartTime.getHours()/60/60/1000;
-		var startMins = testStartTime.getMinutes()/60/1000;
-		var startSecs = testStartTime.getSeconds()/1000;
-		var startMillis = testStartTime.getMilliseconds();
-		var totalStartMillis = startMillis + startSecs + startMins + startHours;
-		console.log('Start Time: ' + startHours + ' : ' + startMins + ' : ' + startSecs + ' : ' + startMillis);
-		console.log('totalStartMillis: ' + totalStartMillis);
-		// console.log('Date.now: ' + start.toLocaleTimeString());
-
-		var endHours = testEndTime.getHours()/60/60/1000;
-		var endMins = testEndTime.getMinutes()/60/1000;
-		var endSecs = testEndTime.getSeconds()/1000;
-		var endMillis = testEndTime.getMilliseconds();
-		console.log('End Time: ' + endHours + ' : ' + endMins + ' : ' + endSecs + ' : ' + endMillis);
-		var totalEndMillis = endMillis + endSecs + endMins + endHours;
-		console.log('totalEndMillis: ' + totalEndMillis);
-
-		// var ellapsedHours = endHours - startHours;
-		// var ellapsedMins = endMins - startMins;
-		// var ellapsedSecs = endSecs - startSecs;
-		// var ellapsedMillis = endMillis - startMillis;
-		// console.log('Ellapsed Time: ' + ellapsedHours + ' : ' + ellapsedMins + ' : ' + ellapsedSecs + ' : ' + ellapsedMillis);
-		var ellapsedMillis = totalEndMillis - totalStartMillis;
-		console.log('ellapsedMillis: ' + ellapsedMillis);
+		
+		testEndTime = performance.now();
+		// console.log('testEndTime: ' + testEndTime);
+		// console.log('testStartTime: ' + testStartTime);
+		var ellapsedMillis = testEndTime - testStartTime;
+		var ellapsedSeconds = (ellapsedMillis/1000).toFixed(2);
 
 		var testResult;
-		console.log('curTestIndex: ' + curTestIndex);
+		console.log('Test Index: ' + curTestIndex);
 		console.log('Current Target: Group: ' + lissagIndexArr[0].groupIndex + ' Figure: ' + lissagIndexArr[0].lassigIndex);
 		console.log('Figure pressed: ' + optionImgIndex);
+		console.log('Time Taken: ' + ellapsedSeconds + 'sec');
 		
 		if(optionImgIndex == lissagIndexArr[0].lassigIndex) testResult = 'Pass'; //console.log('Test Result: PASS');
 		else testResult = 'Fail'; //console.log('Test Result: FAIL');
 		console.log('Test Result: ' + testResult);
 
-		submitTestResult(nback, curTestIndex, lissagIndexArr[0], optionImgIndex, testResult);
+		submitTestResult(nback, curTestIndex, lissagIndexArr[0], optionImgIndex, ellapsedSeconds, testResult);
 	}
 	console.log(' ');
 	// console.log('curSceneIndex: '+ curSceneIndex);
@@ -241,7 +220,7 @@ function updateMemoriseFigure(){
 			var newLassijIndex = Math.floor(Math.random()*lissajousGroups[newLassigGroupIndex].length);
 			tweenLissaj(lissajousGroups[newLassigGroupIndex][newLassijIndex]);
 			var animationDelay = setTimeout(function(){
-				testStartTime = new Date();
+				testStartTime = performance.now();
 			}, 2000); //needs to matched to tween animation period
 
 			if(lissagIndexArr.length > nback)
