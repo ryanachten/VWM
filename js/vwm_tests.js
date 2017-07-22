@@ -33,25 +33,33 @@ function loadScene(optionButtonID, optionImgIndex){
 		//TODO: here is where the validation and data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
 		testEndTime = new Date();
-		
-		var startHours = testStartTime.getHours();
-		var startMins = testStartTime.getMinutes();
-		var startSecs = testStartTime.getSeconds();
+		console.log('testEndTime: ' + testEndTime);
+		console.log('testStartTime: ' + testStartTime);
+
+		var startHours = testStartTime.getHours()/60/60/1000;
+		var startMins = testStartTime.getMinutes()/60/1000;
+		var startSecs = testStartTime.getSeconds()/1000;
 		var startMillis = testStartTime.getMilliseconds();
+		var totalStartMillis = startMillis + startSecs + startMins + startHours;
 		console.log('Start Time: ' + startHours + ' : ' + startMins + ' : ' + startSecs + ' : ' + startMillis);
+		console.log('totalStartMillis: ' + totalStartMillis);
 		// console.log('Date.now: ' + start.toLocaleTimeString());
 
-		var endHours = testEndTime.getHours();
-		var endMins = testEndTime.getMinutes();
-		var endSecs = testEndTime.getSeconds();
+		var endHours = testEndTime.getHours()/60/60/1000;
+		var endMins = testEndTime.getMinutes()/60/1000;
+		var endSecs = testEndTime.getSeconds()/1000;
 		var endMillis = testEndTime.getMilliseconds();
 		console.log('End Time: ' + endHours + ' : ' + endMins + ' : ' + endSecs + ' : ' + endMillis);
+		var totalEndMillis = endMillis + endSecs + endMins + endHours;
+		console.log('totalEndMillis: ' + totalEndMillis);
 
-		var ellapsedHours = endHours - startHours;
-		var ellapsedMins = endMins - startMins;
-		var ellapsedSecs = endSecs - startSecs;
-		var ellapsedMillis = endMillis - startMillis;
-		console.log('Ellapsed Time: ' + ellapsedHours + ' : ' + ellapsedMins + ' : ' + ellapsedSecs + ' : ' + ellapsedMillis);
+		// var ellapsedHours = endHours - startHours;
+		// var ellapsedMins = endMins - startMins;
+		// var ellapsedSecs = endSecs - startSecs;
+		// var ellapsedMillis = endMillis - startMillis;
+		// console.log('Ellapsed Time: ' + ellapsedHours + ' : ' + ellapsedMins + ' : ' + ellapsedSecs + ' : ' + ellapsedMillis);
+		var ellapsedMillis = totalEndMillis - totalStartMillis;
+		console.log('ellapsedMillis: ' + ellapsedMillis);
 
 		var testResult;
 		console.log('curTestIndex: ' + curTestIndex);
