@@ -306,7 +306,10 @@ function tweenLissaj(newLissaj){
 				phaseY: newLissaj.phaseY,
 				phaseZ: newLissaj.phaseZ
 		}, 2000)
-		.onUpdate(update);
+		.onUpdate(update)
+		/*.onComplete(function(){
+			console.log('tween done')}
+		)*/;
 
 	tweenTo.start();
 

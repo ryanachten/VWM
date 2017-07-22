@@ -10,6 +10,9 @@ var nback = null; //needs to be set to null at start for production
 var curLassijGroupIndex;
 var lissagIndexArr; //array of lissaj indices used for option recollection and validation
 
+var testStartTime;
+var testEndTime;
+
 var testProgressBar = document.getElementById('progressbar');
 var trialCountText = document.getElementById('progress-trialcount');
 var targetPanel = document.getElementById('target-panel');
@@ -29,6 +32,27 @@ function loadScene(optionButtonID, optionImgIndex){
 	if(nback !== null && optionButtonID !== 'continue-button'){ 
 		//TODO: here is where the validation and data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
+		testEndTime = new Date();
+		
+		var startHours = testStartTime.getHours();
+		var startMins = testStartTime.getMinutes();
+		var startSecs = testStartTime.getSeconds();
+		var startMillis = testStartTime.getMilliseconds();
+		console.log('Start Time: ' + startHours + ' : ' + startMins + ' : ' + startSecs + ' : ' + startMillis);
+		// console.log('Date.now: ' + start.toLocaleTimeString());
+
+		var endHours = testEndTime.getHours();
+		var endMins = testEndTime.getMinutes();
+		var endSecs = testEndTime.getSeconds();
+		var endMillis = testEndTime.getMilliseconds();
+		console.log('End Time: ' + endHours + ' : ' + endMins + ' : ' + endSecs + ' : ' + endMillis);
+
+		var ellapsedHours = endHours - startHours;
+		var ellapsedMins = endMins - startMins;
+		var ellapsedSecs = endSecs - startSecs;
+		var ellapsedMillis = endMillis - startMillis;
+		console.log('Ellapsed Time: ' + ellapsedHours + ' : ' + ellapsedMins + ' : ' + ellapsedSecs + ' : ' + ellapsedMillis);
+
 		var testResult;
 		console.log('curTestIndex: ' + curTestIndex);
 		console.log('Current Target: Group: ' + lissagIndexArr[0].groupIndex + ' Figure: ' + lissagIndexArr[0].lassigIndex);
@@ -208,6 +232,9 @@ function updateMemoriseFigure(){
 		if(newLassigGroupIndex !== curLassijGroupIndex && !groupExistsInNback){ // && 
 			var newLassijIndex = Math.floor(Math.random()*lissajousGroups[newLassigGroupIndex].length);
 			tweenLissaj(lissajousGroups[newLassigGroupIndex][newLassijIndex]);
+			var animationDelay = setTimeout(function(){
+				testStartTime = new Date();
+			}, 2000); //needs to matched to tween animation period
 
 			if(lissagIndexArr.length > nback)
 				lissagIndexArr.shift();	
