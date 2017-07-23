@@ -1,5 +1,6 @@
 function download(){
 	var headers = {
+			nback_index: 'N-back Index',
 			test_index: 'Test Index',
 			figure_clicked: 'Figure Clicked',
 			target_figure: 'Target Figure',
@@ -9,7 +10,8 @@ function download(){
 	};
 
 	itemsNotFormatted = {
-		  // "nback_0" : {
+
+		"nback_0" : {
 		    "test01" : {
 		      "figure_clicked" : "1",
 		      "target_figure" : {
@@ -235,38 +237,181 @@ function download(){
 		      "test_result" : "Fail",
 		      "time_taken" : "0.419"
 		    }
-		  };
-
-	// 	"test03" : {
-	// 		 "figure_clicked" : "1",
-	// 		 "target_figure" : {
-	// 			 "groupIndex" : 1,
-	// 			 "lassigIndex" : 0
-	// 		 },
-	// 		 "test_result" : "Fail",
-	// 		 "time_taken" : "NaN"
-	// 	},
-	// 	"test02" : {
-	// 		 "figure_clicked" : "1",
-	// 		 "target_figure" : {
-	// 			 "groupIndex" : 1,
-	// 			 "lassigIndex" : 0
-	// 		 },
-	// 		 "test_result" : "Fail",
-	// 		 "time_taken" : "NaN"
-	// 	}
-	// };
+		},
+		"nback_1" : {
+		  "test01" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test02" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test03" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test04" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test05" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test06" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test07" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test08" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test09" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test10" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test11" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test12" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test13" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test14" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test15" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test16" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test17" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test18" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test19" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test20" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test21" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test22" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test23" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test24" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  },
+		  "test25" : {
+		    "figure_clicked" : "",
+		    "target_figure" : "",
+		    "test_result" : "",
+		    "time_taken" : ""
+		  }
+		}
+	};
 
 	var itemsFormatted = [];
 	
-	 $.each(itemsNotFormatted, function(testName,testStats) { //key val pair
-		console.log('itemsNotFormatted.keys: ' + testStats.figure_clicked);
-		itemsFormatted.push({
-			test_index: testName,
-			target_figure: (testStats.target_figure.groupIndex + ':' + testStats.target_figure.lassigIndex),
-			figure_clicked: testStats.figure_clicked,
-			test_result: testStats.test_result,
-			time_taken: testStats.time_taken
+	 $.each(itemsNotFormatted, function(nbackName,nabackTest) {
+	 	itemsFormatted.push({
+				nback_index: nbackName
+			});
+		 $.each(nabackTest, function(testName,testStats) { //key val pair
+		 	if(testStats.target_figure.groupIndex !== undefined || testStats.target_figure.groupIndex !== undefined){
+		 		var targetFigCoords = (testStats.target_figure.groupIndex + ':' + testStats.target_figure.lassigIndex);
+		 	}else{
+		 		targetFigCoords = '';
+		 	}
+			itemsFormatted.push({
+				nback_index: '--',
+				test_index: testName,
+				target_figure: targetFigCoords,
+				figure_clicked: testStats.figure_clicked,
+				test_result: testStats.test_result,
+				time_taken: testStats.time_taken
+			});
 		});
 	});
 	
