@@ -1,6 +1,6 @@
 // DESCRIPT: all psych test controller functionality goes here:
 
-var testPerStageCount = 25;
+var testPerStageCount = 24;
 var curSceneIndex = null;
 var curTestIndex = null;
 
