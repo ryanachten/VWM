@@ -37,7 +37,7 @@ function loadScene(optionButtonID, optionImgIndex){
 		// console.log('testEndTime: ' + testEndTime);
 		// console.log('testStartTime: ' + testStartTime);
 		var ellapsedMillis = testEndTime - testStartTime;
-		var ellapsedSeconds = (ellapsedMillis/1000).toFixed(2);
+		var ellapsedSeconds = (ellapsedMillis/1000).toFixed(3);
 
 		var testResult;
 		console.log('Test Index: ' + curTestIndex);
