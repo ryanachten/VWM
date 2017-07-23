@@ -83,8 +83,9 @@ function submitTestResult(nback, testIndex, currentTarget, figurePressed, testTi
 
 	var nbackDirect = 'nback_' + nback; 
 	var testDirect;
-		if(testIndex < 10) testDirect = 'test0' + (testIndex+1); //+1 added to avoid index 0 start
-		else testDirect = 'test' + testIndex;
+		if(testIndex+1 < 10) testDirect = 'test0' + (testIndex+1); //+1 added to avoid index 0 start
+		else testDirect = 'test' + (testIndex+1);
+	// console.log('testDirect: ' + testDirect);
 	var curDirectoryRef = 'vwm_participants/' + userId + '/' + nbackDirect + '/' + testDirect;
 	console.log('curDirectoryRef: ' + curDirectoryRef);
 	
