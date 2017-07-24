@@ -1,5 +1,7 @@
 function download(){
 	var headers = {
+			name: 'Participant Name',
+			email: 'Participant Email',
 			nback_index: 'N-back Index',
 			test_index: 'Test Index',
 			figure_clicked: 'Figure Clicked',
@@ -10,409 +12,817 @@ function download(){
 	};
 
 	itemsNotFormatted = {
-
-		"nback_0" : {
-		    "test01" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 1,
-		        "lassigIndex" : 0
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "NaN"
-		    },
-		    "test02" : {
-		      "figure_clicked" : "2",
-		      "target_figure" : {
-		        "groupIndex" : 4,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.837"
-		    },
-		    "test03" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 1,
-		        "lassigIndex" : 2
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "1.353"
-		    },
-		    "test04" : {
-		      "figure_clicked" : "2",
-		      "target_figure" : {
-		        "groupIndex" : 2,
-		        "lassigIndex" : 2
-		      },
-		      "test_result" : "Pass",
-		      "time_taken" : "0.003"
-		    },
-		    "test05" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 0,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Pass",
-		      "time_taken" : "0.394"
-		    },
-		    "test06" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 1,
-		        "lassigIndex" : 2
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.793"
-		    },
-		    "test07" : {
-		      "figure_clicked" : "0",
-		      "target_figure" : {
-		        "groupIndex" : 4,
-		        "lassigIndex" : 2
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.098"
-		    },
-		    "test08" : {
-		      "figure_clicked" : "0",
-		      "target_figure" : {
-		        "groupIndex" : 1,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.038"
-		    },
-		    "test09" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 4,
-		        "lassigIndex" : 0
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.355"
-		    },
-		    "test10" : {
-		      "figure_clicked" : "2",
-		      "target_figure" : {
-		        "groupIndex" : 0,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.152"
-		    },
-		    "test11" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 1,
-		        "lassigIndex" : 0
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.320"
-		    },
-		    "test12" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 0,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Pass",
-		      "time_taken" : "0.076"
-		    },
-		    "test13" : {
-		      "figure_clicked" : "0",
-		      "target_figure" : {
-		        "groupIndex" : 4,
-		        "lassigIndex" : 0
-		      },
-		      "test_result" : "Pass",
-		      "time_taken" : "0.468"
-		    },
-		    "test14" : {
-		      "figure_clicked" : "0",
-		      "target_figure" : {
-		        "groupIndex" : 2,
-		        "lassigIndex" : 2
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.669"
-		    },
-		    "test15" : {
-		      "figure_clicked" : "0",
-		      "target_figure" : {
-		        "groupIndex" : 1,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.028"
-		    },
-		    "test16" : {
-		      "figure_clicked" : "2",
-		      "target_figure" : {
-		        "groupIndex" : 2,
-		        "lassigIndex" : 0
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.073"
-		    },
-		    "test17" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 1,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Pass",
-		      "time_taken" : "0.100"
-		    },
-		    "test18" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 0,
-		        "lassigIndex" : 2
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.160"
-		    },
-		    "test19" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 2,
-		        "lassigIndex" : 0
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.031"
-		    },
-		    "test20" : {
-		      "figure_clicked" : "0",
-		      "target_figure" : {
-		        "groupIndex" : 0,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.101"
-		    },
-		    "test21" : {
-		      "figure_clicked" : "2",
-		      "target_figure" : {
-		        "groupIndex" : 3,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.363"
-		    },
-		    "test22" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 2,
-		        "lassigIndex" : 1
-		      },
-		      "test_result" : "Pass",
-		      "time_taken" : "0.010"
-		    },
-		    "test23" : {
-		      "figure_clicked" : "0",
-		      "target_figure" : {
-		        "groupIndex" : 3,
-		        "lassigIndex" : 0
-		      },
-		      "test_result" : "Pass",
-		      "time_taken" : "0.072"
-		    },
-		    "test24" : {
-		      "figure_clicked" : "1",
-		      "target_figure" : {
-		        "groupIndex" : 2,
-		        "lassigIndex" : 0
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.234"
-		    },
-		    "test25" : {
-		      "figure_clicked" : "0",
-		      "target_figure" : {
-		        "groupIndex" : 0,
-		        "lassigIndex" : 2
-		      },
-		      "test_result" : "Fail",
-		      "time_taken" : "0.419"
-		    }
+		"-Kph88luOFzRoa51y3GK" : {
+		  "email" : "test@test.com",
+		  "name" : "ryan",
+			
+			"nback_0" : {
+			    "test01" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "NaN"
+			    },
+			    "test02" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 4,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.837"
+			    },
+			    "test03" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "1.353"
+			    },
+			    "test04" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.003"
+			    },
+			    "test05" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.394"
+			    },
+			    "test06" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.793"
+			    },
+			    "test07" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 4,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.098"
+			    },
+			    "test08" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.038"
+			    },
+			    "test09" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 4,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.355"
+			    },
+			    "test10" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.152"
+			    },
+			    "test11" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.320"
+			    },
+			    "test12" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.076"
+			    },
+			    "test13" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 4,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.468"
+			    },
+			    "test14" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.669"
+			    },
+			    "test15" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.028"
+			    },
+			    "test16" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.073"
+			    },
+			    "test17" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.100"
+			    },
+			    "test18" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.160"
+			    },
+			    "test19" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.031"
+			    },
+			    "test20" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.101"
+			    },
+			    "test21" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 3,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.363"
+			    },
+			    "test22" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.010"
+			    },
+			    "test23" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 3,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.072"
+			    },
+			    "test24" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.234"
+			    },
+			    "test25" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.419"
+			    }
+			},
+			"nback_1" : {
+			  "test01" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test02" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test03" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test04" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test05" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test06" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test07" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test08" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test09" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test10" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test11" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test12" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test13" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test14" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test15" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test16" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test17" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test18" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test19" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test20" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test21" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test22" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test23" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test24" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test25" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  }
+			}
 		},
-		"nback_1" : {
-		  "test01" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test02" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test03" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test04" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test05" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test06" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test07" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test08" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test09" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test10" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test11" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test12" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test13" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test14" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test15" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test16" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test17" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test18" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test19" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test20" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test21" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test22" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test23" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test24" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  },
-		  "test25" : {
-		    "figure_clicked" : "",
-		    "target_figure" : "",
-		    "test_result" : "",
-		    "time_taken" : ""
-		  }
+		"-Kph88luOFzRoa51y3Gz" : {
+		  "email" : "trent@test.com",
+		  "name" : "michael",
+			
+			"nback_0" : {
+			    "test01" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "NaN"
+			    },
+			    "test02" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 4,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.837"
+			    },
+			    "test03" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "1.353"
+			    },
+			    "test04" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.003"
+			    },
+			    "test05" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.394"
+			    },
+			    "test06" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.793"
+			    },
+			    "test07" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 4,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.098"
+			    },
+			    "test08" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.038"
+			    },
+			    "test09" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 4,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.355"
+			    },
+			    "test10" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.152"
+			    },
+			    "test11" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.320"
+			    },
+			    "test12" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.076"
+			    },
+			    "test13" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 4,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.468"
+			    },
+			    "test14" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.669"
+			    },
+			    "test15" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.028"
+			    },
+			    "test16" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.073"
+			    },
+			    "test17" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 1,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.100"
+			    },
+			    "test18" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.160"
+			    },
+			    "test19" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.031"
+			    },
+			    "test20" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.101"
+			    },
+			    "test21" : {
+			      "figure_clicked" : "2",
+			      "target_figure" : {
+			        "groupIndex" : 3,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.363"
+			    },
+			    "test22" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 1
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.010"
+			    },
+			    "test23" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 3,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Pass",
+			      "time_taken" : "0.072"
+			    },
+			    "test24" : {
+			      "figure_clicked" : "1",
+			      "target_figure" : {
+			        "groupIndex" : 2,
+			        "lassigIndex" : 0
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.234"
+			    },
+			    "test25" : {
+			      "figure_clicked" : "0",
+			      "target_figure" : {
+			        "groupIndex" : 0,
+			        "lassigIndex" : 2
+			      },
+			      "test_result" : "Fail",
+			      "time_taken" : "0.419"
+			    }
+			},
+			"nback_1" : {
+			  "test01" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test02" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test03" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test04" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test05" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test06" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test07" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test08" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test09" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test10" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test11" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test12" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test13" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test14" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test15" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test16" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test17" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test18" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test19" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test20" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test21" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test22" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test23" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test24" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  },
+			  "test25" : {
+			    "figure_clicked" : "",
+			    "target_figure" : "",
+			    "test_result" : "",
+			    "time_taken" : ""
+			  }
+			}
 		}
 	};
 
 	var itemsFormatted = [];
 	
-	 $.each(itemsNotFormatted, function(nbackName,nabackTest) {
+	 $.each(itemsNotFormatted, function(userId,userData) {
 	 	itemsFormatted.push({
-				nback_index: nbackName
-			});
-		 $.each(nabackTest, function(testName,testStats) { //key val pair
-		 	if(testStats.target_figure.groupIndex !== undefined || testStats.target_figure.groupIndex !== undefined){
-		 		var targetFigCoords = (testStats.target_figure.groupIndex + ':' + testStats.target_figure.lassigIndex);
-		 	}else{
-		 		targetFigCoords = '';
-		 	}
-			itemsFormatted.push({
-				nback_index: '--',
-				test_index: testName,
-				target_figure: targetFigCoords,
-				figure_clicked: testStats.figure_clicked,
-				test_result: testStats.test_result,
-				time_taken: testStats.time_taken
-			});
+ 			name: ' '
+		});	
+	 	console.log('email: ' + userData.email);
+	 	itemsFormatted.push({
+ 			name: userData.name,
+ 			email: userData.email
 		});
+		addNbackDataToCsv('0 Back', userData.nback_0);
+		addNbackDataToCsv('1 Back', userData.nback_1);
+		addNbackDataToCsv('2 Back', userData.nback_2);
+		addNbackDataToCsv('3 Back', userData.nback_3);
+
+
+	 	function addNbackDataToCsv(nbackName, nbackData){
+	 		itemsFormatted.push({
+	 			name: ' ',
+	 			email: ' ',
+	 			nback_index: nbackName
+	 		});
+			$.each(nbackData, function(testName,testStats) { //key val pair
+			 	if(testStats.target_figure.groupIndex !== undefined || testStats.target_figure.groupIndex !== undefined){
+			 		var targetFigCoords = (testStats.target_figure.groupIndex + ':' + testStats.target_figure.lassigIndex);
+			 	}else{
+			 		targetFigCoords = '';
+			 	}
+				itemsFormatted.push({
+					name: ' ',
+		 			email: ' ',
+					nback_index: ' ',
+					test_index: testName,
+					target_figure: targetFigCoords,
+					figure_clicked: testStats.figure_clicked,
+					test_result: testStats.test_result,
+					time_taken: testStats.time_taken
+				});
+			});
+		}
 	});
 	
 
@@ -421,6 +831,8 @@ function download(){
 	exportCSVFile(headers, itemsFormatted, fileTitle); // call the exportCSVFile() function to process the JSON and trigger the download
 }
 
+
+//exportCSVFile reference: https://medium.com/@danny.pule/export-json-to-csv-file-using-javascript-a0b7bc5b00d2
 
 function exportCSVFile(headers, items, fileTitle) {
 		if (headers) {
