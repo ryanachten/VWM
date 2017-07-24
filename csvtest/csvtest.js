@@ -1485,10 +1485,36 @@ function download(){
 
 	var itemsFormatted = [];
 
-	var nback0PassRates = [];
-	var nback1PassRates = [];
-	var nback2PassRates = [];
-	var nback3PassRates = [];
+	var nbackaverages = {
+		nback0PassRates: [],
+		nback1PassRates: [],
+		nback2PassRates: [],
+		nback3PassRates: [],
+
+		nback0Ave: function(){
+			var nback0Ave = this.nback0PassRates.reduce(function(sum, value) { return sum + value; });
+				nback0Ave /= this.nback0PassRates.length;
+				console.log('nback0 Average rate: ' + nback0Ave + '%');
+		},
+
+		nback1Ave: function(){
+			var nback1Ave = this.nback1PassRates.reduce(function(sum, value) { return sum + value; });
+			nback1Ave /= this.nback1PassRates.length;
+			console.log('nback1 Average rate: ' + nback1Ave + '%');
+		},
+
+		nback2Ave: function(){
+			var nback2Ave = this.nback2PassRates.reduce(function(sum, value) { return sum + value; });
+			nback2Ave /= this.nback2PassRates.length;
+			console.log('nback2 Average rate: ' + nback2Ave + '%');
+		},
+
+		nback3Ave: function(){
+			var nback3Ave = this.nback3PassRates.reduce(function(sum, value) { return sum + value; });
+			nback3Ave /= this.nback3PassRates.length;
+			console.log('nback3 Average rate: ' + nback3Ave + '%');
+		}
+	};
 	
 	$.each(itemsNotFormatted.vwm_participants, function(userId,userData) {
 	 	itemsFormatted.push({
@@ -1545,16 +1571,16 @@ function download(){
 			switch(nbackName){
 
 				case "0 Back":
-					nback0PassRates.push(parseInt(percentPassed));
+					nbackaverages.nback0PassRates.push(parseInt(percentPassed));
 					break;
 				case "1 Back":
-					nback1PassRates.push(parseInt(percentPassed));
+					nbackaverages.nback1PassRates.push(parseInt(percentPassed));
 					break;
 				case "2 Back":
-					nback2PassRates.push(parseInt(percentPassed));
+					nbackaverages.nback2PassRates.push(parseInt(percentPassed));
 					break;
 				case "3 Back":
-					nback3PassRates.push(parseInt(percentPassed));
+					nbackaverages.nback3PassRates.push(parseInt(percentPassed));
 					break;
 				default:
 			}
@@ -1575,29 +1601,12 @@ function download(){
 			
 		}
 	});
-	
 
-	//TODO: move nback pass rates and averages into a separate function
-	console.log('nback0PassRates: ' + nback0PassRates);
-	console.log('nback1PassRates: ' + nback1PassRates);
-	console.log('nback2PassRates: ' + nback2PassRates);
-	console.log('nback3PassRates: ' + nback3PassRates);
 
-	var nback0Ave = nback0PassRates.reduce(function(sum, value) { return sum + value; });
-	nback0Ave /= nback0PassRates.length;
-	console.log('nback0 Average rate: ' + nback0Ave + '%');
-	
-	var nback1Ave = nback1PassRates.reduce(function(sum, value) { return sum + value; });
-	nback1Ave /= nback1PassRates.length;
-	console.log('nback1 Average rate: ' + nback1Ave + '%');
-
-	var nback2Ave = nback2PassRates.reduce(function(sum, value) { return sum + value; });
-	nback2Ave /= nback2PassRates.length;
-	console.log('nback2 Average rate: ' + nback2Ave + '%');
-
-	var nback3Ave = nback3PassRates.reduce(function(sum, value) { return sum + value; });
-	nback3Ave /= nback3PassRates.length;
-	console.log('nback3 Average rate: ' + nback3Ave + '%');
+	nbackaverages.nback0Ave();
+	nbackaverages.nback1Ave();
+	nbackaverages.nback2Ave();
+	nbackaverages.nback3Ave();
 
 	var fileTitle = 'results'; // or 'my-unique-title'
 
