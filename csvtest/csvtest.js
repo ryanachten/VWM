@@ -1484,6 +1484,11 @@ function download(){
 	};
 
 	var itemsFormatted = [];
+
+	var nback0PassRates = [];
+	var nback1PassRates = [];
+	var nback2PassRates = [];
+	var nback3PassRates = [];
 	
 	$.each(itemsNotFormatted.vwm_participants, function(userId,userData) {
 	 	itemsFormatted.push({
@@ -1494,6 +1499,7 @@ function download(){
  			name: userData.name,
  			email: userData.email
 		});
+
 		addNbackDataToCsv('0 Back', userData.nback_0);
 		addNbackDataToCsv('1 Back', userData.nback_1);
 		addNbackDataToCsv('2 Back', userData.nback_2);
@@ -1533,6 +1539,27 @@ function download(){
 			});
 
 			var percentPassed = ((passedNbackResults/25) *100).toFixed(2);
+
+			// if(nbackName){
+
+			switch(nbackName){
+
+				case "0 Back":
+					nback0PassRates.push(parseInt(percentPassed));
+					break;
+				case "1 Back":
+					nback1PassRates.push(parseInt(percentPassed));
+					break;
+				case "2 Back":
+					nback2PassRates.push(parseInt(percentPassed));
+					break;
+				case "3 Back":
+					nback3PassRates.push(parseInt(percentPassed));
+					break;
+				default:
+			}
+
+
 			itemsFormatted.push({
 				participant_id: ' ',
 				name: ' ',
@@ -1549,6 +1576,28 @@ function download(){
 		}
 	});
 	
+
+	//TODO: move nback pass rates and averages into a separate function
+	console.log('nback0PassRates: ' + nback0PassRates);
+	console.log('nback1PassRates: ' + nback1PassRates);
+	console.log('nback2PassRates: ' + nback2PassRates);
+	console.log('nback3PassRates: ' + nback3PassRates);
+
+	var nback0Ave = nback0PassRates.reduce(function(sum, value) { return sum + value; });
+	nback0Ave /= nback0PassRates.length;
+	console.log('nback0 Average rate: ' + nback0Ave + '%');
+	
+	var nback1Ave = nback1PassRates.reduce(function(sum, value) { return sum + value; });
+	nback1Ave /= nback1PassRates.length;
+	console.log('nback1 Average rate: ' + nback1Ave + '%');
+
+	var nback2Ave = nback2PassRates.reduce(function(sum, value) { return sum + value; });
+	nback2Ave /= nback2PassRates.length;
+	console.log('nback2 Average rate: ' + nback2Ave + '%');
+
+	var nback3Ave = nback3PassRates.reduce(function(sum, value) { return sum + value; });
+	nback3Ave /= nback3PassRates.length;
+	console.log('nback3 Average rate: ' + nback3Ave + '%');
 
 	var fileTitle = 'results'; // or 'my-unique-title'
 
