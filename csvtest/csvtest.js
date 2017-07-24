@@ -1,5 +1,6 @@
 function download(){
 	var headers = {
+			participant_id: 'Participant ID',
 			name: 'Participant Name',
 			email: 'Participant Email',
 			nback_index: 'N-back Index',
@@ -784,12 +785,12 @@ function download(){
 
 	var itemsFormatted = [];
 	
-	 $.each(itemsNotFormatted, function(userId,userData) {
+	$.each(itemsNotFormatted, function(userId,userData) {
 	 	itemsFormatted.push({
  			name: ' '
 		});	
-	 	console.log('email: ' + userData.email);
 	 	itemsFormatted.push({
+	 		participant_id: userId,
  			name: userData.name,
  			email: userData.email
 		});
@@ -801,6 +802,7 @@ function download(){
 
 	 	function addNbackDataToCsv(nbackName, nbackData){
 	 		itemsFormatted.push({
+	 			participant_id: ' ',
 	 			name: ' ',
 	 			email: ' ',
 	 			nback_index: nbackName
@@ -812,6 +814,7 @@ function download(){
 			 		targetFigCoords = '';
 			 	}
 				itemsFormatted.push({
+					participant_id: ' ',
 					name: ' ',
 		 			email: ' ',
 					nback_index: ' ',
@@ -836,7 +839,7 @@ function download(){
 
 function exportCSVFile(headers, items, fileTitle) {
 		if (headers) {
-				items.unshift(headers);
+			items.unshift(headers);
 		}
 
 		// Convert Object to JSON
