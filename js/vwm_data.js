@@ -96,6 +96,15 @@ function submitTestResult(nback, testIndex, currentTarget, figurePressed, testTi
 }
 
 function getNbackPassRate(){
-	// initData();
-	console.log(database.ref('vwm_participants'));
+	database.ref('vwm_participants').once('value').then(function(snapshot) {
+		snapshot.forEach(function(snapUser){
+			snapUser.child('nback_0').forEach(function(snapTest){
+				// console.log(snapTest.key);
+				console.log(snapTest.child('test_result').val());
+			});
+			// snapUser.forEach(function(snapNback){
+			// 	console.log(snapNback.key);
+			// });
+		});
+	});
 }

@@ -66,5 +66,5 @@ legend.append('text')
 		return d;
 	});
 
-
+getNbackPassRate();
 	
