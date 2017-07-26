@@ -96,15 +96,70 @@ function submitTestResult(nback, testIndex, currentTarget, figurePressed, testTi
 }
 
 function getNbackPassRate(){
+
+	var nback0PassRates = [];
+	var nback1PassRates = [];
+	var nback2PassRates = [];
+	var nback3PassRates = [];
+
+	var results = null;
+
 	database.ref('vwm_participants').once('value').then(function(snapshot) {
 		snapshot.forEach(function(snapUser){
+			var nback0Passes = nback1Passes = nback2Passes = nback3Passes= 0;
 			snapUser.child('nback_0').forEach(function(snapTest){
-				// console.log(snapTest.key);
-				console.log(snapTest.child('test_result').val());
+				var curTestResult = snapTest.child('test_result').val();
+				if(curTestResult === 'Pass')
+					nback0Passes++;
 			});
-			// snapUser.forEach(function(snapNback){
-			// 	console.log(snapNback.key);
-			// });
+			snapUser.child('nback_1').forEach(function(snapTest){
+				var curTestResult = snapTest.child('test_result').val();
+				if(curTestResult === 'Pass')
+					nback1Passes++;
+			});
+			snapUser.child('nback_2').forEach(function(snapTest){
+				var curTestResult = snapTest.child('test_result').val();
+				if(curTestResult === 'Pass')
+					nback2Passes++;
+			});
+			snapUser.child('nback_3').forEach(function(snapTest){
+				var curTestResult = snapTest.child('test_result').val();
+				if(curTestResult === 'Pass')
+					nback3Passes++;
+			});
+			curNback0Passes = (nback0Passes/25)*100;
+			curNback1Passes = (nback1Passes/25)*100;
+			curNback2Passes = (nback2Passes/25)*100;
+			curNback3Passes = (nback3Passes/25)*100;
+
+			nback0PassRates.push(curNback0Passes);
+			nback1PassRates.push(curNback1Passes);
+			nback2PassRates.push(curNback2Passes);
+			nback3PassRates.push(curNback3Passes);
 		});
+		returnData();
 	});
+
+	function returnData(){
+		var aveNback0PassRate = nback0PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
+			aveNback0PassRate = (aveNback0PassRate / nback0PassRates.length).toFixed(2);
+		
+		var aveNback1PassRate = nback1PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
+			aveNback1PassRate = (aveNback1PassRate / nback1PassRates.length).toFixed(2);
+		
+		var aveNback2PassRate = nback2PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
+			aveNback2PassRate = (aveNback2PassRate / nback2PassRates.length).toFixed(2);
+		
+		var aveNback3PassRate = nback3PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
+			aveNback3PassRate = (aveNback3PassRate / nback3PassRates.length).toFixed(2);
+			
+		results = {
+			nback0: aveNback0PassRate,
+			nback1: aveNback1PassRate,
+			nback2: aveNback2PassRate,
+			nback3: aveNback3PassRate
+		}
+
+		return results;
+	}
 }

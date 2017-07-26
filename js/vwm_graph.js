@@ -66,5 +66,20 @@ legend.append('text')
 		return d;
 	});
 
-getNbackPassRate();
+	
+function getData(){
+	while(nBackResults == null){
+		return null;
+	}
+	
+	console.log('nback0Passes: ' + nBackResults.nback0 + '%');
+	console.log('nback1Passes: ' + nBackResults.nback1 + '%');
+	console.log('nback2Passes: ' + nBackResults.nback2 + '%');
+	console.log('nback3Passes: ' + nBackResults.nback3 + '%');
+}
+var nBackResults = getNbackPassRate();
+getData();
+	
+
+
 	
