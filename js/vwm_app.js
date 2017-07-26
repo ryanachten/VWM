@@ -2,7 +2,7 @@
 
 $('html').hide(); //FOUC hack
 $(document).ready(function(){
-	initData();
+	// initData();
 	initApp();
 	initScene();
 	animate();

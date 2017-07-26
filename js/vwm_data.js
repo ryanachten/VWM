@@ -3,7 +3,7 @@
 var database;
 var ref;
 
-function initData(){
+(function(){
 	var config = {
 	  apiKey: "AIzaSyBLarzAyb1lxMI6NfkLBc22F4AKy3vEahE",
 	  authDomain: "visual-working-memory.firebaseapp.com",
@@ -16,7 +16,7 @@ function initData(){
 	
 	database = firebase.database();
 	ref = database.ref('vwm_participants');
-}
+})();
 
 function submitUser(name, email){
 
@@ -93,6 +93,9 @@ function submitTestResult(nback, testIndex, currentTarget, figurePressed, testTi
 	database.ref(curDirectoryRef+'/target_figure').set(currentTarget);
 	database.ref(curDirectoryRef+'/time_taken').set(testTimeTaken);
 	database.ref(curDirectoryRef+'/test_result').set(testResult);
-	
-	
+}
+
+function getNbackPassRate(){
+	// initData();
+	console.log(database.ref('vwm_participants'));
 }

@@ -9,7 +9,7 @@ var lissajousCurve;
 
 $('html').hide(); //FOUC hack
 $(document).ready(function(){
-	initData()
+	// initData()
 	initScene();
 	animate();
 	var newLassijGroup = Math.floor(Math.random()*lissajousGroups.length);
