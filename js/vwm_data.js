@@ -135,7 +135,7 @@ function getTestMetrics(){
 				lissaj1: { pass: 0, fail: 0 },
 				lissaj2: { pass: 0, fail: 0 }
 			}
-		}
+		};
 
 		database.ref('vwm_participants').once('value').then(function(snapshot) {
 			snapshot.forEach(function(snapUser){
@@ -200,7 +200,7 @@ function getTestMetrics(){
 
 		function returnResults(){
 			
-			var aveNbackPassRates = {
+			var calcNbackPassRates = {
 				nback0: function(){ 
 					var aveNback0PassRate = nback0PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
 					aveNback0PassRate = (aveNback0PassRate / nback0PassRates.length).toFixed(2);
@@ -221,10 +221,10 @@ function getTestMetrics(){
 					aveNback3PassRate = (aveNback3PassRate / nback3PassRates.length).toFixed(2);
 					return aveNback3PassRate;
 				}
-			}
+			};
 			
 			//FIXME: nback 3 is broken due to no data
-			var aveNbackTimes = {
+			var calcNbackTimes = {
 				nback0: function(){ 
 					var aveNback0Time = nback0Times.reduce(function(sum, value) { return sum + value });
 					aveNback0Time = parseFloat((aveNback0Time / nback0Times.length).toFixed(2));
@@ -249,24 +249,58 @@ function getTestMetrics(){
 					var aveTotalTime = this.nback0() + this.nback1() + this.nback2() + this.nback3();
 					return aveTotalTime;	
 				}
-			}
+			};
 			
+			var calcLissajPassRates = function(curLissaj){ 
+				var passPercent = curLissaj.pass / (curLissaj.pass + curLissaj.fail);
+				passPercent *= 100;
+				passPercent = passPercent.toFixed(2);
+				// console.log('passPercent: ' + passPercent);
+				return passPercent;
+			};
 
 			console.log(lissajPassRates);
 
 			var results = {
 				nbackPassRates: {
-					nback0: aveNbackPassRates.nback0(),
-					nback1: aveNbackPassRates.nback1(),
-					nback2: aveNbackPassRates.nback2(),
-					nback3: aveNbackPassRates.nback3()
+					nback0: calcNbackPassRates.nback0(),
+					nback1: calcNbackPassRates.nback1(),
+					nback2: calcNbackPassRates.nback2(),
+					nback3: calcNbackPassRates.nback3()
 				},			
 				nbackTimes: {
-					nback0: aveNbackTimes.nback0(),
-					nback1: aveNbackTimes.nback1(),
-					nback2: aveNbackTimes.nback2(),
-					nback3: aveNbackTimes.nback3(),
-					total: aveNbackTimes.total()	
+					nback0: calcNbackTimes.nback0(),
+					nback1: calcNbackTimes.nback1(),
+					nback2: calcNbackTimes.nback2(),
+					nback3: calcNbackTimes.nback3(),
+					total: calcNbackTimes.total()	
+				},
+				lissajPasses: {
+					group0: {
+						lissaj0: calcLissajPassRates(lissajPassRates.group0.lissaj0),
+						lissaj1: calcLissajPassRates(lissajPassRates.group0.lissaj1),
+						lissaj2: calcLissajPassRates(lissajPassRates.group0.lissaj2)
+					},
+					group1: {
+						lissaj0: calcLissajPassRates(lissajPassRates.group1.lissaj0),
+						lissaj1: calcLissajPassRates(lissajPassRates.group1.lissaj1),
+						lissaj2: calcLissajPassRates(lissajPassRates.group1.lissaj2)
+					},
+					group2: {
+						lissaj0: calcLissajPassRates(lissajPassRates.group2.lissaj0),
+						lissaj1: calcLissajPassRates(lissajPassRates.group2.lissaj1),
+						lissaj2: calcLissajPassRates(lissajPassRates.group2.lissaj2)
+					},
+					group3: {
+						lissaj0: calcLissajPassRates(lissajPassRates.group3.lissaj0),
+						lissaj1: calcLissajPassRates(lissajPassRates.group3.lissaj1),
+						lissaj2: calcLissajPassRates(lissajPassRates.group3.lissaj2)
+					},
+					group4: {
+						lissaj0: calcLissajPassRates(lissajPassRates.group4.lissaj0),
+						lissaj1: calcLissajPassRates(lissajPassRates.group4.lissaj1),
+						lissaj2: calcLissajPassRates(lissajPassRates.group4.lissaj2)
+					}
 				}
 			};
 			
