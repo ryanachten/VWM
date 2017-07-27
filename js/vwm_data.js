@@ -119,6 +119,8 @@ function getTestMetrics(){
 							nback0Passes++;
 					var curTestTime = parseFloat(snapTest.child('time_taken').val());
 						if(!isNaN(curTestTime)) nback0Times.push(curTestTime);
+					var curTargetIndex = snapTest.child('target_figure').val();
+						pushTargetResult(curTargetIndex, curTestResult);
 				});
 				snapUser.child('nback_1').forEach(function(snapTest){
 					var curTestResult = snapTest.child('test_result').val();
@@ -154,6 +156,15 @@ function getTestMetrics(){
 			});
 			returnResults();
 		});
+
+		function pushTargetResult(tagetIndex, result){
+			if (result.length > 0) {
+				console.log(result);
+				//TODO: add arrays for holding pass/fails of ea. lissaj
+				//TODO: add objects holding arrays for ea. nback
+				//TODO: add targetResult object to promise result return
+			}
+		}
 
 		function returnResults(){
 			var aveNback0PassRate = nback0PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
