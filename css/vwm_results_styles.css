@@ -1,0 +1,12 @@
+.tooltip{
+	position: absolute;
+}
+
+rect{
+	cursor: pointer;
+	stroke-width: 2;
+}
+
+rect.disabled{
+	fill: transparent !important;
+}
