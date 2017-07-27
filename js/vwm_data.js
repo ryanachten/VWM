@@ -163,6 +163,84 @@ function getNbackPassRate(){
 			resolve(
 				results
 			);
+
+			//TODO: need to add a reject case here in case the get return fails
+		}
+	});
+}
+
+function getTestTimeRate(){
+
+	return new Promise(function(resolve, reject){
+
+		var nback0Times = [];
+		var nback1Times = [];
+		var nback2Times = [];
+		var nback3Times = [];
+
+		database.ref('vwm_participants').once('value').then(function(snapshot) {
+			snapshot.forEach(function(snapUser){
+				var nback0Passes = nback1Passes = nback2Passes = nback3Passes= 0;
+				snapUser.child('nback_0').forEach(function(snapTest){
+					var curTestTime = parseFloat(snapTest.child('time_taken').val());
+					if(!isNaN(curTestTime)) nback0Times.push(curTestTime);
+				});
+				snapUser.child('nback_1').forEach(function(snapTest){
+					var curTestTime = parseFloat(snapTest.child('time_taken').val());
+					if(!isNaN(curTestTime)) nback1Times.push(curTestTime);
+				});
+				snapUser.child('nback_2').forEach(function(snapTest){
+					var curTestTime = parseFloat(snapTest.child('time_taken').val());
+					if(!isNaN(curTestTime)) nback2Times.push(curTestTime);
+				});
+				snapUser.child('nback_3').forEach(function(snapTest){
+					var curTestTime = parseFloat(snapTest.child('time_taken').val());
+					if(!isNaN(curTestTime)) nback3Times.push(curTestTime);
+				});
+			});
+			returnResults();
+		});
+
+		function returnResults(){
+			var aveNback0Time = nback0Times.reduce(function(sum, value) { return sum + value });
+				aveNback0Time = parseFloat((aveNback0Time / nback0Times.length).toFixed(2));
+			
+			var aveNback1Time = nback1Times.reduce(function(sum, value) { return sum + value });
+				aveNback1Time = parseFloat((aveNback1Time / nback1Times.length).toFixed(2));
+			
+			var aveNback2Time = nback2Times.reduce(function(sum, value) { return sum + value });
+				aveNback2Time = parseFloat((aveNback2Time / nback2Times.length).toFixed(2));
+			
+			var aveNback3Time = 0;//nback3Times.reduce(function(sum, value) { return sum + value });
+				aveNback3Time = 0;//parseFloat((aveNback3Time / nback3Times.length).toFixed(2));
+
+			var aveTotalTime = aveNback0Time + aveNback1Time + aveNback2Time + aveNback3Time;
+
+			console.log(nback0Times);
+			console.log(aveNback0Time);
+
+			console.log(nback1Times);
+			console.log(aveNback1Time);
+
+			console.log(nback2Times);
+			console.log(aveNback2Time);
+
+			console.log(nback3Times);
+			console.log(aveNback3Time);
+
+			console.log(aveTotalTime);
+				
+			var results = {
+				nback0: aveNback0Time,
+				nback1: aveNback1Time,
+				nback2: aveNback2Time,
+				nback3: aveNback3Time,
+				total: aveTotalTime
+			}
+			
+			resolve(
+				results
+			);	//TODO: need to add a reject case here in case the get return fails
 		}
 	});
 }
