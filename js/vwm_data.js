@@ -109,6 +109,34 @@ function getTestMetrics(){
 		var nback2Times = [];
 		var nback3Times = [];
 
+		var lissajPassRates = {
+			group0: {
+				lissaj0: { pass: 0, fail: 0 },
+				lissaj1: { pass: 0, fail: 0 },
+				lissaj2: { pass: 0, fail: 0 }
+			},
+			group1: {
+				lissaj0: { pass: 0, fail: 0 },
+				lissaj1: { pass: 0, fail: 0 },
+				lissaj2: { pass: 0, fail: 0 }
+			},
+			group2: {
+				lissaj0: { pass: 0, fail: 0 },
+				lissaj1: { pass: 0, fail: 0 },
+				lissaj2: { pass: 0, fail: 0 }
+			},
+			group3: {
+				lissaj0: { pass: 0, fail: 0 },
+				lissaj1: { pass: 0, fail: 0 },
+				lissaj2: { pass: 0, fail: 0 }
+			},
+			group4: {
+				lissaj0: { pass: 0, fail: 0 },
+				lissaj1: { pass: 0, fail: 0 },
+				lissaj2: { pass: 0, fail: 0 }
+			}
+		}
+
 		database.ref('vwm_participants').once('value').then(function(snapshot) {
 			snapshot.forEach(function(snapUser){
 				
@@ -159,54 +187,88 @@ function getTestMetrics(){
 
 		function pushTargetResult(tagetIndex, result){
 			if (result.length > 0) {
-				console.log(result);
-				//TODO: add arrays for holding pass/fails of ea. lissaj
-				//TODO: add objects holding arrays for ea. nback
-				//TODO: add targetResult object to promise result return
+
+				var groupIndex = 'group' + tagetIndex.groupIndex;
+				var lissajIndex = 'lissaj' + tagetIndex.lassigIndex;
+
+				if(result === 'Pass')
+					lissajPassRates[''+groupIndex+''][''+lissajIndex+''].pass++;
+				else
+					lissajPassRates[''+groupIndex+''][''+lissajIndex+''].fail++;
 			}
 		}
 
 		function returnResults(){
-			var aveNback0PassRate = nback0PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
-				aveNback0PassRate = (aveNback0PassRate / nback0PassRates.length).toFixed(2);
 			
-			var aveNback1PassRate = nback1PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
-				aveNback1PassRate = (aveNback1PassRate / nback1PassRates.length).toFixed(2);
-			
-			var aveNback2PassRate = nback2PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
-				aveNback2PassRate = (aveNback2PassRate / nback2PassRates.length).toFixed(2);
-			
-			var aveNback3PassRate = nback3PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
-				aveNback3PassRate = (aveNback3PassRate / nback3PassRates.length).toFixed(2);
-
-
-			var aveNback0Time = nback0Times.reduce(function(sum, value) { return sum + value });
-				aveNback0Time = parseFloat((aveNback0Time / nback0Times.length).toFixed(2));
-			
-			var aveNback1Time = nback1Times.reduce(function(sum, value) { return sum + value });
-				aveNback1Time = parseFloat((aveNback1Time / nback1Times.length).toFixed(2));
-			
-			var aveNback2Time = nback2Times.reduce(function(sum, value) { return sum + value });
-				aveNback2Time = parseFloat((aveNback2Time / nback2Times.length).toFixed(2));
-			
-			var aveNback3Time = 0;//nback3Times.reduce(function(sum, value) { return sum + value });
-				aveNback3Time = 0;//parseFloat((aveNback3Time / nback3Times.length).toFixed(2));
-
-			var aveTotalTime = aveNback0Time + aveNback1Time + aveNback2Time + aveNback3Time;
-				
-			var results = {
-				nback0PassRates: aveNback0PassRate,
-				nback1PassRates: aveNback1PassRate,
-				nback2PassRates: aveNback2PassRate,
-				nback3PassRates: aveNback3PassRate,
-
-				nback0Time: aveNback0Time,
-				nback1Time: aveNback1Time,
-				nback2Time: aveNback2Time,
-				nback3Time: aveNback3Time,
-				totalTime: aveTotalTime
-
+			var aveNbackPassRates = {
+				nback0: function(){ 
+					var aveNback0PassRate = nback0PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
+					aveNback0PassRate = (aveNback0PassRate / nback0PassRates.length).toFixed(2);
+					return aveNback0PassRate;
+				},
+				nback1: function(){
+					var aveNback1PassRate = nback1PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
+					aveNback1PassRate = (aveNback1PassRate / nback1PassRates.length).toFixed(2);
+					return aveNback1PassRate;
+				},
+				nback2: function(){
+					var aveNback2PassRate = nback2PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
+					aveNback2PassRate = (aveNback2PassRate / nback2PassRates.length).toFixed(2);
+					return aveNback2PassRate;
+				},
+				nback3: function(){
+					var aveNback3PassRate = nback3PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
+					aveNback3PassRate = (aveNback3PassRate / nback3PassRates.length).toFixed(2);
+					return aveNback3PassRate;
+				}
 			}
+			
+			//FIXME: nback 3 is broken due to no data
+			var aveNbackTimes = {
+				nback0: function(){ 
+					var aveNback0Time = nback0Times.reduce(function(sum, value) { return sum + value });
+					aveNback0Time = parseFloat((aveNback0Time / nback0Times.length).toFixed(2));
+					return aveNback0Time;
+				},
+				nback1: function(){
+					var aveNback1Time = nback1Times.reduce(function(sum, value) { return sum + value });
+					aveNback1Time = parseFloat((aveNback1Time / nback1Times.length).toFixed(2)); 
+					return aveNback1Time;
+				},
+				nback2: function(){ 
+					var aveNback2Time = nback2Times.reduce(function(sum, value) { return sum + value });
+					aveNback2Time = parseFloat((aveNback2Time / nback2Times.length).toFixed(2));
+					return aveNback2Time;
+				},
+				nback3: function(){ 
+					var aveNback3Time = 0;//nback3Times.reduce(function(sum, value) { return sum + value });
+					aveNback3Time = 0;//parseFloat((aveNback3Time / nback3Times.length).toFixed(2));
+					return aveNback3Time;
+				},
+				total: function(){
+					var aveTotalTime = this.nback0() + this.nback1() + this.nback2() + this.nback3();
+					return aveTotalTime;	
+				}
+			}
+			
+
+			console.log(lissajPassRates);
+
+			var results = {
+				nbackPassRates: {
+					nback0: aveNbackPassRates.nback0(),
+					nback1: aveNbackPassRates.nback1(),
+					nback2: aveNbackPassRates.nback2(),
+					nback3: aveNbackPassRates.nback3()
+				},			
+				nbackTimes: {
+					nback0: aveNbackTimes.nback0(),
+					nback1: aveNbackTimes.nback1(),
+					nback2: aveNbackTimes.nback2(),
+					nback3: aveNbackTimes.nback3(),
+					total: aveNbackTimes.total()	
+				}
+			};
 			
 			resolve(
 				results

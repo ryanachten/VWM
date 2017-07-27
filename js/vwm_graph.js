@@ -1,10 +1,6 @@
 function getData(){
 	var graphTestData = getTestMetrics();
 	graphTestData.then(function(results){
-		// console.log('nback0Passes: ' + results.nback0PassRates + '%');
-		// console.log('nback1Passes: ' + results.nback1PassRates + '%');
-		// console.log('nback2Passes: ' + results.nback2PassRates + '%');
-		// console.log('nback3Passes: ' + results.nback3PassRates + '%');
 		// console.log('nback0Times: ' + results.nback0Time + 'sec');
 		// console.log('nback1Times: ' + results.nback1Time + 'sec');
 		// console.log('nback2Times: ' + results.nback2Time + 'sec');
@@ -17,10 +13,10 @@ getData();
 
 function drawNbackPassRateGraph(results){
 	var dataset = [
-		{label: '0 Back', count: results.nback0PassRates},
-		{label: '1 Back', count: results.nback1PassRates},
-		{label: '2 Back', count: results.nback2PassRates},
-		{label: '3 Back', count: results.nback3PassRates}
+		{label: '0 Back', count: results.nbackPassRates.nback0},
+		{label: '1 Back', count: results.nbackPassRates.nback1},
+		{label: '2 Back', count: results.nbackPassRates.nback2},
+		{label: '3 Back', count: results.nbackPassRates.nback3}
 	];
 
 	var width = 360;
@@ -157,10 +153,10 @@ function drawNbackPassRateGraph(results){
 
 function drawTestTimeAveGraph(results){
 	var dataset = [
-		{label: '0 Back', count: results.nback0Time},
-		{label: '1 Back', count: results.nback1Time},
-		{label: '2 Back', count: results.nback2Time},
-		{label: '3 Back', count: results.nback3Time}
+		{label: '0 Back', count: results.nbackTimes.nback0},
+		{label: '1 Back', count: results.nbackTimes.nback1},
+		{label: '2 Back', count: results.nbackTimes.nback2},
+		{label: '3 Back', count: results.nbackTimes.nback3}
 	];
 
 	var width = 360;
