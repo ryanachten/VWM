@@ -68,16 +68,14 @@ legend.append('text')
 
 	
 function getData(){
-	while(nBackResults == null){
-		return null;
-	}
-	
-	console.log('nback0Passes: ' + nBackResults.nback0 + '%');
-	console.log('nback1Passes: ' + nBackResults.nback1 + '%');
-	console.log('nback2Passes: ' + nBackResults.nback2 + '%');
-	console.log('nback3Passes: ' + nBackResults.nback3 + '%');
+	var nBackResults = getNbackPassRate();
+	nBackResults.then(function(results){
+		console.log('nback0Passes: ' + results.nback0 + '%');
+		console.log('nback1Passes: ' + results.nback1 + '%');
+		console.log('nback2Passes: ' + results.nback2 + '%');
+		console.log('nback3Passes: ' + results.nback3 + '%');
+	}); //TODO: need to add a catch case here in case the get return fails
 }
-var nBackResults = getNbackPassRate();
 getData();
 	
 
