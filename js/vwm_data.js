@@ -95,7 +95,7 @@ function submitTestResult(nback, testIndex, currentTarget, figurePressed, testTi
 	database.ref(curDirectoryRef+'/test_result').set(testResult);
 }
 
-function getNbackPassRate(){
+function getTestMetrics(){
 
 	return new Promise(function(resolve, reject){
 
@@ -104,29 +104,44 @@ function getNbackPassRate(){
 		var nback2PassRates = [];
 		var nback3PassRates = [];
 
+		var nback0Times = [];
+		var nback1Times = [];
+		var nback2Times = [];
+		var nback3Times = [];
+
 		database.ref('vwm_participants').once('value').then(function(snapshot) {
 			snapshot.forEach(function(snapUser){
+				
 				var nback0Passes = nback1Passes = nback2Passes = nback3Passes= 0;
 				snapUser.child('nback_0').forEach(function(snapTest){
 					var curTestResult = snapTest.child('test_result').val();
-					if(curTestResult === 'Pass')
-						nback0Passes++;
+						if(curTestResult === 'Pass')
+							nback0Passes++;
+					var curTestTime = parseFloat(snapTest.child('time_taken').val());
+						if(!isNaN(curTestTime)) nback0Times.push(curTestTime);
 				});
 				snapUser.child('nback_1').forEach(function(snapTest){
 					var curTestResult = snapTest.child('test_result').val();
-					if(curTestResult === 'Pass')
-						nback1Passes++;
+						if(curTestResult === 'Pass')
+							nback1Passes++;
+					var curTestTime = parseFloat(snapTest.child('time_taken').val());
+						if(!isNaN(curTestTime)) nback1Times.push(curTestTime);
 				});
 				snapUser.child('nback_2').forEach(function(snapTest){
 					var curTestResult = snapTest.child('test_result').val();
-					if(curTestResult === 'Pass')
-						nback2Passes++;
+						if(curTestResult === 'Pass')
+							nback2Passes++;
+					var curTestTime = parseFloat(snapTest.child('time_taken').val());
+						if(!isNaN(curTestTime)) nback2Times.push(curTestTime);
 				});
 				snapUser.child('nback_3').forEach(function(snapTest){
 					var curTestResult = snapTest.child('test_result').val();
-					if(curTestResult === 'Pass')
-						nback3Passes++;
+						if(curTestResult === 'Pass')
+							nback3Passes++;
+					var curTestTime = parseFloat(snapTest.child('time_taken').val());
+						if(!isNaN(curTestTime)) nback3Times.push(curTestTime);
 				});
+
 				curNback0Passes = (nback0Passes/25)*100;
 				curNback1Passes = (nback1Passes/25)*100;
 				curNback2Passes = (nback2Passes/25)*100;
@@ -152,56 +167,8 @@ function getNbackPassRate(){
 			
 			var aveNback3PassRate = nback3PassRates.reduce(function(sum, value) { return parseFloat(sum) + parseFloat(value) });
 				aveNback3PassRate = (aveNback3PassRate / nback3PassRates.length).toFixed(2);
-				
-			var results = {
-				nback0: aveNback0PassRate,
-				nback1: aveNback1PassRate,
-				nback2: aveNback2PassRate,
-				nback3: aveNback3PassRate
-			}
-			
-			resolve(
-				results
-			);
 
-			//TODO: need to add a reject case here in case the get return fails
-		}
-	});
-}
 
-function getTestTimeRate(){
-
-	return new Promise(function(resolve, reject){
-
-		var nback0Times = [];
-		var nback1Times = [];
-		var nback2Times = [];
-		var nback3Times = [];
-
-		database.ref('vwm_participants').once('value').then(function(snapshot) {
-			snapshot.forEach(function(snapUser){
-				var nback0Passes = nback1Passes = nback2Passes = nback3Passes= 0;
-				snapUser.child('nback_0').forEach(function(snapTest){
-					var curTestTime = parseFloat(snapTest.child('time_taken').val());
-					if(!isNaN(curTestTime)) nback0Times.push(curTestTime);
-				});
-				snapUser.child('nback_1').forEach(function(snapTest){
-					var curTestTime = parseFloat(snapTest.child('time_taken').val());
-					if(!isNaN(curTestTime)) nback1Times.push(curTestTime);
-				});
-				snapUser.child('nback_2').forEach(function(snapTest){
-					var curTestTime = parseFloat(snapTest.child('time_taken').val());
-					if(!isNaN(curTestTime)) nback2Times.push(curTestTime);
-				});
-				snapUser.child('nback_3').forEach(function(snapTest){
-					var curTestTime = parseFloat(snapTest.child('time_taken').val());
-					if(!isNaN(curTestTime)) nback3Times.push(curTestTime);
-				});
-			});
-			returnResults();
-		});
-
-		function returnResults(){
 			var aveNback0Time = nback0Times.reduce(function(sum, value) { return sum + value });
 				aveNback0Time = parseFloat((aveNback0Time / nback0Times.length).toFixed(2));
 			
@@ -215,32 +182,26 @@ function getTestTimeRate(){
 				aveNback3Time = 0;//parseFloat((aveNback3Time / nback3Times.length).toFixed(2));
 
 			var aveTotalTime = aveNback0Time + aveNback1Time + aveNback2Time + aveNback3Time;
-
-			console.log(nback0Times);
-			console.log(aveNback0Time);
-
-			console.log(nback1Times);
-			console.log(aveNback1Time);
-
-			console.log(nback2Times);
-			console.log(aveNback2Time);
-
-			console.log(nback3Times);
-			console.log(aveNback3Time);
-
-			console.log(aveTotalTime);
 				
 			var results = {
-				nback0: aveNback0Time,
-				nback1: aveNback1Time,
-				nback2: aveNback2Time,
-				nback3: aveNback3Time,
-				total: aveTotalTime
+				nback0PassRates: aveNback0PassRate,
+				nback1PassRates: aveNback1PassRate,
+				nback2PassRates: aveNback2PassRate,
+				nback3PassRates: aveNback3PassRate,
+
+				nback0Time: aveNback0Time,
+				nback1Time: aveNback1Time,
+				nback2Time: aveNback2Time,
+				nback3Time: aveNback3Time,
+				totalTime: aveTotalTime
+
 			}
 			
 			resolve(
 				results
-			);	//TODO: need to add a reject case here in case the get return fails
+			);
+
+			//TODO: need to add a reject case here in case the get return fails
 		}
 	});
 }
