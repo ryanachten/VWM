@@ -10,3 +10,32 @@ rect{
 rect.disabled{
 	fill: transparent !important;
 }
+
+#lissajPassGraph{
+	width: 960;
+	height: 500;
+}
+
+#nbackPassGraphs{
+	text-align: center;
+}
+.nbackPassGraph{
+	width: 20vw;
+	height: 20vw;
+	display: inline-block;
+	background-color: red;
+}
+
+#testTimeAveGraph{
+	width: 40vw;
+	height: 40vw;
+	margin: 0 auto;
+	background-color: blue;
+}
+
+#lissajPassGraph{
+	width: 80vw;
+	height: 40vw;
+	margin: 0 auto;
+	background-color: green;
+}
