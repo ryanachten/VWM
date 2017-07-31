@@ -241,30 +241,30 @@ function getTestMetrics(){
 					total: calcNbackTimes.total()	
 				},
 				lissajPasses: {
-					group0: {
-						lissaj0: calcLissajPassRates(lissajPassRates.group0.lissaj0),
-						lissaj1: calcLissajPassRates(lissajPassRates.group0.lissaj1),
-						lissaj2: calcLissajPassRates(lissajPassRates.group0.lissaj2)
+					group0 : {
+						lissaj1: calcLissajPassRates(lissajPassRates.group0.lissaj0),
+						lissaj2: calcLissajPassRates(lissajPassRates.group0.lissaj1),
+						lissaj3: calcLissajPassRates(lissajPassRates.group0.lissaj2)
 					},
-					group1: {
-						lissaj0: calcLissajPassRates(lissajPassRates.group1.lissaj0),
-						lissaj1: calcLissajPassRates(lissajPassRates.group1.lissaj1),
-						lissaj2: calcLissajPassRates(lissajPassRates.group1.lissaj2)
+					group1 : {
+						lissaj1: calcLissajPassRates(lissajPassRates.group1.lissaj0),
+						lissaj2: calcLissajPassRates(lissajPassRates.group1.lissaj1),
+						lissaj3: calcLissajPassRates(lissajPassRates.group1.lissaj2)
 					},
-					group2: {
-						lissaj0: calcLissajPassRates(lissajPassRates.group2.lissaj0),
-						lissaj1: calcLissajPassRates(lissajPassRates.group2.lissaj1),
-						lissaj2: calcLissajPassRates(lissajPassRates.group2.lissaj2)
+					group2 : {
+						lissaj1: calcLissajPassRates(lissajPassRates.group2.lissaj0),
+						lissaj2: calcLissajPassRates(lissajPassRates.group2.lissaj1),
+						lissaj3: calcLissajPassRates(lissajPassRates.group2.lissaj2)
 					},
-					group3: {
-						lissaj0: calcLissajPassRates(lissajPassRates.group3.lissaj0),
-						lissaj1: calcLissajPassRates(lissajPassRates.group3.lissaj1),
-						lissaj2: calcLissajPassRates(lissajPassRates.group3.lissaj2)
+					group3 : {
+						lissaj1: calcLissajPassRates(lissajPassRates.group3.lissaj0),
+						lissaj2: calcLissajPassRates(lissajPassRates.group3.lissaj1),
+						lissaj3: calcLissajPassRates(lissajPassRates.group3.lissaj2)
 					},
-					group4: {
-						lissaj0: calcLissajPassRates(lissajPassRates.group4.lissaj0),
-						lissaj1: calcLissajPassRates(lissajPassRates.group4.lissaj1),
-						lissaj2: calcLissajPassRates(lissajPassRates.group4.lissaj2)
+					group4 : {
+						lissaj1: calcLissajPassRates(lissajPassRates.group4.lissaj0),
+						lissaj2: calcLissajPassRates(lissajPassRates.group4.lissaj1),
+						lissaj3: calcLissajPassRates(lissajPassRates.group4.lissaj2)
 					}
 				}
 			};
