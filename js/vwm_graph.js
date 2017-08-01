@@ -9,313 +9,67 @@ function getData(){
 getData();
 
 function drawNbackPassRateGraph(results){
-	// var data = [
-	// 	{label: '0 Back', count: results.nbackPassRates.nback0},
-		// {label: '1 Back', count: results.nbackPassRates.nback1},
-		// {label: '2 Back', count: results.nbackPassRates.nback2},
-		// {label: '3 Back', count: results.nbackPassRates.nback3}
-	// 	{label: '3 Back', count: 100}
-	// ];
 
-	drawGragh([
-		{label: '0 Back', count: results.nbackPassRates.nback0},
-		{label: 'Total', count: 100}
-	], '#back0PassGraph');
+	drawGragh(results.nbackPassRates.nback0, '#back0PassGraph');
+	drawGragh(results.nbackPassRates.nback1, '#back1PassGraph');
+	drawGragh(results.nbackPassRates.nback2, '#back2PassGraph');
+	drawGragh(results.nbackPassRates.nback3, '#back3PassGraph');
 
-	drawGragh([
-		{label: '1 Back', count: results.nbackPassRates.nback1},
-		{label: 'Total', count: 100}
-	], '#back1PassGraph');
-
-	drawGragh([
-		{label: '2 Back', count: results.nbackPassRates.nback2},
-		{label: 'Total', count: 100}
-	], '#back2PassGraph');
-
-	drawGragh([
-		{label: '3 Back', count: results.nbackPassRates.nback3},
-		{label: 'Total', count: 100}
-	], '#back3PassGraph');
-
-	function drawGragh(dataset, container){
+	function drawGragh(passrate, container){
 		var containerWidth = $(container).width();
 		var containerHeight = $(container).height();
 
-		var width = containerWidth;
-		var height = containerHeight;
-		var donutWidth = Math.min(width, height) /4;
-		var radius = Math.min(width, height) /2;
-		var color = d3.scaleOrdinal(d3.schemeCategory20b);
-		var legendRectSize = 18;
-		var legendSpacing = 4;
+		var width = containerWidth,
+			height = containerHeight,
+			twoPi = 2 * Math.PI;
 
-		var svg = d3.select(container)
-			.append('svg')
-			.attr('width', width)
-			.attr('height', height)
-			.append('g')
-			.attr('transform', 'translate('+ (width/2) + 
-								',' + (height/2) +')');
-
+		var dataset = {
+						  progress: passrate,
+						  total: 100
+					  };
+		 
 		var arc = d3.arc()
-			.innerRadius(radius-donutWidth)
-			.outerRadius(radius);
+			.innerRadius(Math.min(width, height) /4)
+			.outerRadius(Math.min(width, height) /2)
+			.startAngle(0);
+		 
+		var svg = d3.select(container).append("svg")
+			.attr("width", width)
+			.attr("height", height)
+		  .append("g")
+			.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
-		var pie = d3.pie()
-			.value(function(d){
-				d.enabled = true;    
-				return d.count;
-			})
-			.sort(null);
+		var meter = svg.append("g")
+			.attr("class", "season-progress");
+		 
+		var background = meter.append("path")
+			.datum({endAngle: twoPi})
+			.style("fill", "#ddd")
+			.attr("d", arc);
+		 
+		var foreground = meter.append("path")
+			.datum({endAngle:0})
+			.style("fill", "orange")
+			.attr("class", "foreground")
+			.attr("d", arc);
+		 
+		  foreground.transition()
+			.duration(1000)
+			// .easeLinear()
+			.attrTween("d", function(d) {
+					   var interpolate = d3.interpolate(d.endAngle, twoPi * dataset["progress"] / dataset["total"])
+					   return function(t) {
+						  d.endAngle = interpolate(t);
+						  return arc(d);
+					   }  
+					});
 
-		var path = svg.selectAll('path')
-			.data(pie(dataset))
-			.enter()
-			.append('path')
-			.attr('d', arc)
-			.attr('fill', function(d, i){
-				return color(d.data.label);
-			})
-			.each(function(d){
-				this._current = d;
-			});
-
-			path.on('mouseover', function(d){
-				var total = d3.sum(dataset.map(function(d) {
-				    return (d.enabled) ? d.count : 0;        // UPDATED
-				  }));
-				tooltip.select('.label').html(d.data.label);
-				tooltip.select('.count').html(3); //TODO need to pull number of participants via getData
-				tooltip.select('.percent').html(d.data.count + '%');
-				tooltip.style('display', 'block');
-			});
-
-			path.on('mouseout', function(d){
-				tooltip.style('display', 'none');
-			});
-
-			path.on('mousemove', function(d){
-				tooltip.style('top', (d3.event.layerY + 10) + 'px')
-				.style('left', (d3.event.layerX + 10) + 'px');
-			});
-
-		var legend = svg.selectAll('.legend')
-			.data(color.domain())
-			.enter()
-			.append('g')
-			.attr('class', 'legend')
-			.attr('transform', function(d, i){
-				var height = legendRectSize + legendSpacing;
-				var offset = height * color.domain().length /2;
-				var horz = -2 * legendRectSize;
-				var vert = i * height - offset;
-				return 'translate(' + horz + ',' + vert + ')';
-			});
-
-			legend.append('rect')
-				.attr('width', legendRectSize)
-				.attr('height', legendRectSize)
-				.style('fill', color)
-				.style('stroke', color)
-				
-				.on('click', function(label) {
-				  var rect = d3.select(this);
-				  var enabled = true;
-				  var totalEnabled = d3.sum(dataset.map(function(d) {
-				    return (d.enabled) ? 1 : 0;
-				  }));
-
-				  if (rect.attr('class') === 'disabled') {
-				    rect.attr('class', '');
-				  } else {
-				    if (totalEnabled < 2) return;
-				    rect.attr('class', 'disabled');
-				    enabled = false;
-				  }
-
-				  pie.value(function(d) {
-				    if (d.label === label) d.enabled = enabled;
-				    return (d.enabled) ? d.count : 0;
-				  });
-
-				  path = path.data(pie(dataset));
-
-				  path.transition()
-				    .duration(750)
-				    .attrTween('d', function(d) {
-				      var interpolate = d3.interpolate(this._current, d);
-				      this._current = interpolate(0);
-				      return function(t) {
-				        return arc(interpolate(t));
-				      };
-				    });
-				});
-
-
-			legend.append('text')
-				.attr('x', legendRectSize + legendSpacing)
-				.attr('y', legendRectSize - legendSpacing)
-				.text(function(d){
-					return d;
-				});
-
-		var tooltip = d3.selectAll('#chart')
-			.append('div')
-			.attr('class', 'tooltip');
-
-			tooltip.append('div')
-				.attr('class', 'label');
-
-			tooltip.append('div')
-				.attr('class', 'count');
-
-			tooltip.append('div')
-				.attr('class', 'percent');
+		var text =  meter.append("text")
+			.attr("text-anchor", "middle")
+			.attr("dy", ".35em")
+			.attr("font-size", "24")
+			.text(dataset["progress"]);
 	}
-}
-
-function drawTestTimeAveGraph(results){
-	var dataset = [
-		{label: '0 Back', count: results.nbackTimes.nback0},
-		{label: '1 Back', count: results.nbackTimes.nback1},
-		{label: '2 Back', count: results.nbackTimes.nback2},
-		{label: '3 Back', count: results.nbackTimes.nback3}
-	];
-
-	var containerWidth = $('#testTimeAveGraph').width();
-	var containerHeight = $('#testTimeAveGraph').height();
-	console.log('containerHeight: ' + containerHeight);
-
-	var width = containerWidth;
-	var height = containerHeight;
-	var donutWidth = 75;
-	var radius = Math.min(width, height) /2;
-	var color = d3.scaleOrdinal(d3.schemeCategory20b);
-	var legendRectSize = 18;
-	var legendSpacing = 4;
-
-	var svg = d3.select('#testTimeAveGraph')
-		.append('svg')
-		.attr('width', width)
-		.attr('height', height)
-		.append('g')
-		.attr('transform', 'translate('+ (width/2) + 
-							',' + (height/2) +')');
-
-	var arc = d3.arc()
-		.innerRadius(radius-donutWidth)
-		.outerRadius(radius);
-
-	var pie = d3.pie()
-		.value(function(d){
-			d.enabled = true;    
-			return d.count;
-		})
-		.sort(null);
-
-	var path = svg.selectAll('path')
-		.data(pie(dataset))
-		.enter()
-		.append('path')
-		.attr('d', arc)
-		.attr('fill', function(d, i){
-			return color(d.data.label);
-		})
-		.each(function(d){
-			this._current = d;
-		});
-
-		path.on('mouseover', function(d){
-			var total = d3.sum(dataset.map(function(d) {
-			    return (d.enabled) ? d.count : 0;        // UPDATED
-			  }));
-			tooltip.select('.label').html(d.data.label);
-			tooltip.select('.count').html(3); //TODO need to pull number of participants via getData
-			tooltip.select('.percent').html(d.data.count + 'sec');
-			tooltip.style('display', 'block');
-		});
-
-		path.on('mouseout', function(d){
-			tooltip.style('display', 'none');
-		});
-
-		path.on('mousemove', function(d){
-			tooltip.style('top', (d3.event.layerY + 10) + 'px')
-			.style('left', (d3.event.layerX + 10) + 'px');
-		});
-
-	var legend = svg.selectAll('.legend')
-		.data(color.domain())
-		.enter()
-		.append('g')
-		.attr('class', 'legend')
-		.attr('transform', function(d, i){
-			var height = legendRectSize + legendSpacing;
-			var offset = height * color.domain().length /2;
-			var horz = -2 * legendRectSize;
-			var vert = i * height - offset;
-			return 'translate(' + horz + ',' + vert + ')';
-		});
-
-		legend.append('rect')
-			.attr('width', legendRectSize)
-			.attr('height', legendRectSize)
-			.style('fill', color)
-			.style('stroke', color)
-			
-			.on('click', function(label) {
-			  var rect = d3.select(this);
-			  var enabled = true;
-			  var totalEnabled = d3.sum(dataset.map(function(d) {
-			    return (d.enabled) ? 1 : 0;
-			  }));
-
-			  if (rect.attr('class') === 'disabled') {
-			    rect.attr('class', '');
-			  } else {
-			    if (totalEnabled < 2) return;
-			    rect.attr('class', 'disabled');
-			    enabled = false;
-			  }
-
-			  pie.value(function(d) {
-			    if (d.label === label) d.enabled = enabled;
-			    return (d.enabled) ? d.count : 0;
-			  });
-
-			  path = path.data(pie(dataset));
-
-			  path.transition()
-			    .duration(750)
-			    .attrTween('d', function(d) {
-			      var interpolate = d3.interpolate(this._current, d);
-			      this._current = interpolate(0);
-			      return function(t) {
-			        return arc(interpolate(t));
-			      };
-			    });
-			});
-
-
-		legend.append('text')
-			.attr('x', legendRectSize + legendSpacing)
-			.attr('y', legendRectSize - legendSpacing)
-			.text(function(d){
-				return d;
-			});
-
-	var tooltip = d3.selectAll('#chart')
-		.append('div')
-		.attr('class', 'tooltip');
-
-		tooltip.append('div')
-			.attr('class', 'label');
-
-		tooltip.append('div')
-			.attr('class', 'count');
-
-		tooltip.append('div')
-			.attr('class', 'percent');
 }
 
 function drawLissajPassRateGraph(results){

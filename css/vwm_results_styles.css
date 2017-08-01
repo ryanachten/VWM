@@ -73,6 +73,9 @@ header{
 	border: none;
 	background: none;
 }
+#download-button:hover{
+	cursor: pointer;
+}
 
 #lissajPassGraph{
 	width: 960;
