@@ -16,26 +16,41 @@ rect.disabled{
 	height: 500;
 }
 
+#container{
+	width: 80%;
+	margin: 0 auto;
+	background-color: #EEEEEE;
+}
+
+#nbackPassContainer{
+	padding: 40px 0;
+}
 #nbackPassGraphs{
 	text-align: center;
 }
 .nbackPassGraph{
-	width: 20vw;
-	height: 20vw;
+	width: 15vw;
+	height: 15vw;
 	display: inline-block;
-	background-color: red;
+	/*background-color: red;*/
 }
 
+#testTimeAveContainer{
+	padding: 40px 0;
+}
 #testTimeAveGraph{
-	width: 40vw;
-	height: 40vw;
+	width: 25vw;
+	height: 25vw;
 	margin: 0 auto;
-	background-color: blue;
+	/*background-color: blue;*/
 }
 
+#lissajPassContainer{
+	padding: 40px 0;
+}
 #lissajPassGraph{
-	width: 80vw;
-	height: 40vw;
+	width: 70vw;
+	height: 20vw;
 	margin: 0 auto;
-	background-color: green;
+	/*background-color: green;*/
 }

@@ -1,7 +1,7 @@
 function getData(){
 	var graphTestData = getTestMetrics();
 	graphTestData.then(function(results){
-		// drawNbackPassRateGraph(results);
+		drawNbackPassRateGraph(results);
 		drawTestTimeAveGraph(results);
 		drawLissajPassRateGraph(results);
 	}); //TODO: need to add a catch case here in case the get return fails
@@ -9,143 +9,169 @@ function getData(){
 getData();
 
 function drawNbackPassRateGraph(results){
-	var dataset = [
+	// var data = [
+	// 	{label: '0 Back', count: results.nbackPassRates.nback0},
+		// {label: '1 Back', count: results.nbackPassRates.nback1},
+		// {label: '2 Back', count: results.nbackPassRates.nback2},
+		// {label: '3 Back', count: results.nbackPassRates.nback3}
+	// 	{label: '3 Back', count: 100}
+	// ];
+
+	drawGragh([
 		{label: '0 Back', count: results.nbackPassRates.nback0},
+		{label: 'Total', count: 100}
+	], '#back0PassGraph');
+
+	drawGragh([
 		{label: '1 Back', count: results.nbackPassRates.nback1},
+		{label: 'Total', count: 100}
+	], '#back1PassGraph');
+
+	drawGragh([
 		{label: '2 Back', count: results.nbackPassRates.nback2},
-		{label: '3 Back', count: results.nbackPassRates.nback3}
-	];
+		{label: 'Total', count: 100}
+	], '#back2PassGraph');
 
-	var width = 360;
-	var height = 360;
-	var donutWidth = 75;
-	var radius = Math.min(width, height) /2;
-	var color = d3.scaleOrdinal(d3.schemeCategory20b);
-	var legendRectSize = 18;
-	var legendSpacing = 4;
+	drawGragh([
+		{label: '3 Back', count: results.nbackPassRates.nback3},
+		{label: 'Total', count: 100}
+	], '#back3PassGraph');
 
-	var svg = d3.select('#chart')
-		.append('svg')
-		.attr('width', width)
-		.attr('height', height)
-		.append('g')
-		.attr('transform', 'translate('+ (width/2) + 
-							',' + (height/2) +')');
+	function drawGragh(dataset, container){
+		var containerWidth = $(container).width();
+		var containerHeight = $(container).height();
 
-	var arc = d3.arc()
-		.innerRadius(radius-donutWidth)
-		.outerRadius(radius);
+		var width = containerWidth;
+		var height = containerHeight;
+		var donutWidth = Math.min(width, height) /4;
+		var radius = Math.min(width, height) /2;
+		var color = d3.scaleOrdinal(d3.schemeCategory20b);
+		var legendRectSize = 18;
+		var legendSpacing = 4;
 
-	var pie = d3.pie()
-		.value(function(d){
-			d.enabled = true;    
-			return d.count;
-		})
-		.sort(null);
+		var svg = d3.select(container)
+			.append('svg')
+			.attr('width', width)
+			.attr('height', height)
+			.append('g')
+			.attr('transform', 'translate('+ (width/2) + 
+								',' + (height/2) +')');
 
-	var path = svg.selectAll('path')
-		.data(pie(dataset))
-		.enter()
-		.append('path')
-		.attr('d', arc)
-		.attr('fill', function(d, i){
-			return color(d.data.label);
-		})
-		.each(function(d){
-			this._current = d;
-		});
+		var arc = d3.arc()
+			.innerRadius(radius-donutWidth)
+			.outerRadius(radius);
 
-		path.on('mouseover', function(d){
-			var total = d3.sum(dataset.map(function(d) {
-			    return (d.enabled) ? d.count : 0;        // UPDATED
-			  }));
-			tooltip.select('.label').html(d.data.label);
-			tooltip.select('.count').html(3); //TODO need to pull number of participants via getData
-			tooltip.select('.percent').html(d.data.count + '%');
-			tooltip.style('display', 'block');
-		});
+		var pie = d3.pie()
+			.value(function(d){
+				d.enabled = true;    
+				return d.count;
+			})
+			.sort(null);
 
-		path.on('mouseout', function(d){
-			tooltip.style('display', 'none');
-		});
-
-		path.on('mousemove', function(d){
-			tooltip.style('top', (d3.event.layerY + 10) + 'px')
-			.style('left', (d3.event.layerX + 10) + 'px');
-		});
-
-	var legend = svg.selectAll('.legend')
-		.data(color.domain())
-		.enter()
-		.append('g')
-		.attr('class', 'legend')
-		.attr('transform', function(d, i){
-			var height = legendRectSize + legendSpacing;
-			var offset = height * color.domain().length /2;
-			var horz = -2 * legendRectSize;
-			var vert = i * height - offset;
-			return 'translate(' + horz + ',' + vert + ')';
-		});
-
-		legend.append('rect')
-			.attr('width', legendRectSize)
-			.attr('height', legendRectSize)
-			.style('fill', color)
-			.style('stroke', color)
-			
-			.on('click', function(label) {
-			  var rect = d3.select(this);
-			  var enabled = true;
-			  var totalEnabled = d3.sum(dataset.map(function(d) {
-			    return (d.enabled) ? 1 : 0;
-			  }));
-
-			  if (rect.attr('class') === 'disabled') {
-			    rect.attr('class', '');
-			  } else {
-			    if (totalEnabled < 2) return;
-			    rect.attr('class', 'disabled');
-			    enabled = false;
-			  }
-
-			  pie.value(function(d) {
-			    if (d.label === label) d.enabled = enabled;
-			    return (d.enabled) ? d.count : 0;
-			  });
-
-			  path = path.data(pie(dataset));
-
-			  path.transition()
-			    .duration(750)
-			    .attrTween('d', function(d) {
-			      var interpolate = d3.interpolate(this._current, d);
-			      this._current = interpolate(0);
-			      return function(t) {
-			        return arc(interpolate(t));
-			      };
-			    });
+		var path = svg.selectAll('path')
+			.data(pie(dataset))
+			.enter()
+			.append('path')
+			.attr('d', arc)
+			.attr('fill', function(d, i){
+				return color(d.data.label);
+			})
+			.each(function(d){
+				this._current = d;
 			});
 
-
-		legend.append('text')
-			.attr('x', legendRectSize + legendSpacing)
-			.attr('y', legendRectSize - legendSpacing)
-			.text(function(d){
-				return d;
+			path.on('mouseover', function(d){
+				var total = d3.sum(dataset.map(function(d) {
+				    return (d.enabled) ? d.count : 0;        // UPDATED
+				  }));
+				tooltip.select('.label').html(d.data.label);
+				tooltip.select('.count').html(3); //TODO need to pull number of participants via getData
+				tooltip.select('.percent').html(d.data.count + '%');
+				tooltip.style('display', 'block');
 			});
 
-	var tooltip = d3.selectAll('#chart')
-		.append('div')
-		.attr('class', 'tooltip');
+			path.on('mouseout', function(d){
+				tooltip.style('display', 'none');
+			});
 
-		tooltip.append('div')
-			.attr('class', 'label');
+			path.on('mousemove', function(d){
+				tooltip.style('top', (d3.event.layerY + 10) + 'px')
+				.style('left', (d3.event.layerX + 10) + 'px');
+			});
 
-		tooltip.append('div')
-			.attr('class', 'count');
+		var legend = svg.selectAll('.legend')
+			.data(color.domain())
+			.enter()
+			.append('g')
+			.attr('class', 'legend')
+			.attr('transform', function(d, i){
+				var height = legendRectSize + legendSpacing;
+				var offset = height * color.domain().length /2;
+				var horz = -2 * legendRectSize;
+				var vert = i * height - offset;
+				return 'translate(' + horz + ',' + vert + ')';
+			});
 
-		tooltip.append('div')
-			.attr('class', 'percent');
+			legend.append('rect')
+				.attr('width', legendRectSize)
+				.attr('height', legendRectSize)
+				.style('fill', color)
+				.style('stroke', color)
+				
+				.on('click', function(label) {
+				  var rect = d3.select(this);
+				  var enabled = true;
+				  var totalEnabled = d3.sum(dataset.map(function(d) {
+				    return (d.enabled) ? 1 : 0;
+				  }));
+
+				  if (rect.attr('class') === 'disabled') {
+				    rect.attr('class', '');
+				  } else {
+				    if (totalEnabled < 2) return;
+				    rect.attr('class', 'disabled');
+				    enabled = false;
+				  }
+
+				  pie.value(function(d) {
+				    if (d.label === label) d.enabled = enabled;
+				    return (d.enabled) ? d.count : 0;
+				  });
+
+				  path = path.data(pie(dataset));
+
+				  path.transition()
+				    .duration(750)
+				    .attrTween('d', function(d) {
+				      var interpolate = d3.interpolate(this._current, d);
+				      this._current = interpolate(0);
+				      return function(t) {
+				        return arc(interpolate(t));
+				      };
+				    });
+				});
+
+
+			legend.append('text')
+				.attr('x', legendRectSize + legendSpacing)
+				.attr('y', legendRectSize - legendSpacing)
+				.text(function(d){
+					return d;
+				});
+
+		var tooltip = d3.selectAll('#chart')
+			.append('div')
+			.attr('class', 'tooltip');
+
+			tooltip.append('div')
+				.attr('class', 'label');
+
+			tooltip.append('div')
+				.attr('class', 'count');
+
+			tooltip.append('div')
+				.attr('class', 'percent');
+	}
 }
 
 function drawTestTimeAveGraph(results){
@@ -159,7 +185,7 @@ function drawTestTimeAveGraph(results){
 	var containerWidth = $('#testTimeAveGraph').width();
 	var containerHeight = $('#testTimeAveGraph').height();
 	console.log('containerHeight: ' + containerHeight);
-	
+
 	var width = containerWidth;
 	var height = containerHeight;
 	var donutWidth = 75;
@@ -297,10 +323,13 @@ function drawLissajPassRateGraph(results){
 	var containerWidth = $('#lissajPassGraph').width();
 	var containerHeight = $('#lissajPassGraph').height();
 
+	$('#lissajPassGraphSvg').attr('width', containerWidth);//width(containerWidth);
+	$('#lissajPassGraphSvg').attr('height', containerHeight);//height(containerHeight);
+
 	var svg = d3.select("#lissajPassGraphSvg"),
-			margin = {top: 40, right: 40, bottom: 40, left: 40},
-			width = containerWidth - margin.left - margin.right,
-			height = containerHeight,
+			margin = {top: 20, right: 20, bottom: 30, left: 40},
+			width = svg.attr("width") - margin.left - margin.right,
+			height = svg.attr("height"),
 			g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	// var width = svg.attr("width") - margin.left - margin.right;

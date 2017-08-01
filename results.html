@@ -10,20 +10,29 @@
 	<link rel="stylesheet" type="text/css" href="css/vwm_results_styles.css">
 </head>
 <body>
-	<div id="nbackPassGraphs">
-		<div id="back0PassGraph" class="nbackPassGraph"></div>
-		<div id="back1PassGraph" class="nbackPassGraph"></div>
-		<div id="back2PassGraph" class="nbackPassGraph"></div>
-		<div id="back3PassGraph" class="nbackPassGraph"></div>
-	</div>
-	<div id="testTimeAveGraph"></div>
-	<div id="lissajPassGraph">
-		<svg id="lissajPassGraphSvg" width="960" height="500"></svg>
-	</div>
-
-	<button onClick="download()">
-		Download
-	</button>
+	<div id="container">
+		<button onClick="download()">
+			Download
+		</button>
+		<div id="nbackPassContainer">
+			<div id="nbackPassGraphs">
+				<div id="back0PassGraph" class="nbackPassGraph"></div>
+				<div id="back1PassGraph" class="nbackPassGraph"></div>
+				<div id="back2PassGraph" class="nbackPassGraph"></div>
+				<div id="back3PassGraph" class="nbackPassGraph"></div>
+			</div>
+		</div>
+		<hr>
+		<div id="lissajPassContainer">
+			<div id="lissajPassGraph">
+				<svg id="lissajPassGraphSvg"</svg>
+			</div>
+		</div>
+		<hr>
+		<div id="testTimeAveContainer">
+			<div id="testTimeAveGraph"></div>
+		</div>		
+	</div>	
 
 	<script type="text/javascript" src="js/vwm_data.js"></script>
 	<script type="text/javascript" src="js/vwm_jsoncsv.js"></script>
