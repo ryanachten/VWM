@@ -87,13 +87,17 @@ header{
 	width: 80%;
 	margin: 0 auto;
 	background-color: #EEEEEE;
-	/*text-align: center;*/
+	text-align: center;
 	padding-top: 20px;
 }
-
-#nbackPassContainer{
-	padding: 40px 0;
+.graphContainer{
+	padding: 20px 0 20px 0;
 }
+.graphContainer h2{
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
 #nbackPassGraphs{
 	text-align: center;
 }
@@ -104,9 +108,6 @@ header{
 	/*background-color: red;*/
 }
 
-#testTimeAveContainer{
-	padding: 40px 0;
-}
 #testTimeAveGraph{
 	width: 25vw;
 	height: 25vw;
@@ -114,9 +115,6 @@ header{
 	/*background-color: blue;*/
 }
 
-#lissajPassContainer{
-	padding: 40px 0;
-}
 #lissajPassGraph{
 	width: 70vw;
 	height: 20vw;
