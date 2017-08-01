@@ -1,3 +1,5 @@
+var graphColorScheme = ["#CFECEC", "#B9D2D2", "#97ACAC", "#5F6C6C"];
+
 function getData(){
 	var graphTestData = getTestMetrics();
 	graphTestData.then(function(results){
@@ -90,7 +92,7 @@ function drawTestTimeAveGraph(results){
 	var height = containerHeight;
 	var donutWidth = 75;
 	var radius = Math.min(width, height) /2;
-	var color = d3.scaleOrdinal(d3.schemeCategory20b);
+	var color = d3.scaleOrdinal(graphColorScheme);
 	var legendRectSize = 18;
 	var legendSpacing = 4;
 
@@ -246,7 +248,7 @@ function drawLissajPassRateGraph(results){
 			.rangeRound([height, 0]);
 
 	var z = d3.scaleOrdinal()
-			.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+			.range(graphColorScheme);
 
 	var data = [
 		{'group': 0, 'lissaj0': results.lissajPasses.group0.lissaj1,
