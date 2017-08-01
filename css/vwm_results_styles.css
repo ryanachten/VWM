@@ -11,15 +11,81 @@ rect.disabled{
 	fill: transparent !important;
 }
 
+body{
+	background-color: #F5F5F5;
+}
+
+/*****TOP NAV STYLES*****/
+
+#top-nav{
+	background-color: #384040;
+ 	padding: 20px;
+ 	text-align: center;
+ 	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.50);
+}
+
+#vwm-logoimg{
+	vertical-align: middle;
+	height: 60px;
+}
+
+#vwm-logo, .top-nav-link{
+	color: #FFFFFF;
+	letter-spacing: 2px;
+	text-decoration: none;
+	margin: 0 40px;
+}
+
+.top-nav-link{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+
+
+/*****HEADER STYLES*****/
+
+header{
+	width: 80%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#vwm-title{
+	font-family: 'Roboto Mono', monospace;
+	font-size: 35px;
+	letter-spacing: 6px;
+	text-transform: uppercase;
+}
+
+#header-content{
+	height: 50px;
+	margin: 20px 0;
+}
+#header-content p{
+	display: inline-block;
+	float: left;
+}
+
+#download-button{
+	float: right;
+	display: block;
+	border: none;
+	background: none;
+}
+
 #lissajPassGraph{
 	width: 960;
 	height: 500;
 }
 
+
 #container{
 	width: 80%;
 	margin: 0 auto;
 	background-color: #EEEEEE;
+	/*text-align: center;*/
+	padding-top: 20px;
 }
 
 #nbackPassContainer{

@@ -6,14 +6,33 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.10.0/d3.min.js"></script>
 
-
+	<link rel="stylesheet" type="text/css" href="css/vwm_main_styles.css">
 	<link rel="stylesheet" type="text/css" href="css/vwm_results_styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono" rel="stylesheet">
 </head>
 <body>
+	<nav id="top-nav">
+		<a id="vwm-logo" href="index.html">
+			<img id="vwm-logoimg" src="img/vwm_mainlogo_white.svg" alt="vwm logo">
+		</a>
+		<a class="top-nav-link" href="test.html">Participate</a>
+		<a class="top-nav-link" href="">Research</a>
+		<a class="top-nav-link" href="">About</a>
+		<a class="top-nav-link" href="">Contact</a>
+	</nav>
+
+	<header>
+		<h1 id="vwm-title">Visual Working Memory</h1>
+		<h2>Test Result Summary</h2>
+		<div id="header-content">
+			<p><strong>Sample Count: </strong><span id="test-sampleCount">20</span></p>
+			<button id="download-button" onClick="download()">
+				<img src="img/vwm_download_icon.svg">
+			</button>
+		</div>
+	</header>
+
 	<div id="container">
-		<button onClick="download()">
-			Download
-		</button>
 		<div id="nbackPassContainer">
 			<div id="nbackPassGraphs">
 				<div id="back0PassGraph" class="nbackPassGraph"></div>
