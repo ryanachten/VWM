@@ -1,4 +1,4 @@
-#tooltip{
+.tooltip{
 	display: none;
 	position: absolute;
 	background-color: lightgray;
@@ -6,6 +6,7 @@
 	border-radius: 10px;
 	font-family: sans-serif;
 	line-height: 1.5em;
+	font-size: 12px;
 }
 #tooltip .label{
 	font-weight: bold;

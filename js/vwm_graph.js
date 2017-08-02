@@ -208,7 +208,7 @@ function drawTestTimeAveGraph(results){
 
 	var tooltip = d3.selectAll('#testTimeAveGraph')
 		.append('div')
-		.attr('id', 'tooltip');
+		.attr('class', 'tooltip');
 		
 		tooltip.append('div')
 			.attr('class', 'label');
@@ -284,7 +284,20 @@ function drawLissajPassRateGraph(results){
 				return y(d.value); })
 			.attr("width", x1.bandwidth())
 			.attr("height", function(d) { return height - y(d.value); })
-			.attr("fill", function(d) { return z(d.key); });
+			.attr("fill", function(d) { return z(d.key); })
+			.on('mouseover', function(d){
+				console.log('d: ' + d.value);
+				tooltip.select('.index').html(d.key);
+				tooltip.select('.value').html(d.value);
+				tooltip.style('display', 'block');
+			})
+			.on('mouseout', function(d){
+				tooltip.style('display', 'none');
+			})
+			.on('mousemove', function(d){
+				tooltip.style('top', (d3.event.layerY + 10) + 'px')
+				.style('left', (d3.event.layerX + 10) + 'px');
+			});
 
 	g.append("g")
 			.attr("class", "axis")
@@ -326,4 +339,18 @@ function drawLissajPassRateGraph(results){
 			.attr("y", 9.5)
 			.attr("dy", "0.32em")
 			.text(function(d) { return d; });
+
+
+	// var tooltip = d3.selectAll('#drawLissajPassRateGraph')
+	var tooltip = d3.selectAll('#testTimeAveContainer')
+		.append('div')
+		.attr('class', 'tooltip');
+
+		tooltip.append('div')
+			.attr('class', 'index');
+		
+		tooltip.append('div')
+			.attr('class', 'value');
+
+		
 }
