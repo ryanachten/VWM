@@ -26,8 +26,8 @@ function drawNbackPassRateGraph(results){
 			twoPi = 2 * Math.PI;
 
 		var dataset = {
-						  progress: passrate,
-						  total: 100
+						progress: passrate,
+						total: 100
 					  };
 		var meterWidth = 40;
 		var arc = d3.arc()
@@ -46,12 +46,12 @@ function drawNbackPassRateGraph(results){
 		 
 		var background = meter.append("path")
 			.datum({endAngle: twoPi})
-			.style("fill", "#ddd")
+			.style("fill", "#97ACAC") 
 			.attr("d", arc);
 		 
 		var foreground = meter.append("path")
 			.datum({endAngle:0})
-			.style("fill", "#555555")
+			.style("fill", "#CFECEC")
 			.attr("class", "foreground")
 			.attr("d", arc);
 		 
@@ -86,7 +86,6 @@ function drawTestTimeAveGraph(results){
 
 	var containerWidth = $('#testTimeAveGraph').width();
 	var containerHeight = $('#testTimeAveGraph').height();
-	console.log('containerHeight: ' + containerHeight);
 
 	var width = containerWidth;
 	var height = containerHeight;
@@ -154,7 +153,7 @@ function drawTestTimeAveGraph(results){
 		.attr('transform', function(d, i){
 			var height = legendRectSize + legendSpacing;
 			var offset = height * color.domain().length /2;
-			var horz = -2 * legendRectSize;
+			var horz = -1.5 * legendRectSize;
 			var vert = i * height - offset;
 			return 'translate(' + horz + ',' + vert + ')';
 		});
@@ -202,6 +201,8 @@ function drawTestTimeAveGraph(results){
 		legend.append('text')
 			.attr('x', legendRectSize + legendSpacing)
 			.attr('y', legendRectSize - legendSpacing)
+			.attr("font-family", "sans-serif")
+			.attr("font-size", 10)
 			.text(function(d){
 				return d;
 			});
@@ -229,20 +230,16 @@ function drawLissajPassRateGraph(results){
 	$('#lissajPassGraphSvg').attr('height', containerHeight);//height(containerHeight);
 
 	var svg = d3.select("#lissajPassGraphSvg"),
-			margin = {top: 20, right: 20, bottom: 30, left: 40},
+			margin = {top: 20, right: 20, bottom: 20, left: 20},
 			width = svg.attr("width") - margin.left - margin.right,
-			height = svg.attr("height"),
+			height = svg.attr("height") - margin.top - margin.bottom,
 			g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-	// var width = svg.attr("width") - margin.left - margin.right;
-	// var height = svg.attr("height") - margin.top - margin.bottom;
 
 	var x0 = d3.scaleBand()
 			.rangeRound([0, width])
 			.paddingInner(0.1);
 
-	var x1 = d3.scaleBand()
-			.padding(0.05);
+	var x1 = d3.scaleBand();
 
 	var y = d3.scaleLinear()
 			.rangeRound([height, 0]);
@@ -287,7 +284,8 @@ function drawLissajPassRateGraph(results){
 		.data(function(d) { return keys.map(function(key) { return {key: key, value: d[key]}; }); })
 		.enter().append("rect")
 			.attr("x", function(d) { return x1(d.key); })
-			.attr("y", function(d) { return y(d.value); })
+			.attr("y", function(d) { 
+				return y(d.value); })
 			.attr("width", x1.bandwidth())
 			.attr("height", function(d) { return height - y(d.value); })
 			.attr("fill", function(d) { return z(d.key); });
@@ -301,22 +299,25 @@ function drawLissajPassRateGraph(results){
 			.attr("class", "axis")
 			.call(d3.axisLeft(y).ticks(null, "s"))
 		.append("text")
-			.attr("x", 2)
-			.attr("y", y(y.ticks().pop()) + 0.5)
+			// .attr("x", 2)
+			.attr("y", y(y.ticks().pop()) + (-10))
 			.attr("dy", "0.32em")
 			.attr("fill", "#000")
 			.attr("font-weight", "bold")
 			.attr("text-anchor", "start")
 			.text("Percentage Passed");
 
-	var legend = g.append("g")
+	var container = d3.select("#lissajPassGraph");
+	var legend = svg.append("g")
+			.attr("fill", "#000")
 			.attr("font-family", "sans-serif")
 			.attr("font-size", 10)
 			.attr("text-anchor", "end")
+			.attr("transform", "translate(" + (-100) + ", 0)")
 		.selectAll("g")
-		.data(keys.slice().reverse())
+		.data(keys.slice())
 		.enter().append("g")
-			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+			.attr("transform", function(d, i) { return "translate(" + i * 60 + " 0)"; });
 
 	legend.append("rect")
 			.attr("x", width - 19)
