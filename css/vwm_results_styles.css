@@ -1,5 +1,14 @@
-.tooltip{
+#tooltip{
+	display: none;
 	position: absolute;
+	background-color: lightgray;
+	padding: 10px;
+	border-radius: 10px;
+	font-family: sans-serif;
+	line-height: 1.5em;
+}
+#tooltip .label{
+	font-weight: bold;
 }
 
 rect{

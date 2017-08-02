@@ -131,7 +131,6 @@ function drawTestTimeAveGraph(results){
 				return (d.enabled) ? d.count : 0;        // UPDATED
 			  }));
 			tooltip.select('.label').html(d.data.label);
-			tooltip.select('.count').html(3); //TODO need to pull number of participants via getData
 			tooltip.select('.percent').html(d.data.count + 'sec');
 			tooltip.style('display', 'block');
 		});
@@ -207,15 +206,12 @@ function drawTestTimeAveGraph(results){
 				return d;
 			});
 
-	var tooltip = d3.selectAll('#chart')
+	var tooltip = d3.selectAll('#testTimeAveGraph')
 		.append('div')
-		.attr('class', 'tooltip');
-
+		.attr('id', 'tooltip');
+		
 		tooltip.append('div')
 			.attr('class', 'label');
-
-		tooltip.append('div')
-			.attr('class', 'count');
 
 		tooltip.append('div')
 			.attr('class', 'percent');
