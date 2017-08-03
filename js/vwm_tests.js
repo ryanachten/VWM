@@ -219,7 +219,12 @@ function updateMemoriseFigure(){
 		if(newLassigGroupIndex !== curLassijGroupIndex && !groupExistsInNback){ // && 
 			var newLassijIndex = Math.floor(Math.random()*lissajousGroups[newLassigGroupIndex].length);
 			tweenLissaj(lissajousGroups[newLassigGroupIndex][newLassijIndex]);
+			
+			$('.option-button').prop('disabled', true); //FIXME: below
+			$('.option-button').toggleClass('disabled', true); //FIXME: wrong context to add this functionalty
 			var animationDelay = setTimeout(function(){
+				$('.option-button').prop('disabled', false); //FIXME: below
+				$('.option-button').toggleClass('disabled', false); //FIXME: wrong context to add this functionalty
 				testStartTime = performance.now();
 			}, 2000); //needs to matched to tween animation period
 
@@ -231,11 +236,9 @@ function updateMemoriseFigure(){
 			});
 
 			curLassijGroupIndex = newLassigGroupIndex;
-			// console.log('Current Target: Group: ' + lissagIndexArr[0].groupIndex + ' Figure: ' + lissagIndexArr[0].lassigIndex);
 			updateOptionImages();
 		}
 		else{
-			// console.log('Lissaj Group Index Exists: ' + newLassigGroupIndex);
 			updateMemoriseFigure();
 		}
 }
@@ -246,8 +249,6 @@ function updateOptionImages(){
 	
 	var curOptionWithTargetImage; //stores index of option button with target image
 		curOptionWithTargetImage = Math.floor(Math.random()*optionButtons.length);
-			// console.log('curOptionWithTargetImage: ' + curOptionWithTargetImage);
-		// var curNbackLissagIndex = lissagIndexArr[0]; //curLassijIndex;
 		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[lissagIndexArr[0].groupIndex][lissagIndexArr[0].lassigIndex]; 
 		optionButtons[curOptionWithTargetImage].setAttribute('data-lissaj-index',lissagIndexArr[0].lassigIndex);
 		curOptionImages.push(lissagIndexArr[0].lassigIndex);
@@ -258,15 +259,12 @@ function updateOptionImages(){
 			curOptionImages.push(randImgIndex);
 			optionButtons[i].children[0].src = lissajousSvgs[lissagIndexArr[0].groupIndex][randImgIndex];
 			optionButtons[i].setAttribute('data-lissaj-index',randImgIndex);
-			// console.log('randImgIndex: ' + randImgIndex);
-			// console.log('Data index: ' + optionButtons[i].getAttribute('data-lissaj-index'));
 		}
 	};
 	
 	function randOptionImgIndex(){
 		var tempRandIndex = Math.floor(Math.random()*lissajousSvgs[lissagIndexArr[0].groupIndex].length);
 		while(curOptionImages.indexOf(tempRandIndex) !== -1){ //while temp index already in the cur set
-			// console.log('Existing index: ' + tempRandIndex);
 			tempRandIndex = Math.floor(Math.random()*lissajousSvgs[lissagIndexArr[0].groupIndex].length);
 		}
 		return tempRandIndex;
