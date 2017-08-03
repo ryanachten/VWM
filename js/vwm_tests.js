@@ -276,7 +276,7 @@ function updateOptionImages(){
 function updateProgressBar(){
 	var curProgressPercent = curTestIndex * (100/testPerStageCount);	
 	testProgressBar.style.width = curProgressPercent + '%';
-	trialCountText.innerText = (testPerStageCount - curTestIndex) + " trials";
+	trialCountText.innerText = (testPerStageCount - curTestIndex)+1 + " trials";
 }
 
 function updateHelperText(sceneMode){
