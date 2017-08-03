@@ -95,7 +95,7 @@ function submitTestResult(nback, testIndex, currentTarget, figurePressed, testTi
 	database.ref(curDirectoryRef+'/test_result').set(testResult);
 }
 
-function getTestMetrics(){
+function getTotalTestMetrics(){
 
 	return new Promise(function(resolve, reject){
 
@@ -266,6 +266,115 @@ function getTestMetrics(){
 						lissaj2: calcLissajPassRates(lissajPassRates.group4.lissaj1),
 						lissaj3: calcLissajPassRates(lissajPassRates.group4.lissaj2)
 					}
+				}
+			};
+			
+			resolve(
+				results
+			);
+
+			//TODO: need to add a reject case here in case the get return fails
+		}
+	});
+}
+
+function getUserTestMetrics(){
+
+	return new Promise(function(resolve, reject){
+
+		var nback0PassRate;
+		var nback1PassRate;
+		var nback2PassRate;
+		var nback3PassRate;
+
+		var nback0Times = [];
+		var nback1Times = [];
+		var nback2Times = [];
+		var nback3Times = [];
+
+		var userId = sessionStorage.getItem('vwmUserId');
+
+		database.ref('vwm_participants/' + userId).once('value').then(function(snapUser) {
+				
+			var nback0Passes = nback1Passes = nback2Passes = nback3Passes= 0;
+			snapUser.child('nback_0').forEach(function(snapTest){
+				var curTestResult = snapTest.child('test_result').val();
+					if(curTestResult === 'Pass')
+						nback0Passes++;
+				var curTestTime = parseFloat(snapTest.child('time_taken').val());
+					if(!isNaN(curTestTime)) nback0Times.push(curTestTime);
+			});
+			snapUser.child('nback_1').forEach(function(snapTest){
+				var curTestResult = snapTest.child('test_result').val();
+					if(curTestResult === 'Pass')
+						nback1Passes++;
+				var curTestTime = parseFloat(snapTest.child('time_taken').val());
+					if(!isNaN(curTestTime)) nback1Times.push(curTestTime);
+			});
+			snapUser.child('nback_2').forEach(function(snapTest){
+				var curTestResult = snapTest.child('test_result').val();
+					if(curTestResult === 'Pass')
+						nback2Passes++;
+				var curTestTime = parseFloat(snapTest.child('time_taken').val());
+					if(!isNaN(curTestTime)) nback2Times.push(curTestTime);
+			});
+			snapUser.child('nback_3').forEach(function(snapTest){
+				var curTestResult = snapTest.child('test_result').val();
+					if(curTestResult === 'Pass')
+						nback3Passes++;
+				var curTestTime = parseFloat(snapTest.child('time_taken').val());
+					if(!isNaN(curTestTime)) nback3Times.push(curTestTime);
+			});
+
+			nback0PassRate = (nback0Passes/25)*100;
+			nback1PassRate = (nback1Passes/25)*100;
+			nback2PassRate = (nback2Passes/25)*100;
+			nback3PassRate = (nback3Passes/25)*100;
+
+			returnResults();
+		});
+
+		function pushTargetResult(tagetIndex, result){
+			if (result.length > 0) {
+
+				var groupIndex = 'group' + tagetIndex.groupIndex;
+				var lissajIndex = 'lissaj' + tagetIndex.lassigIndex;
+
+				if(result === 'Pass')
+					lissajPassRates[''+groupIndex+''][''+lissajIndex+''].pass++;
+				else
+					lissajPassRates[''+groupIndex+''][''+lissajIndex+''].fail++;
+			}
+		}
+
+		function returnResults(){
+			
+			//FIXME: total is broken due to 3 having no data
+			var calcNbackTimes = {
+				nback: function(nbackTimes){ 
+					var aveNbackTime = nbackTimes.reduce(function(sum, value) { return sum + value });
+					aveNbackTime = parseFloat((aveNbackTime / nbackTimes.length).toFixed(2));
+					return aveNbackTime;
+				},
+				total: function(){
+					var aveTotalTime = this.nback(nback0Times) + this.nback(nback1Times) + this.nback(nback2Times) + 0;//this.nback(nback3Times);
+					return aveTotalTime;	
+				}
+			};
+
+			var results = {
+				nbackPassRates: {
+					nback0: nback0PassRate,
+					nback1: nback1PassRate,
+					nback2: nback2PassRate,
+					nback3: nback3PassRate
+				},			
+				nbackTimes: {
+					nback0: calcNbackTimes.nback(nback0Times),
+					nback1: calcNbackTimes.nback(nback1Times),
+					nback2: calcNbackTimes.nback(nback2Times),
+					nback3: 0, //FIXME: nback 3 is broken due to no data
+					total: calcNbackTimes.total()	
 				}
 			};
 			

@@ -1,16 +1,16 @@
 var graphColorScheme = ["#CFECEC", "#B9D2D2", "#97ACAC", "#5F6C6C"];
 
 var getUserData = function(){
-	var graphTestData = getTestMetrics();
-	graphTestData.then(function(results){
+	var graphData = getUserTestMetrics();
+	graphData.then(function(results){
 		drawNbackPassRateGraph(results);
 		drawTestTimeAveGraph(results);
 	}); //TODO: need to add a catch case here in case the get return fails
 }
 
 function getAdminData(){
-	var graphTestData = getTestMetrics();
-	graphTestData.then(function(results){
+	var graphData = getTotalTestMetrics();
+	graphData.then(function(results){
 		drawNbackPassRateGraph(results);
 		drawTestTimeAveGraph(results);
 		drawLissajPassRateGraph(results);
