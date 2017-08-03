@@ -24,12 +24,6 @@
 	<header>
 		<h1 id="vwm-title">VWM</h1>
 		<h2>Test Result Summary</h2>
-		<div id="header-content">
-			<p><strong>Sample Count: </strong><span id="test-sampleCount">20</span></p>
-			<button id="download-button" onClick="download()">
-				<img src="img/vwm_download_icon.svg">
-			</button>
-		</div>
 	</header>
 
 	<div id="container">
@@ -51,13 +45,6 @@
 			</div>
 		</div>
 		<hr>
-		<div id="lissajPassContainer" class="graphContainer">
-			<h2>Lissajous Figure Pass Rate</h2>
-			<div id="lissajPassGraph">
-				<svg id="lissajPassGraphSvg"</svg>
-			</div>
-		</div>
-		<hr>
 		<div id="testTimeAveContainer" class="graphContainer">
 			<h2>Average Test Times</h2>
 			<div id="testTimeAveGraph"></div>
@@ -65,8 +52,10 @@
 	</div>	
 
 	<script type="text/javascript" src="js/vwm_data.js"></script>
-	<script type="text/javascript" src="js/vwm_jsoncsv.js"></script>
 	<script type="text/javascript" src="js/vwm_graph.js"></script>
+	<script>
+		getUserData();
+	</script>
 </body>
 </html>
 

@@ -155,7 +155,7 @@ function loadStageTransitionScene(){
 	}
 	if(nback > maxNback){ //if nback is above max redirect to results
 		console.log('nback > 3: load results scene');
-		window.location.href = 'index.html';
+		window.location.href = 'userresults.html';
 		return;
 	}
 	console.log(' ');
@@ -226,10 +226,10 @@ function updateMemoriseFigure(){
 			var newLassijIndex = Math.floor(Math.random()*lissajousGroups[newLassigGroupIndex].length);
 			tweenLissaj(lissajousGroups[newLassigGroupIndex][newLassijIndex]);
 			
-			$('.option-button').prop('disabled', true); //FIXME: below
+			// $('.option-button').prop('disabled', true); //FIXME: below
 			$('.option-button').toggleClass('disabled', true); //FIXME: wrong context to add this functionalty
 			var animationDelay = setTimeout(function(){
-				$('.option-button').prop('disabled', false); //FIXME: below
+				// $('.option-button').prop('disabled', false); //FIXME: below
 				$('.option-button').toggleClass('disabled', false); //FIXME: wrong context to add this functionalty
 				testStartTime = performance.now();
 			}, 2000); //needs to matched to tween animation period

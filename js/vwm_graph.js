@@ -1,6 +1,14 @@
 var graphColorScheme = ["#CFECEC", "#B9D2D2", "#97ACAC", "#5F6C6C"];
 
-function getData(){
+var getUserData = function(){
+	var graphTestData = getTestMetrics();
+	graphTestData.then(function(results){
+		drawNbackPassRateGraph(results);
+		drawTestTimeAveGraph(results);
+	}); //TODO: need to add a catch case here in case the get return fails
+}
+
+function getAdminData(){
 	var graphTestData = getTestMetrics();
 	graphTestData.then(function(results){
 		drawNbackPassRateGraph(results);
@@ -8,7 +16,6 @@ function getData(){
 		drawLissajPassRateGraph(results);
 	}); //TODO: need to add a catch case here in case the get return fails
 }
-getData();
 
 function drawNbackPassRateGraph(results){
 
