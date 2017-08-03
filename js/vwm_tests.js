@@ -4,6 +4,7 @@ var testPerStageCount = 24;
 var curSceneIndex = null;
 var curTestIndex = null;
 
+var maxNback = 3;
 var nback = null; //needs to be set to null at start for production
 
 // var curLassijIndex; //Not sure if needed for grouped sets
@@ -152,6 +153,11 @@ function loadStageTransitionScene(){
 	}else{
 		nback++;
 	}
+	if(nback > maxNback){ //if nback is above max redirect to results
+		console.log('nback > 3: load results scene');
+		window.location.href = 'index.html';
+		return;
+	}
 	console.log(' ');
 	console.log('N-Back Stage: ' + nback);
 
@@ -274,7 +280,7 @@ function updateOptionImages(){
 function updateProgressBar(){
 	var curProgressPercent = curTestIndex * (100/testPerStageCount);	
 	testProgressBar.style.width = curProgressPercent + '%';
-	trialCountText.innerText = (testPerStageCount - curTestIndex)+1 + " trials";
+	trialCountText.innerText = (testPerStageCount - curTestIndex)+1 + " trials"; //+1 added for label  to state max @ 25 and min @ 1
 }
 
 function updateHelperText(sceneMode){
