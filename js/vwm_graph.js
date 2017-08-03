@@ -69,7 +69,7 @@ function drawNbackPassRateGraph(results){
 		var text =  meter.append("text")
 			.attr("text-anchor", "middle")
 			.attr("dy", ".35em")
-			.attr("font-size", "24")
+			.attr("font-size", "20")
 			.attr("font-family", "OpenSans-Regular")
 			//     font-family: OpenSans-Regular;
 			.text(dataset["progress"] + '%');
@@ -286,9 +286,8 @@ function drawLissajPassRateGraph(results){
 			.attr("height", function(d) { return height - y(d.value); })
 			.attr("fill", function(d) { return z(d.key); })
 			.on('mouseover', function(d){
-				console.log('d: ' + d.value);
 				tooltip.select('.index').html(d.key);
-				tooltip.select('.value').html(d.value);
+				tooltip.select('.value').html(d.value + '%');
 				tooltip.style('display', 'block');
 			})
 			.on('mouseout', function(d){

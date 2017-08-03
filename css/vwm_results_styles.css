@@ -115,6 +115,10 @@ header{
 	/*background-color: red;*/
 	margin: 0 20px;
 }
+.nbackPassGraph h3{
+	margin-bottom: 20px;
+	font-size: 14px;
+}
 
 #testTimeAveGraph{
 	width: 25vw;
