@@ -192,9 +192,6 @@ function loadStageTransitionScene(){
 			case 3:
 				transitionDiagram.src = diagramPath + '3Back.svg';
 				break;
-			case 4:
-				transitionDiagram.src = diagramPath + '4Back.svg';
-				break;
 			default:
 				transitionDiagram.src = 'img/VWM_NbackDiagrams/VWM_Diagram_0Back.svg';
 		}
