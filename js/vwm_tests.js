@@ -170,7 +170,7 @@ function loadStageTransitionScene(){
 		optionsHeader.style.display = 'none';
 
 		transitionPanel.style.display = 'block';
-		transitionStageNum.innerText = 'N-Back ' + nback;
+		transitionStageNum.innerText = nback + '-Back';
 
 		var diagramPath = 'img/VWM_NbackDiagrams/VWM_Diagram_';
 		switch(nback){
