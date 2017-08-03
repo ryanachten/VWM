@@ -156,6 +156,8 @@ function getTotalTestMetrics(){
 							nback1Passes++;
 					var curTestTime = parseFloat(snapTest.child('time_taken').val());
 						if(!isNaN(curTestTime)) nback1Times.push(curTestTime);
+					var curTargetIndex = snapTest.child('target_figure').val();
+						pushTargetResult(curTargetIndex, curTestResult);
 				});
 				snapUser.child('nback_2').forEach(function(snapTest){
 					var curTestResult = snapTest.child('test_result').val();
@@ -163,6 +165,8 @@ function getTotalTestMetrics(){
 							nback2Passes++;
 					var curTestTime = parseFloat(snapTest.child('time_taken').val());
 						if(!isNaN(curTestTime)) nback2Times.push(curTestTime);
+					var curTargetIndex = snapTest.child('target_figure').val();
+						pushTargetResult(curTargetIndex, curTestResult);
 				});
 				snapUser.child('nback_3').forEach(function(snapTest){
 					var curTestResult = snapTest.child('test_result').val();
@@ -170,6 +174,8 @@ function getTotalTestMetrics(){
 							nback3Passes++;
 					var curTestTime = parseFloat(snapTest.child('time_taken').val());
 						if(!isNaN(curTestTime)) nback3Times.push(curTestTime);
+					var curTargetIndex = snapTest.child('target_figure').val();
+						pushTargetResult(curTargetIndex, curTestResult);
 				});
 
 				curNback0Passes = (nback0Passes/25)*100;
