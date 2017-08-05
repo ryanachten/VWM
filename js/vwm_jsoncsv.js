@@ -1,15 +1,6 @@
 function download(){
 	var dateTime = new Date;
-	var curYear = dateTime.getUTCFullYear();
-	var curMonth = dateTime.getUTCMonth();
-	var curDay = dateTime.getUTCDate();
-	var curHour = dateTime.getUTCHours();
-	var curMin = dateTime.getUTCMinutes();
-	
-	var curDateTime = 'VWM Results_' + curDay + '-' + curMonth + '-' + curYear + '_' + curHour + '-' + curMin;
-	console.log(curDateTime);
-
-	var fileTitle = curDateTime;
+	var fileTitle = 'VWM Results_' + dateTime.toLocaleString();
 
 	var headers = {
 			participant_id: 'Participant ID',
