@@ -123,6 +123,8 @@ header{
 #testTimeAveGraph{
 	width: 25vw;
 	height: 25vw;
+	min-width: 300px;
+	min-height: 300px;
 	margin: 0 auto;
 	/*background-color: blue;*/
 }

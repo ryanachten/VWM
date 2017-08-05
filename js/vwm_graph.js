@@ -79,7 +79,7 @@ function drawNbackPassRateGraph(results){
 			.attr("font-size", "20")
 			.attr("font-family", "OpenSans-Regular")
 			//     font-family: OpenSans-Regular;
-			.text(dataset["progress"] + '%');
+			.text(dataset["progress"].toFixed(0) + '%');
 	}
 }
 
