@@ -392,3 +392,21 @@ function getUserTestMetrics(){
 		}
 	});
 }
+
+function getCsvData(){
+	return new Promise(function(resolve, reject){
+
+		database.ref('vwm_participants').once('value').then(function(snapshot) {
+			var csvData = {
+				"vwm_participants" : snapshot.val()
+			};
+			returnResults(csvData);
+		});
+
+		function returnResults(data){
+			resolve(
+				data
+			);
+		}
+	});		
+}
