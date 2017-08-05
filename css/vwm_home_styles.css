@@ -16,12 +16,12 @@
 	color: #FFFFFF;
 	letter-spacing: 2px;
 	text-decoration: none;
-	margin: 0 40px;
+	margin: 0 20px;
 }
 
 .top-nav-link{
 	font-family: 'Open Sans', sans-serif;
-	font-size: 16px;
+	font-size: 14px;
 	text-transform: uppercase;
 }
 
@@ -32,13 +32,20 @@
     text-align: center;
     width: 100%;
     top: 50%;
-    transform: translateY(-60%);
+    transform: translateY(-50%);
 }
+
+#header-panel img{
+	width: 15vw;
+	min-width: 100px;
+}
+
 #vwm-title{
 	font-family: 'Roboto Mono', monospace;
 	font-size: 35px;
 	letter-spacing: 6px;
 	text-transform: uppercase;
+	margin: 0;
 }
 #pulloutquote{
 	display: block;
@@ -57,6 +64,7 @@
 }
 
 canvas{
+	min-height: 450px;
 	z-index: -1;
     position: relative;
 }

@@ -88,6 +88,7 @@ function calcCanvasSizes(){
 	var optHeight = $('#start-panel').outerHeight(true);
 	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
 	screenHeight = $(window).height() - (navHeight+optHeight);	
+	if(screenHeight < 450) screenHeight = 450;
 	screenWidth = $(window).width();
 	console.log('screenWidth: ' + screenWidth);
 }
