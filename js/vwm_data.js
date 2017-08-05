@@ -55,9 +55,13 @@ function submitUser(name, email){
 		test25: test
 	};
 
+	var dateTime = new Date;
+
 	var userData = { //test -rm
 		name: name,
 		email: email,
+		date: dateTime.toLocaleDateString(),
+		time: dateTime.toLocaleTimeString(),
 		nback_0: nback,
 		nback_1: nback,
 		nback_2: nback,
