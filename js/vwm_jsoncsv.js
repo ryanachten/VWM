@@ -1,9 +1,10 @@
 function download(){
 	var dateTime = new Date;
-	var fileTitle = 'VWM Results_' + dateTime.toLocaleString();
+	var fileTitle = 'VWM Results, ' + dateTime.toLocaleString();
 
 	var headers = {
 			participant_id: 'Participant ID',
+			timestamp: 'Date/Time',
 			name: 'Participant Name',
 			email: 'Participant Email',
 			nback_index: 'N-back Index',
@@ -59,6 +60,7 @@ function download(){
 			});	
 		 	itemsFormatted.push({
 		 		participant_id: userId,
+		 		timestamp: userData.date + ' ' + userData.time,
 	 			name: userData.name,
 	 			email: userData.email
 			});
@@ -71,6 +73,7 @@ function download(){
 		 	function addNbackDataToCsv(nbackName, nbackData){
 		 		itemsFormatted.push({
 		 			participant_id: ' ',
+		 			timestamp: ' ',
 		 			name: ' ',
 		 			email: ' ',
 		 			nback_index: nbackName
@@ -90,6 +93,7 @@ function download(){
 
 					itemsFormatted.push({
 						participant_id: ' ',
+						timestamp: ' ',
 						name: ' ',
 			 			email: ' ',
 						nback_index: ' ',
@@ -125,6 +129,7 @@ function download(){
 
 				itemsFormatted.push({
 					participant_id: ' ',
+					timestamp: ' ',
 					name: ' ',
 		 			email: ' ',
 					nback_index: ' ',
