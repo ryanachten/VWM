@@ -118,6 +118,12 @@ header{
 	/*background-color: green;*/
 }
 
+#timeAccuracyGraph{
+	width: 70vw;
+	height: 20vw;
+	margin: 0 auto;
+}
+
 /*****GRAPH STYLES*****/
 
 .tooltip{
