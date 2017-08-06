@@ -103,6 +103,8 @@ function getTotalTestMetrics(){
 
 	return new Promise(function(resolve, reject){
 
+		var testTimeAccuracy = [];
+
 		var nback0PassRates = [];
 		var nback1PassRates = [];
 		var nback2PassRates = [];
@@ -191,6 +193,14 @@ function getTotalTestMetrics(){
 				nback1PassRates.push(curNback1Passes);
 				nback2PassRates.push(curNback2Passes);
 				nback3PassRates.push(curNback3Passes);
+
+				var curTestDayTime = snapUser.child('time').val()
+				if(curTestDayTime !== null){
+					var aveAccuracy = (curNback0Passes + curNback1Passes + curNback2Passes + curNback3Passes)/4;
+					testTimeAccuracy.push({
+						time: curTestDayTime, accuracy: aveAccuracy	
+					});
+				}
 			});
 			returnResults();
 		});
@@ -224,7 +234,7 @@ function getTotalTestMetrics(){
 					return aveNbackTime;
 				},
 				total: function(){
-					var aveTotalTime = this.nback(nback0Times) + this.nback(nback1Times) + this.nback(nback2Times) + 0;//this.nback(nback3Times);
+					var aveTotalTime = this.nback(nback0Times) + this.nback(nback1Times) + this.nback(nback2Times) + this.nback(nback3Times);
 					return aveTotalTime;	
 				}
 			};
@@ -237,6 +247,7 @@ function getTotalTestMetrics(){
 			};
 
 			var results = {
+				testTimeAccuracy: testTimeAccuracy,
 				nbackPassRates: {
 					nback0: calcNbackPassRates(nback0PassRates),
 					nback1: calcNbackPassRates(nback1PassRates),
@@ -247,7 +258,7 @@ function getTotalTestMetrics(){
 					nback0: calcNbackTimes.nback(nback0Times),
 					nback1: calcNbackTimes.nback(nback1Times),
 					nback2: calcNbackTimes.nback(nback2Times),
-					nback3: 0, //FIXME: nback 3 is broken due to no data
+					nback3: calcNbackTimes.nback(nback3Times),
 					total: calcNbackTimes.total()	
 				},
 				lissajPasses: {
