@@ -371,7 +371,7 @@ function drawTimeAccuracyGraph(results){
 		width = containerWidth - margin.left - margin.right,
 		height = containerHeight - margin.top - margin.bottom;
 
-	var parseTime = d3.timeParse("%H:%M:%S")
+	var parseTime = d3.timeParse("%H:%M:%S");
 
 	var x = d3.scaleTime().range([0, width]);
 	var y = d3.scaleLinear().range([height, 0]);
@@ -401,12 +401,40 @@ function drawTimeAccuracyGraph(results){
 			.attr("fill", '#5F6C6C')
 			.attr("r", 5)
 			.attr("cx", function(d) { return x(d.time); })
-			.attr("cy", function(d) { return y(d.accuracy); });
+			.attr("cy", function(d) { return y(d.accuracy); })
+			.on('mouseover', function(d){
+				$(this).attr("fill", '#B9D2D2');
+				var formatTime = d3.timeFormat("%X");
+				// console.log('d.time: ' + d.time);
+				var formattedTime = formatTime(d.time);
+				// console.log('formattedTime: ' + formattedTime);
+				tooltip.select('.time').html(formattedTime);
+				tooltip.select('.accuracy').html('Accuracy: ' + d.accuracy + '%');
+				tooltip.style('display', 'block');
+			})
+			.on('mouseout', function(d){
+				tooltip.style('display', 'none');
+				$(this).attr("fill", '#5F6C6C');
+			})
+			.on('mousemove', function(d){
+				tooltip.style('top', (d3.event.layerY + 10) + 'px')
+				.style('left', (d3.event.layerX + 10) + 'px');
+			});
 
 	svg.append("g")
 		.attr("transform", "translate(0," + height + ")")
 		.call(d3.axisBottom(x));
 
-	  svg.append("g")
-		  .call(d3.axisLeft(y));
+	svg.append("g")
+		.call(d3.axisLeft(y));
+
+	var tooltip = d3.selectAll('#timeAccuracyContainer')
+	.append('div')
+	.attr('class', 'tooltip');
+
+	tooltip.append('div')
+		.attr('class', 'time');
+	
+	tooltip.append('div')
+		.attr('class', 'accuracy');
 }
