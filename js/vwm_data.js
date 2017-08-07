@@ -402,7 +402,7 @@ function getUserTestMetrics(){
 					return aveNbackTime;
 				},
 				total: function(){
-					var aveTotalTime = this.nback(nback0Times) + this.nback(nback1Times) + this.nback(nback2Times) + 0;//this.nback(nback3Times);
+					var aveTotalTime = this.nback(nback0Times) + this.nback(nback1Times) + this.nback(nback2Times) + this.nback(nback3Times);
 					return aveTotalTime;	
 				}
 			};
@@ -418,7 +418,7 @@ function getUserTestMetrics(){
 					nback0: calcNbackTimes.nback(nback0Times),
 					nback1: calcNbackTimes.nback(nback1Times),
 					nback2: calcNbackTimes.nback(nback2Times),
-					nback3: 0, //FIXME: nback 3 is broken due to no data
+					nback3: calcNbackTimes.nback(nback3Times),
 					total: calcNbackTimes.total()	
 				}
 			};
