@@ -1,31 +1,50 @@
 var graphColorScheme = ["#CFECEC", "#B9D2D2", "#97ACAC", "#5F6C6C"];
 
-var getUserData = function(){
+var getUserData = function() {
 	var graphData = getUserTestMetrics();
-	graphData.then(function(results){
+	graphData.then(function(results) {
 		drawNbackPassRateGraph(results);
 		drawTestTimeAveGraph(results);
 	}); //TODO: need to add a catch case here in case the get return fails
 }
 
-function getAdminData(){
-	var graphData = getTotalTestMetrics();
-	graphData.then(function(results){
-		drawNbackPassRateGraph(results);
-		drawTestTimeAveGraph(results);
-		drawLissajPassRateGraph(results);
-		drawTimeAccuracyGraph(results);
-	}); //TODO: need to add a catch case here in case the get return fails
+
+function getAdminData() {
+
+	var passfield = document.getElementById('pass-inputfield');
+	var emailfield = document.getElementById('email-inputfield');
+
+	if (passfield.value.length === 0) {
+		alert('Please enter your password before continuing');
+		return;
+	}
+	if (emailfield.value.length === 0) {
+		alert('Please enter your email before continuing');
+		return;
+	}
+	
+	var adminId = submitAdmin(passfield.value, emailfield.value);
+	adminId.then(function(){
+		$('#admin-container').show();
+		$('#login-panel').hide();
+		var graphData = getTotalTestMetrics();
+		graphData.then(function(results) {
+			drawNbackPassRateGraph(results);
+			drawTestTimeAveGraph(results);
+			drawLissajPassRateGraph(results);
+			drawTimeAccuracyGraph(results);
+		}); //TODO: need to add a catch case here in case the get return fails
+	});
 }
 
-function drawNbackPassRateGraph(results){
+function drawNbackPassRateGraph(results) {
 
 	drawGragh(results.nbackPassRates.nback0, '#back0PassGraph');
 	drawGragh(results.nbackPassRates.nback1, '#back1PassGraph');
 	drawGragh(results.nbackPassRates.nback2, '#back2PassGraph');
 	drawGragh(results.nbackPassRates.nback3, '#back3PassGraph');
 
-	function drawGragh(passrate, container){
+	function drawGragh(passrate, container) {
 		var containerWidth = $(container).width();
 		var containerHeight = $(container).height();
 
@@ -34,47 +53,51 @@ function drawNbackPassRateGraph(results){
 			twoPi = 2 * Math.PI;
 
 		var dataset = {
-						progress: passrate,
-						total: 100
-					  };
+			progress: passrate,
+			total: 100
+		};
 		var meterWidth = 40;
 		var arc = d3.arc()
-			.innerRadius(Math.min(width, height) /2 - meterWidth)
-			.outerRadius(Math.min(width, height) /2)
+			.innerRadius(Math.min(width, height) / 2 - meterWidth)
+			.outerRadius(Math.min(width, height) / 2)
 			.startAngle(0);
-		 
+
 		var svg = d3.select(container).append("svg")
 			.attr("width", width)
 			.attr("height", height)
-		  .append("g")
+			.append("g")
 			.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
 		var meter = svg.append("g");
-			// .attr("class", "season-progress");
-		 
+		// .attr("class", "season-progress");
+
 		var background = meter.append("path")
-			.datum({endAngle: twoPi})
-			.style("fill", "#97ACAC") 
+			.datum({
+				endAngle: twoPi
+			})
+			.style("fill", "#97ACAC")
 			.attr("d", arc);
-		 
+
 		var foreground = meter.append("path")
-			.datum({endAngle:0})
+			.datum({
+				endAngle: 0
+			})
 			.style("fill", "#CFECEC")
 			.attr("class", "foreground")
 			.attr("d", arc);
-		 
-		  foreground.transition()
+
+		foreground.transition()
 			.duration(1000)
 			// .easeLinear()
 			.attrTween("d", function(d) {
-					   var interpolate = d3.interpolate(d.endAngle, twoPi * dataset["progress"] / dataset["total"])
-					   return function(t) {
-						  d.endAngle = interpolate(t);
-						  return arc(d);
-					   }  
-					});
+				var interpolate = d3.interpolate(d.endAngle, twoPi * dataset["progress"] / dataset["total"])
+				return function(t) {
+					d.endAngle = interpolate(t);
+					return arc(d);
+				}
+			});
 
-		var text =  meter.append("text")
+		var text = meter.append("text")
 			.attr("text-anchor", "middle")
 			.attr("dy", ".35em")
 			.attr("font-size", "20")
@@ -84,13 +107,20 @@ function drawNbackPassRateGraph(results){
 	}
 }
 
-function drawTestTimeAveGraph(results){
-	var dataset = [
-		{label: '0 Back', count: results.nbackTimes.nback0},
-		{label: '1 Back', count: results.nbackTimes.nback1},
-		{label: '2 Back', count: results.nbackTimes.nback2},
-		{label: '3 Back', count: results.nbackTimes.nback3}
-	];
+function drawTestTimeAveGraph(results) {
+	var dataset = [{
+		label: '0 Back',
+		count: results.nbackTimes.nback0
+	}, {
+		label: '1 Back',
+		count: results.nbackTimes.nback1
+	}, {
+		label: '2 Back',
+		count: results.nbackTimes.nback2
+	}, {
+		label: '3 Back',
+		count: results.nbackTimes.nback3
+	}];
 
 	var containerWidth = $('#testTimeAveGraph').width();
 	var containerHeight = $('#testTimeAveGraph').height();
@@ -98,7 +128,7 @@ function drawTestTimeAveGraph(results){
 	var width = containerWidth;
 	var height = containerHeight;
 	var donutWidth = 75;
-	var radius = Math.min(width, height) /2;
+	var radius = Math.min(width, height) / 2;
 	var color = d3.scaleOrdinal(graphColorScheme);
 	var legendRectSize = 18;
 	var legendSpacing = 4;
@@ -108,16 +138,16 @@ function drawTestTimeAveGraph(results){
 		.attr('width', width)
 		.attr('height', height)
 		.append('g')
-		.attr('transform', 'translate('+ (width/2) + 
-							',' + (height/2) +')');
+		.attr('transform', 'translate(' + (width / 2) +
+			',' + (height / 2) + ')');
 
 	var arc = d3.arc()
-		.innerRadius(radius-donutWidth)
+		.innerRadius(radius - donutWidth)
 		.outerRadius(radius);
 
 	var pie = d3.pie()
-		.value(function(d){
-			d.enabled = true;    
+		.value(function(d) {
+			d.enabled = true;
 			return d.count;
 		})
 		.sort(null);
@@ -127,225 +157,270 @@ function drawTestTimeAveGraph(results){
 		.enter()
 		.append('path')
 		.attr('d', arc)
-		.attr('fill', function(d, i){
+		.attr('fill', function(d, i) {
 			return color(d.data.label);
 		})
-		.each(function(d){
+		.each(function(d) {
 			this._current = d;
 		});
 
-		path.on('mouseover', function(d){
-			var total = d3.sum(dataset.map(function(d) {
-				return (d.enabled) ? d.count : 0;        // UPDATED
-			  }));
-			tooltip.select('.label').html(d.data.label);
-			tooltip.select('.percent').html(d.data.count + 'sec');
-			tooltip.style('display', 'block');
-		});
+	path.on('mouseover', function(d) {
+		var total = d3.sum(dataset.map(function(d) {
+			return (d.enabled) ? d.count : 0; // UPDATED
+		}));
+		tooltip.select('.label').html(d.data.label);
+		tooltip.select('.percent').html(d.data.count + 'sec');
+		tooltip.style('display', 'block');
+	});
 
-		path.on('mouseout', function(d){
-			tooltip.style('display', 'none');
-		});
+	path.on('mouseout', function(d) {
+		tooltip.style('display', 'none');
+	});
 
-		path.on('mousemove', function(d){
-			tooltip.style('top', (d3.event.layerY + 10) + 'px')
+	path.on('mousemove', function(d) {
+		tooltip.style('top', (d3.event.layerY + 10) + 'px')
 			.style('left', (d3.event.layerX + 10) + 'px');
-		});
+	});
 
 	var legend = svg.selectAll('.legend')
 		.data(color.domain())
 		.enter()
 		.append('g')
 		.attr('class', 'legend')
-		.attr('transform', function(d, i){
+		.attr('transform', function(d, i) {
 			var height = legendRectSize + legendSpacing;
-			var offset = height * color.domain().length /2;
+			var offset = height * color.domain().length / 2;
 			var horz = -1.5 * legendRectSize;
 			var vert = i * height - offset;
 			return 'translate(' + horz + ',' + vert + ')';
 		});
 
-		legend.append('rect')
-			.attr('width', legendRectSize)
-			.attr('height', legendRectSize)
-			.style('fill', color)
-			.style('stroke', color)
-			
-			.on('click', function(label) {
-			  var rect = d3.select(this);
-			  var enabled = true;
-			  var totalEnabled = d3.sum(dataset.map(function(d) {
-				return (d.enabled) ? 1 : 0;
-			  }));
+	legend.append('rect')
+		.attr('width', legendRectSize)
+		.attr('height', legendRectSize)
+		.style('fill', color)
+		.style('stroke', color)
 
-			  if (rect.attr('class') === 'disabled') {
-				rect.attr('class', '');
-			  } else {
-				if (totalEnabled < 2) return;
-				rect.attr('class', 'disabled');
-				enabled = false;
-			  }
+	.on('click', function(label) {
+		var rect = d3.select(this);
+		var enabled = true;
+		var totalEnabled = d3.sum(dataset.map(function(d) {
+			return (d.enabled) ? 1 : 0;
+		}));
 
-			  pie.value(function(d) {
-				if (d.label === label) d.enabled = enabled;
-				return (d.enabled) ? d.count : 0;
-			  });
+		if (rect.attr('class') === 'disabled') {
+			rect.attr('class', '');
+		} else {
+			if (totalEnabled < 2) return;
+			rect.attr('class', 'disabled');
+			enabled = false;
+		}
 
-			  path = path.data(pie(dataset));
+		pie.value(function(d) {
+			if (d.label === label) d.enabled = enabled;
+			return (d.enabled) ? d.count : 0;
+		});
 
-			  path.transition()
-				.duration(750)
-				.attrTween('d', function(d) {
-				  var interpolate = d3.interpolate(this._current, d);
-				  this._current = interpolate(0);
-				  return function(t) {
+		path = path.data(pie(dataset));
+
+		path.transition()
+			.duration(750)
+			.attrTween('d', function(d) {
+				var interpolate = d3.interpolate(this._current, d);
+				this._current = interpolate(0);
+				return function(t) {
 					return arc(interpolate(t));
-				  };
-				});
+				};
 			});
+	});
 
 
-		legend.append('text')
-			.attr('x', legendRectSize + legendSpacing)
-			.attr('y', legendRectSize - legendSpacing)
-			.attr("font-family", "sans-serif")
-			.attr("font-size", 10)
-			.text(function(d){
-				return d;
-			});
+	legend.append('text')
+		.attr('x', legendRectSize + legendSpacing)
+		.attr('y', legendRectSize - legendSpacing)
+		.attr("font-family", "sans-serif")
+		.attr("font-size", 10)
+		.text(function(d) {
+			return d;
+		});
 
 	var tooltip = d3.selectAll('#testTimeAveGraph')
 		.append('div')
 		.attr('class', 'tooltip');
-		
-		tooltip.append('div')
-			.attr('class', 'label');
 
-		tooltip.append('div')
-			.attr('class', 'percent');
+	tooltip.append('div')
+		.attr('class', 'label');
+
+	tooltip.append('div')
+		.attr('class', 'percent');
 }
 
-function drawLissajPassRateGraph(results){
+function drawLissajPassRateGraph(results) {
 
 	var containerWidth = $('#lissajPassGraph').width();
 	var containerHeight = $('#lissajPassGraph').height();
 
-	$('#lissajPassGraphSvg').attr('width', containerWidth);//width(containerWidth);
-	$('#lissajPassGraphSvg').attr('height', containerHeight);//height(containerHeight);
+	$('#lissajPassGraphSvg').attr('width', containerWidth); //width(containerWidth);
+	$('#lissajPassGraphSvg').attr('height', containerHeight); //height(containerHeight);
 
 	var svg = d3.select("#lissajPassGraphSvg"),
-			margin = {top: 20, right: 20, bottom: 20, left: 20},
-			width = svg.attr("width") - margin.left - margin.right,
-			height = svg.attr("height") - margin.top - margin.bottom,
-			g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		margin = {
+			top: 20,
+			right: 20,
+			bottom: 20,
+			left: 20
+		},
+		width = svg.attr("width") - margin.left - margin.right,
+		height = svg.attr("height") - margin.top - margin.bottom,
+		g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	var x0 = d3.scaleBand()
-			.rangeRound([0, width])
-			.paddingInner(0.1);
+		.rangeRound([0, width])
+		.paddingInner(0.1);
 
 	var x1 = d3.scaleBand();
 
 	var y = d3.scaleLinear()
-			.rangeRound([height, 0]);
+		.rangeRound([height, 0]);
 
 	var z = d3.scaleOrdinal()
-			.range(graphColorScheme);
+		.range(graphColorScheme);
 
-	var data = [
-		{'group': 0, 'lissaj0': results.lissajPasses.group0.lissaj1,
-					 'lissaj1': results.lissajPasses.group0.lissaj2, 
-					 'lissaj2': results.lissajPasses.group0.lissaj3},
+	var data = [{
+			'group': 0,
+			'lissaj0': results.lissajPasses.group0.lissaj1,
+			'lissaj1': results.lissajPasses.group0.lissaj2,
+			'lissaj2': results.lissajPasses.group0.lissaj3
+		},
 
-		{'group': 1, 'lissaj0': results.lissajPasses.group1.lissaj1,
-					 'lissaj1': results.lissajPasses.group1.lissaj2, 
-					 'lissaj2': results.lissajPasses.group1.lissaj3},
+		{
+			'group': 1,
+			'lissaj0': results.lissajPasses.group1.lissaj1,
+			'lissaj1': results.lissajPasses.group1.lissaj2,
+			'lissaj2': results.lissajPasses.group1.lissaj3
+		},
 
-		{'group': 2, 'lissaj0': results.lissajPasses.group2.lissaj1,
-					 'lissaj1': results.lissajPasses.group2.lissaj2, 
-					 'lissaj2': results.lissajPasses.group2.lissaj3},
+		{
+			'group': 2,
+			'lissaj0': results.lissajPasses.group2.lissaj1,
+			'lissaj1': results.lissajPasses.group2.lissaj2,
+			'lissaj2': results.lissajPasses.group2.lissaj3
+		},
 
-		{'group': 3, 'lissaj0': results.lissajPasses.group3.lissaj1,
-					 'lissaj1': results.lissajPasses.group3.lissaj2, 
-					 'lissaj2': results.lissajPasses.group3.lissaj3},
+		{
+			'group': 3,
+			'lissaj0': results.lissajPasses.group3.lissaj1,
+			'lissaj1': results.lissajPasses.group3.lissaj2,
+			'lissaj2': results.lissajPasses.group3.lissaj3
+		},
 
-		{'group': 4, 'lissaj0': results.lissajPasses.group4.lissaj1,
-					 'lissaj1': results.lissajPasses.group4.lissaj2, 
-					 'lissaj2': results.lissajPasses.group4.lissaj3}
+		{
+			'group': 4,
+			'lissaj0': results.lissajPasses.group4.lissaj1,
+			'lissaj1': results.lissajPasses.group4.lissaj2,
+			'lissaj2': results.lissajPasses.group4.lissaj3
+		}
 	];
-	
+
 	var keys = ["lissaj0", "lissaj1", "lissaj2"];
 
-	x0.domain(data.map(function(d) { return d.group; }));
+	x0.domain(data.map(function(d) {
+		return d.group;
+	}));
 	x1.domain(keys).rangeRound([0, x0.bandwidth()]);
-	y.domain([0, d3.max(data, function(d) { return d3.max(keys, function(key) { return d[key]; }); })]).nice();
+	y.domain([0, d3.max(data, function(d) {
+		return d3.max(keys, function(key) {
+			return d[key];
+		});
+	})]).nice();
 
 	g.append("g")
 		.selectAll("g")
 		.data(data)
 		.enter().append("g")
-			.attr("transform", function(d) { return "translate(" + x0(d.group) + ",0)"; })
+		.attr("transform", function(d) {
+			return "translate(" + x0(d.group) + ",0)";
+		})
 		.selectAll("rect")
-		.data(function(d) { return keys.map(function(key) { return {key: key, value: d[key]}; }); })
-		.enter().append("rect")
-			.attr("x", function(d) { return x1(d.key); })
-			.attr("y", function(d) { 
-				return y(d.value); })
-			.attr("width", x1.bandwidth())
-			.attr("height", function(d) { return height - y(d.value); })
-			.attr("fill", function(d) { return z(d.key); })
-			.on('mouseover', function(d){
-				tooltip.select('.index').html(d.key);
-				tooltip.select('.value').html(d.value + '%');
-				tooltip.style('display', 'block');
-			})
-			.on('mouseout', function(d){
-				tooltip.style('display', 'none');
-			})
-			.on('mousemove', function(d){
-				tooltip.style('top', (d3.event.layerY + 10) + 'px')
-				.style('left', (d3.event.layerX + 10) + 'px');
+		.data(function(d) {
+			return keys.map(function(key) {
+				return {
+					key: key,
+					value: d[key]
+				};
 			});
+		})
+		.enter().append("rect")
+		.attr("x", function(d) {
+			return x1(d.key);
+		})
+		.attr("y", function(d) {
+			return y(d.value);
+		})
+		.attr("width", x1.bandwidth())
+		.attr("height", function(d) {
+			return height - y(d.value);
+		})
+		.attr("fill", function(d) {
+			return z(d.key);
+		})
+		.on('mouseover', function(d) {
+			tooltip.select('.index').html(d.key);
+			tooltip.select('.value').html(d.value + '%');
+			tooltip.style('display', 'block');
+		})
+		.on('mouseout', function(d) {
+			tooltip.style('display', 'none');
+		})
+		.on('mousemove', function(d) {
+			tooltip.style('top', (d3.event.layerY + 10) + 'px')
+				.style('left', (d3.event.layerX + 10) + 'px');
+		});
 
 	g.append("g")
-			.attr("class", "axis")
-			.attr("transform", "translate(0," + height + ")")
-			.call(d3.axisBottom(x0));
+		.attr("class", "axis")
+		.attr("transform", "translate(0," + height + ")")
+		.call(d3.axisBottom(x0));
 
 	g.append("g")
-			.attr("class", "axis")
-			.call(d3.axisLeft(y).ticks(null, "s").tickPadding(0))
+		.attr("class", "axis")
+		.call(d3.axisLeft(y).ticks(null, "s").tickPadding(0))
 		.append("text")
-			// .attr("x", 2)
-			.attr("y", y(y.ticks().pop()) + (-10))
-			.attr("dy", "0.32em")
-			.attr("fill", "#000")
-			.attr("font-weight", "bold")
-			.attr("text-anchor", "start")
-			.text("Percentage Passed");
+		// .attr("x", 2)
+		.attr("y", y(y.ticks().pop()) + (-10))
+		.attr("dy", "0.32em")
+		.attr("fill", "#000")
+		.attr("font-weight", "bold")
+		.attr("text-anchor", "start")
+		.text("Percentage Passed");
 
 	var container = d3.select("#lissajPassGraph");
 	var legend = svg.append("g")
-			.attr("fill", "#000")
-			.attr("font-family", "sans-serif")
-			.attr("font-size", 10)
-			.attr("text-anchor", "end")
-			.attr("transform", "translate(" + (-100) + ", 0)")
+		.attr("fill", "#000")
+		.attr("font-family", "sans-serif")
+		.attr("font-size", 10)
+		.attr("text-anchor", "end")
+		.attr("transform", "translate(" + (-100) + ", 0)")
 		.selectAll("g")
 		.data(keys.slice())
 		.enter().append("g")
-			.attr("transform", function(d, i) { return "translate(" + i * 60 + " 0)"; });
+		.attr("transform", function(d, i) {
+			return "translate(" + i * 60 + " 0)";
+		});
 
 	legend.append("rect")
-			.attr("x", width - 19)
-			.attr("width", 19)
-			.attr("height", 19)
-			.attr("fill", z);
+		.attr("x", width - 19)
+		.attr("width", 19)
+		.attr("height", 19)
+		.attr("fill", z);
 
 	legend.append("text")
-			.attr("x", width - 24)
-			.attr("y", 9.5)
-			.attr("dy", "0.32em")
-			.text(function(d) { return d; });
+		.attr("x", width - 24)
+		.attr("y", 9.5)
+		.attr("dy", "0.32em")
+		.text(function(d) {
+			return d;
+		});
 
 
 	// var tooltip = d3.selectAll('#drawLissajPassRateGraph')
@@ -353,21 +428,26 @@ function drawLissajPassRateGraph(results){
 		.append('div')
 		.attr('class', 'tooltip');
 
-		tooltip.append('div')
-			.attr('class', 'index');
-		
-		tooltip.append('div')
-			.attr('class', 'value');
+	tooltip.append('div')
+		.attr('class', 'index');
+
+	tooltip.append('div')
+		.attr('class', 'value');
 }
 
-function drawTimeAccuracyGraph(results){
+function drawTimeAccuracyGraph(results) {
 
 	var data = results.testTimeAccuracy;
 
 	var containerWidth = $('#timeAccuracyGraph').width();
 	var containerHeight = $('#timeAccuracyGraph').height();
 
-	var margin = {top: 20, right: 20, bottom: 30, left: 50},
+	var margin = {
+			top: 20,
+			right: 20,
+			bottom: 30,
+			left: 50
+		},
 		width = containerWidth - margin.left - margin.right,
 		height = containerHeight - margin.top - margin.bottom;
 
@@ -376,7 +456,7 @@ function drawTimeAccuracyGraph(results){
 	var x = d3.scaleTime().range([0, width]);
 	var y = d3.scaleLinear().range([height, 0]);
 
-	
+
 
 	$('#timeAccuracyGraphSvg').attr('width', containerWidth);
 	$('#timeAccuracyGraphSvg').attr('height', containerHeight);
@@ -385,41 +465,49 @@ function drawTimeAccuracyGraph(results){
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
 		.append("g")
-			.attr("transform",
-				  "translate(" + margin.left + "," + margin.top + ")");
+		.attr("transform",
+			"translate(" + margin.left + "," + margin.top + ")");
 
 	data.forEach(function(d) {
 		d.time = parseTime(d.time);
 	});
 
-	x.domain(d3.extent(data, function(d) { return d.time; }));
-	y.domain([0, d3.max(data, function(d) { return d.accuracy; })]);
-		  
+	x.domain(d3.extent(data, function(d) {
+		return d.time;
+	}));
+	y.domain([0, d3.max(data, function(d) {
+		return d.accuracy;
+	})]);
+
 	svg.selectAll("dot")
 		.data(data)
 		.enter().append("circle")
-			.attr("fill", '#5F6C6C')
-			.attr("r", 5)
-			.attr("cx", function(d) { return x(d.time); })
-			.attr("cy", function(d) { return y(d.accuracy); })
-			.on('mouseover', function(d){
-				$(this).attr("fill", '#B9D2D2');
-				var formatTime = d3.timeFormat("%X");
-				// console.log('d.time: ' + d.time);
-				var formattedTime = formatTime(d.time);
-				// console.log('formattedTime: ' + formattedTime);
-				tooltip.select('.time').html(formattedTime);
-				tooltip.select('.accuracy').html('Accuracy: ' + d.accuracy + '%');
-				tooltip.style('display', 'block');
-			})
-			.on('mouseout', function(d){
-				tooltip.style('display', 'none');
-				$(this).attr("fill", '#5F6C6C');
-			})
-			.on('mousemove', function(d){
-				tooltip.style('top', (d3.event.layerY + 10) + 'px')
+		.attr("fill", '#5F6C6C')
+		.attr("r", 5)
+		.attr("cx", function(d) {
+			return x(d.time);
+		})
+		.attr("cy", function(d) {
+			return y(d.accuracy);
+		})
+		.on('mouseover', function(d) {
+			$(this).attr("fill", '#B9D2D2');
+			var formatTime = d3.timeFormat("%X");
+			// console.log('d.time: ' + d.time);
+			var formattedTime = formatTime(d.time);
+			// console.log('formattedTime: ' + formattedTime);
+			tooltip.select('.time').html(formattedTime);
+			tooltip.select('.accuracy').html('Accuracy: ' + d.accuracy + '%');
+			tooltip.style('display', 'block');
+		})
+		.on('mouseout', function(d) {
+			tooltip.style('display', 'none');
+			$(this).attr("fill", '#5F6C6C');
+		})
+		.on('mousemove', function(d) {
+			tooltip.style('top', (d3.event.layerY + 10) + 'px')
 				.style('left', (d3.event.layerX + 10) + 'px');
-			});
+		});
 
 	svg.append("g")
 		.attr("transform", "translate(0," + height + ")")
@@ -429,12 +517,12 @@ function drawTimeAccuracyGraph(results){
 		.call(d3.axisLeft(y));
 
 	var tooltip = d3.selectAll('#timeAccuracyContainer')
-	.append('div')
-	.attr('class', 'tooltip');
+		.append('div')
+		.attr('class', 'tooltip');
 
 	tooltip.append('div')
 		.attr('class', 'time');
-	
+
 	tooltip.append('div')
 		.attr('class', 'accuracy');
 }

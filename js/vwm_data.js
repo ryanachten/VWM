@@ -18,6 +18,30 @@ var ref;
 	ref = database.ref('vwm_participants');
 })();
 
+function submitAdmin(password, email){
+	
+	return new Promise(function(resolve, reject){
+
+		const promise = firebase.auth().signInWithEmailAndPassword(email, password);
+		promise.catch(function(error) {
+		  // Handle Errors here.
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		  console.log(errorMessage);
+		});
+		promise.then(function(result){
+			returnAdminId(); //FIXME: this feels like a bit of a hack
+		});
+
+		function returnAdminId(){
+			resolve();
+		}
+	});
+
+
+	
+}
+
 function submitUser(name, email){
 
 	var test = {
