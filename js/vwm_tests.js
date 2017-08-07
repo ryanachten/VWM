@@ -290,7 +290,7 @@ function updateHelperText(sceneMode){
 
 	}else if(sceneMode === 'test'){
 		targetHelperText.innerHTML = 'Nothing to memorise here, just select the image from <span id="target-scenecount">'+ nback +' scenes</span> ago in the options below';
-		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
+		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the right';
 		targetPanel.style.width = '100%';
 
 	}else if(sceneMode === 'trans'){
@@ -309,6 +309,6 @@ function updateHelperText(sceneMode){
 		targetHelperText.style.display = 'block';
 		optionsHelperText.style.display = 'block';
 		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';	
-		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the left';
+		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the right';
 	}
 }
