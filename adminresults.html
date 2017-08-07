@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Mono" rel="stylesheet">
 </head>
 <body>
+
 	<nav id="top-nav">
 		<a id="vwm-logo" href="index.html">
 			<img id="vwm-logoimg" src="img/vwm_mainlogo_white.svg" alt="vwm logo">
@@ -21,18 +22,28 @@
 		<a class="top-nav-link" href="">Contact</a>
 	</nav>
 
-	<header>
-		<h1 id="vwm-title">VWM</h1>
-		<h2>Test Result Summary</h2>
-		<div id="header-content">
-			<p><strong>Sample Count: </strong><span id="test-sampleCount">20</span></p>
-			<button id="download-button" onClick="download()">
-				<img src="img/vwm_download_icon.svg">
-			</button>
-		</div>
-	</header>
+	<div id="login-panel">
+		<h2>Admin Login:</h2>
+		<p>This results page is restricted to test administrators only:</p>
+		<form id="email-inputform" class="auth-inputform">
+			<input type="text" id="email-inputfield" class="auth-inputfield" type="email" placeholder="your@email.com*" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+		</form>
+		<form id="password-inputform" class="auth-inputform">
+			<input type="password" id="pass-inputfield" class="auth-inputfield" placeholder="Enter your password*">
+		</form>
+	</div>
 
-	<div id="container">
+	<div id="admin-container">
+		<header>
+			<h1 id="vwm-title">VWM</h1>
+			<h2>Test Result Summary</h2>
+			<div id="header-content">
+				<p><strong>Sample Count: </strong><span id="test-sampleCount">20</span></p>
+				<button id="download-button" onClick="download()">
+					<img src="img/vwm_download_icon.svg">
+				</button>
+			</div>
+		</header>
 		<div id="nbackPassContainer" class="graphContainer">
 			<h2>Test Accuracy</h2>
 			<div id="nbackPassGraphs">
@@ -75,7 +86,8 @@
 	<script type="text/javascript" src="js/vwm_jsoncsv.js"></script>
 	<script type="text/javascript" src="js/vwm_graph.js"></script>
 	<script>
-		$( document ).ready(function() {
+		$('#password-inputform').submit(function(e) {
+			e.preventDefault();
 			getAdminData();
 		});
 	</script>

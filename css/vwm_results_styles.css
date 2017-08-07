@@ -33,6 +33,34 @@ body{
 }
 
 
+/*****LOGIN STYLES*****/
+#login-panel{
+	text-align: center;
+	height: 250px;
+	background: #F5F5F5;
+	/*box-shadow: -2px 0 10px 0 rgba(0,0,0,0.50);*/
+	padding: 20px;
+    margin-top: -5px;
+}
+.auth-inputfield{
+	background: #FFFFFF;
+	border: 1px solid #979797;
+	border-radius: 8px;
+	padding: 10px;
+
+	/* Enter your name*: */
+	font-family: Georgia;
+	font-style: italic;
+	font-size: 18px;
+	color: #797979;
+	letter-spacing: 0;
+	text-align: center;	
+}
+.auth-inputform{
+	margin-bottom: 10px;
+}
+
+
 /*****HEADER STYLES*****/
 
 header{
@@ -74,7 +102,11 @@ header{
 
 /*****GRAPH CONTAINER STYLES*****/
 
-#container{
+#admin-container{
+	display: none;
+}
+
+#admin-container, #container{
 	width: 80%;
 	margin: 0 auto;
 	background-color: #EEEEEE;
