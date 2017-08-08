@@ -106,7 +106,7 @@ header{
 	display: none;
 }
 
-#admin-container, #container{
+#container{
 	width: 80%;
 	margin: 0 auto;
 	background-color: #EEEEEE;

@@ -7,4 +7,9 @@
 	#container{
 		width: 100%;
 	}
+
+	#timeAccuracyGraph{
+		width: 90vw;
+		height: 40vw;
+	}
 }
