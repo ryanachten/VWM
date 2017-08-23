@@ -151,7 +151,7 @@ var lissajousGroups = [];
 		}
 		lissajGroupE.push(lissajGroupEvariant3);
 	lissajousGroups.push(lissajGroupE);
-	
+
 
 var lissajousSvgsDirectory = 'img/VWM_LissagSvgs/';
 var lissajousSvgs = [
@@ -181,11 +181,9 @@ var lissajousSvgs = [
 var preloadImages = [];
 (function(){
 	for (var i = 0; i < lissajousSvgs.length; i++){
-		console.log();
 		for (var j = 0; j < lissajousSvgs[i].length; j++){
 			var img = new Image();
 			img.src = lissajousSvgs[i][j];
-			console.log(img.src);
 			preloadImages.push(img);
 		}
 	}
@@ -206,12 +204,12 @@ function LissajousCurve(){
 	this.phaseZ = 8.0;
 
 	this.step = 0.02;
-	
+
 	this.curveVertices = []; //eg. uses new Array() - not recommended approach
 	this.lines = [];
-	
+
 	this.numCurveVertices = 0.0;
-	
+
 	this.material = 'Basic';
 	this.meshObject = new THREE.Object3D;
 	this.color = '#384040';
@@ -228,7 +226,7 @@ function LissajousCurve(){
 		this.fb = parameters.fb;
 		this.fc = parameters.fc;
 
-		this.phaseX = parameters.phaseX; 
+		this.phaseX = parameters.phaseX;
 		this.phaseY = parameters.phaseY;
 		this.phaseZ = parameters.phaseZ;
 
@@ -268,15 +266,15 @@ function LissajousCurve(){
 			lissajousGeometry.computeLineDistances();
 		}
 
-		var lineMaterial = new MeshLineMaterial({ 
+		var lineMaterial = new MeshLineMaterial({
 			color : new THREE.Color().setHex(this.color.replace("#", "0x"))
 		});
 		var line = new MeshLine();
 		var lineWidth = 2;
 		line.setGeometry(lissajousGeometry, function(p){ return lineWidth; });
 		var lineMesh = new THREE.Mesh(line.geometry, lineMaterial);
-		this.meshObject.add(lineMesh);			
-			
+		this.meshObject.add(lineMesh);
+
 	};
 
 	this.update = function(){
