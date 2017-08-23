@@ -22,11 +22,12 @@ function initScene() {
 
 function calcCanvasSizes(){
 	screenWidth = $(window).width();
+	console.log('screenWidth: ' + screenWidth);
 	var navHeight = $('#top-nav').outerHeight();
 	var optHeight = $('#options-panel').outerHeight();
 	console.log('navHeight: ' + optHeight);
 	console.log('optHeight: ' + optHeight);
-	screenHeight = $(window).height() - (optHeight+navHeight);	
+	screenHeight = $(window).height() - (optHeight+navHeight);
 }
 
 
@@ -43,7 +44,7 @@ function recalcCanvas(){
 }
 
 
-function initSceneRenderer(){	
+function initSceneRenderer(){
 	scene = new THREE.Scene();
 	scene.background = new THREE.Color( 0xCFECEC );
 	if ( Detector.webgl )
@@ -70,7 +71,7 @@ function initLight(){
 	scene.add(light);
 
 	ambientLight = new THREE.AmbientLight(0x444444);
-	
+
 	scene.add(ambientLight);
 }
 
@@ -82,4 +83,3 @@ function initMesh(){
 	lissajousCurve.createMesh();
 	scene.add(lissajousCurve.meshObject);
 }
-
