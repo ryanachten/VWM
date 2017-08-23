@@ -40,7 +40,7 @@ function initScene() {
 	initLight();
 	initMesh();
 
-	function initSceneRenderer(){	
+	function initSceneRenderer(){
 		scene = new THREE.Scene();
 		scene.background = new THREE.Color( 0xCFECEC );
 		if ( Detector.webgl )
@@ -67,7 +67,7 @@ function initScene() {
 		scene.add(light);
 
 		ambientLight = new THREE.AmbientLight(0x444444);
-		
+
 		scene.add(ambientLight);
 	}
 
@@ -83,13 +83,13 @@ function initScene() {
 }
 
 function calcCanvasSizes(){
-	
+
 	var navHeight = $('#top-nav').outerHeight(true);
 	var optHeight = $('#start-panel').outerHeight(true);
 	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
-	screenHeight = $(window).height() - (navHeight+optHeight);	
+	screenHeight = $(window).outerHeight() - (navHeight+optHeight);	
 	if(screenHeight < 450) screenHeight = 450;
-	screenWidth = $(window).width();
+	screenWidth = $(window).outerWidth();
 	console.log('screenWidth: ' + screenWidth);
 }
 
@@ -118,6 +118,6 @@ function nameEmailFormValidationRedirect(){
 		alert('Please enter your name before continuing');
 	}else{
 		submitUser(namefield.value, emailfield.value);
-		window.location.href = 'test.html';	
-	}	
+		window.location.href = 'test.html';
+	}
 }
