@@ -1,5 +1,4 @@
 // DESCRIPT: all functionality related to lissajous fig here:
-
 var lissajousGroups = [];
 	var lissajGroupA = [];
 		var lissajGroupAvariant1 = {
@@ -179,7 +178,18 @@ var lissajousSvgs = [
 	]
 ];
 
-
+var preloadImages = [];
+(function(){
+	for (var i = 0; i < lissajousSvgs.length; i++){
+		console.log();
+		for (var j = 0; j < lissajousSvgs[i].length; j++){
+			var img = new Image();
+			img.src = lissajousSvgs[i][j];
+			console.log(img.src);
+			preloadImages.push(img);
+		}
+	}
+})();
 
 function LissajousCurve(){
 	// based on https://github.com/licaschiou/Lissajous3js
