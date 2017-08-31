@@ -87,7 +87,7 @@ function calcCanvasSizes(){
 	var navHeight = $('#top-nav').outerHeight(true);
 	var optHeight = $('#start-panel').outerHeight(true);
 	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
-	screenHeight = $(window).outerHeight() - (navHeight+optHeight);	
+	screenHeight = $(window).outerHeight() - (navHeight+optHeight);
 	if(screenHeight < 450) screenHeight = 450;
 	screenWidth = $(window).outerWidth();
 	console.log('screenWidth: ' + screenWidth);
@@ -109,6 +109,11 @@ $('#email-inputform').submit(function(e) {
 	nameEmailFormValidationRedirect();
 });
 
+$('#submit-button').click(function(e) {
+	console.log('submit via button');
+	nameEmailFormValidationRedirect();
+});
+
 function nameEmailFormValidationRedirect(){
 
 	var namefield = document.getElementById('name-inputfield');
@@ -116,8 +121,13 @@ function nameEmailFormValidationRedirect(){
 
 	if(namefield.value.length === 0){
 		alert('Please enter your name before continuing');
-	}else{
-		submitUser(namefield.value, emailfield.value);
-		window.location.href = 'test.html';
+		return;
 	}
+	if(emailfield.value.length === 0){
+		alert('Please enter your email before continuing');
+		return;
+	}
+	
+	submitUser(namefield.value, emailfield.value);
+	window.location.href = 'test.html';
 }

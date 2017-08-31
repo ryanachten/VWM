@@ -104,8 +104,11 @@ canvas{
 	margin-top: 20px;
     font-size: 0.8em;
 }
+#disclaimer-text a{
+	color: #384040;
+}
 
-.more-button{
+.more-button, #submit-button{
 	border: 1px solid #979797;
 	border-radius: 4px;
 	padding: 10px;
@@ -113,7 +116,7 @@ canvas{
 	color: #797979;
 }
 
-.more-button a{
+.more-button a, #submit-button a{
 	color: #384040;
 	text-decoration: none;
 }
