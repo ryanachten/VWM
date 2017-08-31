@@ -7,7 +7,7 @@
  	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.50);
 }
 #top-nav-links{
-	display: inline;	
+	display: inline;
 }
 
 #vwm-logoimg{
@@ -53,10 +53,10 @@
 #pulloutquote{
 	display: block;
 	margin-right: auto;
-    margin-left: auto;    
+    margin-left: auto;
 	font-family: Georgia;
 	font-size: 24px;
-	color: #000000;
+	color: #384040;
 	width: 75%;
 }
 
@@ -94,7 +94,7 @@ canvas{
 	font-size: 18px;
 	color: #797979;
 	letter-spacing: 0;
-	text-align: center;	
+	text-align: center;
 }
 .auth-inputform{
 	margin-bottom: 10px;
