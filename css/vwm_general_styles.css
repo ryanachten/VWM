@@ -89,14 +89,13 @@ fieldset {
 }
 
 #contact button {
-	cursor:pointer;
-	width:100px;
-	border:none;
-	background:#FFA0B6;
-	color:#FFF;
-	margin:0 0 5px;
-	padding:10px;
-	font-size:15px;
+  width:100px;
+  border: 1px solid #979797;
+	border-radius: 4px;
+	padding: 10px;
+	background-color: rgba(255,255,255,0.5);
+	color: #797979;
+  font-size:15px;
 }
 
 #contact input:focus, #contact textarea:focus {
