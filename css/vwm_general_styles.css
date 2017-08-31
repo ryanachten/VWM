@@ -1,5 +1,5 @@
 body{
-  background-color: #CFECEC;
+  background: radial-gradient(circle at center, #eef9f9 0, #CFECEC 100%);;
 }
 .section{
   width: 50%;
@@ -43,4 +43,10 @@ body{
 }
 #hec-statement a{
   text-decoration: underline;
+}
+
+/*BACKGROUND*/
+#background-refs p{
+  font-family: sans-serif;
+  font-size: 0.8em;
 }
