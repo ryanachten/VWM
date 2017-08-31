@@ -1,0 +1,14 @@
+body{
+  background-color: #CFECEC;
+}
+main{
+  width: 40%;
+  margin: 30px auto 0 auto;
+  text-align: center;
+}
+
+main p{
+  text-align: left;
+  line-height: 1.5em;
+  margin-top: 20px;
+}
