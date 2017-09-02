@@ -127,7 +127,11 @@ function nameEmailFormValidationRedirect(){
 		alert('Please enter your email before continuing');
 		return;
 	}
-	
+	if(!emailfield.value.includes('@')){
+		alert('Please enter a valid email with an "@" character')
+		return;
+	}
+
 	submitUser(namefield.value, emailfield.value);
 	window.location.href = 'test.html';
 }
