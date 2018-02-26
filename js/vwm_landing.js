@@ -14,7 +14,7 @@ $(document).ready(function(){
 	animate();
 	var newLassijGroup = Math.floor(Math.random()*lissajousGroups.length);
 	var newLassijIndex = Math.floor(Math.random()*lissajousGroups[newLassijGroup].length);
-	tweenLissaj(lissajousGroups[newLassijGroup][newLassijIndex]);
+	tweenLandingLissaj(lissajousGroups[newLassijGroup][newLassijIndex]);
 
 	$('html').show(); //FOUC hack
 });
@@ -74,6 +74,9 @@ function initScene() {
 
 	function initMesh(){
 		lissajousCurve = new LissajousCurve();
+		lissajousCurve.material = new THREE.MeshLambertMaterial();
+		console.log(lissajousCurve.material);
+
 		lissajousCurve.color = "#BFE3E3";
 		lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = 150;
 		lissajousCurve.meshObject.name = "Lissa";
@@ -134,4 +137,53 @@ function nameEmailFormValidationRedirect(){
 
 	submitUser(namefield.value, emailfield.value);
 	window.location.href = 'test.html';
+}
+
+
+
+function tweenLandingLissaj(newLissaj){
+
+	var update = function(){
+		lissajousCurve.fa = current.freqA;
+		lissajousCurve.fb = current.freqB;
+		lissajousCurve.fc = current.freqC;
+		lissajousCurve.phaseX = current.phaseX;
+		lissajousCurve.phaseY = current.phaseY;
+		lissajousCurve.phaseZ = current.phaseZ;
+		lissajousCurve.update();
+	};
+
+	var current = { freqA: lissajousCurve.fa,
+					freqB: lissajousCurve.fb,
+					freqC: lissajousCurve.fc,
+					phaseX: lissajousCurve.phaseX,
+					phaseY: lissajousCurve.phaseY,
+					phaseZ: lissajousCurve.phaseZ
+				};
+
+	var tweenTo = new TWEEN.Tween(current);
+	tweenTo.to({	freqA: Math.floor(Math.random()*10)+1,
+							freqB: Math.floor(Math.random()*10)+1,
+							freqC: Math.floor(Math.random()*10)+1,
+							phaseX: Math.floor(Math.random()*10)+1,
+							phaseY: Math.floor(Math.random()*10)+1,
+							phaseZ: Math.floor(Math.random()*10)+1
+		}, 10000);
+	tweenTo.onUpdate(update);
+
+	var tweenBack = new TWEEN.Tween(current);
+	tweenBack.to({	freqA: Math.floor(Math.random()*10)+1,
+							freqB: Math.floor(Math.random()*10)+1,
+							freqC: Math.floor(Math.random()*10)+1,
+							phaseX: Math.floor(Math.random()*10)+1,
+							phaseY: Math.floor(Math.random()*10)+1,
+							phaseZ: Math.floor(Math.random()*10)+1
+		}, 10000);
+	tweenBack.onUpdate(update);
+
+	tweenTo.chain(tweenBack);
+	tweenBack.chain(tweenTo);
+
+	tweenTo.start();
+
 }
