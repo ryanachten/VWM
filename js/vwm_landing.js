@@ -27,7 +27,8 @@ function animate() {
 }
 
 function render(){
-
+	lissajousCurve.meshObject.rotation.x += 0.01;
+	lissajousCurve.meshObject.rotation.y += 0.01;
 	renderer.render(scene, camera);
 }
 
@@ -75,9 +76,8 @@ function initScene() {
 	function initMesh(){
 		lissajousCurve = new LissajousCurve();
 		lissajousCurve.material = new THREE.MeshLambertMaterial();
-		console.log(lissajousCurve.material);
+		lissajousCurve.color = "#BFE3E3"; //Red - FFA0B6 Blue - #BFE3E3 Grey - #F5F5F5
 
-		lissajousCurve.color = "#BFE3E3";
 		lissajousCurve.sizeX = lissajousCurve.sizeY = lissajousCurve.sizeZ = 150;
 		lissajousCurve.meshObject.name = "Lissa";
 		lissajousCurve.createMesh();
@@ -92,7 +92,7 @@ function calcCanvasSizes(){
 	console.log('navHeight: ' + navHeight + ' optHeight: ' + optHeight);
 	screenHeight = $(window).outerHeight() - (navHeight+optHeight);
 	if(screenHeight < 450) screenHeight = 450;
-	screenWidth = $(window).outerWidth();
+	screenWidth = $(window).width();
 	console.log('screenWidth: ' + screenWidth);
 }
 
@@ -162,28 +162,14 @@ function tweenLandingLissaj(newLissaj){
 				};
 
 	var tweenTo = new TWEEN.Tween(current);
-	tweenTo.to({	freqA: Math.floor(Math.random()*10)+1,
-							freqB: Math.floor(Math.random()*10)+1,
-							freqC: Math.floor(Math.random()*10)+1,
-							phaseX: Math.floor(Math.random()*10)+1,
-							phaseY: Math.floor(Math.random()*10)+1,
-							phaseZ: Math.floor(Math.random()*10)+1
+	tweenTo.to({	freqA: newLissaj.freqA,
+							freqB: newLissaj.freqB,
+							freqC: newLissaj.freqC,
+							phaseX: newLissaj.phaseX,
+							phaseY: newLissaj.phaseY,
+							phaseZ: newLissaj.phaseZ
 		}, 10000);
 	tweenTo.onUpdate(update);
 
-	var tweenBack = new TWEEN.Tween(current);
-	tweenBack.to({	freqA: Math.floor(Math.random()*10)+1,
-							freqB: Math.floor(Math.random()*10)+1,
-							freqC: Math.floor(Math.random()*10)+1,
-							phaseX: Math.floor(Math.random()*10)+1,
-							phaseY: Math.floor(Math.random()*10)+1,
-							phaseZ: Math.floor(Math.random()*10)+1
-		}, 10000);
-	tweenBack.onUpdate(update);
-
-	tweenTo.chain(tweenBack);
-	tweenBack.chain(tweenTo);
-
 	tweenTo.start();
-
 }
