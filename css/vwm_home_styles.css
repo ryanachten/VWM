@@ -1,4 +1,7 @@
 /*****TOP NAV STYLES*****/
+body{
+	overflow-x: hidden;
+}
 
 #top-nav{
 	background-color: #384040;
