@@ -22,9 +22,11 @@ function getAdminData() {
 		alert('Please enter your email before continuing');
 		return;
 	}
-	
+
 	var adminId = submitAdmin(passfield.value, emailfield.value);
+
 	adminId.then(function(){
+		console.log('adminId', adminId);
 		$('#admin-container').show();
 		$('#login-panel').hide();
 		var graphData = getTotalTestMetrics();
@@ -103,7 +105,7 @@ function drawNbackPassRateGraph(results) {
 			.attr("font-size", "20")
 			.attr("font-family", "OpenSans-Regular")
 			//     font-family: OpenSans-Regular;
-			.text(dataset["progress"] + '%'); //.toFixed(0)
+			.text(Math.round(dataset["progress"]) + '%'); //.toFixed(0)
 	}
 }
 
