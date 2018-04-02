@@ -31,10 +31,10 @@ var transitionDiagram = document.getElementById('nback-diagram');
 var optionButtons = document.getElementsByClassName('option-button');
 
 function loadScene(optionButtonID, optionImgIndex){
-	if(nback !== null && optionButtonID !== 'continue-button'){ 
+	if(nback !== null && optionButtonID !== 'continue-button'){
 		//TODO: here is where the validation and data logging function will be executed from
 		// console.log('Button pressed: ' + optionButtonID);
-		
+
 		testEndTime = performance.now();
 		// console.log('testEndTime: ' + testEndTime);
 		// console.log('testStartTime: ' + testStartTime);
@@ -46,7 +46,7 @@ function loadScene(optionButtonID, optionImgIndex){
 		console.log('Current Target: Group: ' + lissagIndexArr[0].groupIndex + ' Figure: ' + lissagIndexArr[0].lassigIndex);
 		console.log('Figure pressed: ' + optionImgIndex);
 		console.log('Time Taken: ' + ellapsedSeconds + 'sec');
-		
+
 		if(optionImgIndex == lissagIndexArr[0].lassigIndex) testResult = 'Pass'; //console.log('Test Result: PASS');
 		else testResult = 'Fail'; //console.log('Test Result: FAIL');
 		console.log('Test Result: ' + testResult);
@@ -70,11 +70,11 @@ function loadScene(optionButtonID, optionImgIndex){
 		console.log('sceneMode: testOnly');
 		loadTestOnlyScene();
 		curSceneIndex++;
-	} 
+	}
 	else if (curTestIndex < testPerStageCount){
 		console.log('sceneMode: testAndMemorise');
 		loadTestMemoriseScene();
-		curSceneIndex++; 
+		curSceneIndex++;
 	}
 	else if(curSceneIndex+nback > testPerStageCount){
 		console.log('sceneMode: transition to next stage');
@@ -104,7 +104,7 @@ function loadTestMemoriseScene(){
 	}
 	else{
 		console.log('Test Number: ' + curTestIndex);
-		
+
 		curTestIndex++;
 	}
 	updateMemoriseFigure();
@@ -150,7 +150,7 @@ function loadTestOnlyScene(){
 function loadStageTransitionScene(){
 
 	if(nback === null){
-		nback = 0;	
+		nback = 0;
 	}else{
 		nback++;
 	}
@@ -219,11 +219,11 @@ function updateMemoriseFigure(){
 				// console.log('groupExistsInNback');
 			}
 		};
-		
-		if(newLassigGroupIndex !== curLassijGroupIndex && !groupExistsInNback){ // && 
+
+		if(newLassigGroupIndex !== curLassijGroupIndex && !groupExistsInNback){ // &&
 			var newLassijIndex = Math.floor(Math.random()*lissajousGroups[newLassigGroupIndex].length);
 			tweenLissaj(lissajousGroups[newLassigGroupIndex][newLassijIndex]);
-			
+
 			$('.option-button').prop('disabled', true); //FIXME: below
 			$('.option-button').toggleClass('disabled', true); //FIXME: wrong context to add this functionalty
 			var animationDelay = setTimeout(function(){
@@ -233,10 +233,10 @@ function updateMemoriseFigure(){
 			}, 2000); //needs to matched to tween animation period
 
 			if(lissagIndexArr.length > nback)
-				lissagIndexArr.shift();	
+				lissagIndexArr.shift();
 			lissagIndexArr.push({
 				groupIndex: newLassigGroupIndex,
-				lassigIndex: newLassijIndex 	
+				lassigIndex: newLassijIndex
 			});
 
 			curLassijGroupIndex = newLassigGroupIndex;
@@ -248,12 +248,12 @@ function updateMemoriseFigure(){
 }
 
 function updateOptionImages(){
-	
+
 	var curOptionImages = []; //store cur option images in here to prevent duplicates
-	
+
 	var curOptionWithTargetImage; //stores index of option button with target image
 		curOptionWithTargetImage = Math.floor(Math.random()*optionButtons.length);
-		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[lissagIndexArr[0].groupIndex][lissagIndexArr[0].lassigIndex]; 
+		optionButtons[curOptionWithTargetImage].children[0].src = lissajousSvgs[lissagIndexArr[0].groupIndex][lissagIndexArr[0].lassigIndex];
 		optionButtons[curOptionWithTargetImage].setAttribute('data-lissaj-index',lissagIndexArr[0].lassigIndex);
 		curOptionImages.push(lissagIndexArr[0].lassigIndex);
 
@@ -265,7 +265,7 @@ function updateOptionImages(){
 			optionButtons[i].setAttribute('data-lissaj-index',randImgIndex);
 		}
 	};
-	
+
 	function randOptionImgIndex(){
 		var tempRandIndex = Math.floor(Math.random()*lissajousSvgs[lissagIndexArr[0].groupIndex].length);
 		while(curOptionImages.indexOf(tempRandIndex) !== -1){ //while temp index already in the cur set
@@ -276,7 +276,7 @@ function updateOptionImages(){
 }
 
 function updateProgressBar(){
-	var curProgressPercent = curTestIndex * (100/testPerStageCount);	
+	var curProgressPercent = curTestIndex * (100/testPerStageCount);
 	testProgressBar.style.width = curProgressPercent + '%';
 	trialCountText.innerText = (testPerStageCount - curTestIndex)+1 + " trials"; //+1 added for label  to state max @ 25 and min @ 1
 }
@@ -309,7 +309,7 @@ function updateHelperText(sceneMode){
 	}else{
 		targetHelperText.style.display = 'block';
 		optionsHelperText.style.display = 'block';
-		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';	
+		targetHelperText.innerHTML = 'Find this image in <span id="target-scenecount">'+ nback +' scenes</span> from now';
 		optionsHelperText.innerHTML = 'Find the image from <span id="options-scenecount">'+ nback +' scenes</span> ago in the images to the right';
 	}
 }
