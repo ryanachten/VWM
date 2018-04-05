@@ -71,7 +71,6 @@ function drawNbackPassRateGraph(results) {
 			.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
 
 		var meter = svg.append("g");
-		// .attr("class", "season-progress");
 
 		var background = meter.append("path")
 			.datum({
@@ -103,8 +102,8 @@ function drawNbackPassRateGraph(results) {
 			.attr("text-anchor", "middle")
 			.attr("dy", ".35em")
 			.attr("font-size", "20")
-			.attr("font-family", "OpenSans-Regular")
-			//     font-family: OpenSans-Regular;
+			.attr("font-family", "Arial")
+			// .attr("font-family", "OpenSans-Regular")
 			.text(Math.round(dataset["progress"]) + '%'); //.toFixed(0)
 	}
 }
