@@ -11,7 +11,7 @@ body{
  	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.50);
 }
 #top-nav-links{
-	display: inline;	
+	display: inline;
 }
 
 #vwm-logoimg{
@@ -54,7 +54,7 @@ body{
 	font-size: 18px;
 	color: #797979;
 	letter-spacing: 0;
-	text-align: center;	
+	text-align: center;
 }
 .auth-inputform{
 	margin-bottom: 10px;
@@ -74,6 +74,10 @@ header{
 	font-size: 35px;
 	letter-spacing: 6px;
 	text-transform: uppercase;
+}
+
+#test-subtitle{
+	margin-bottom: 30px;
 }
 
 #header-content{

@@ -24,7 +24,7 @@
 	width: calc(100% - 120px);
 	position: relative;
 	bottom: 25%;
-	/*top: 100px;*/	
+	/*top: 100px;*/
     /*transform: translateY(-80%);*/
 }
 #progress-header{
@@ -77,8 +77,8 @@ h1{
 	/*width: 60%;*/
     height: 20vh;
     max-width: 80%;
-	margin-left: auto; 
-	margin-right: auto; 
+	margin-left: auto;
+	margin-right: auto;
 	background-repeat: no-repeat;
 	/*left: 300px;*/
 	/*margin: 20px 50px;*/
@@ -152,6 +152,7 @@ canvas{
 	margin: 0 1vw;
 	padding: 20px;
 	background-color: white;
+  outline: none;
 }
 .option-button:hover {
     background-color: #FFA0B6;
@@ -172,13 +173,14 @@ canvas{
 	/*position: absolute;*/
     right: 100px;
 	bottom: 50px;
-    /*transform: translateY(-60%);*/
-    border-radius: 10px;
-    /*border: 1px #2c2828 solid;*/
-    border: none;
-    box-shadow: -2px 0 10px 0 rgba(0,0,0,0.50);
-    margin: 40px auto;
-    background-color: rgba(255,255,255, 0.7);
+  /*transform: translateY(-60%);*/
+  border-radius: 10px;
+  /*border: 1px #2c2828 solid;*/
+  border: none;
+  box-shadow: -2px 0 10px 0 rgba(0,0,0,0.50);
+  margin: 40px auto;
+  background-color: rgba(255,255,255, 0.7);
+  outline: none;
 }
 #continue-button > p{
 	display: inline-block;
