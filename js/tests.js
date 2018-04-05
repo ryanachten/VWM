@@ -1,6 +1,6 @@
 // DESCRIPT: all psych test controller functionality goes here:
 
-
+var frameId;
 var testPerStageCount = 24;
 var curSceneIndex = null;
 var curTestIndex = null;
@@ -156,6 +156,8 @@ function loadStageTransitionScene(){
 	}
 	if(nback > maxNback){ //if nback is above max redirect to results
 		console.log('nback > 3: load results scene');
+		console.log('frameId', frameId);
+		window.cancelAnimationFrame(frameId);
 		window.location.href = 'userresults.html';
 		return;
 	}

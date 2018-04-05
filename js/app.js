@@ -14,7 +14,6 @@ $(document).ready(function(){
 
 var clock;
 
-
 function initApp(){
 	clock = new THREE.Clock();
 
@@ -28,11 +27,11 @@ function initApp(){
 		continueButton.addEventListener("click", function(){
 			loadScene('continue-button');
 		});
-	
+
 }
 
 function animate() {
-	requestAnimationFrame(animate);
+	frameId = requestAnimationFrame(animate);
 	TWEEN.update();
 	render();
 }
@@ -42,5 +41,3 @@ function render(){
 	var delta = clock.getDelta();
 	renderer.render(scene, camera);
 }
-
-
